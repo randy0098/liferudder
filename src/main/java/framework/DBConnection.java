@@ -11,6 +11,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import framework.FWConstants.DataBaseType;
+
 public class DBConnection
 {
 	private static String driver = "com.mysql.jdbc.Driver";
@@ -43,5 +45,15 @@ public class DBConnection
 		return conn;
 	}
 	
+	public static DataBaseType getConnectionDBType(){
+		DataBaseType dbType = DataBaseType.UNDEFINE;
+		if(driver.contains("oracle")){
+			dbType = DataBaseType.ORACLE;
+		}
+		else if(driver.contains("mysql")){
+			dbType = DataBaseType.MYSQL;
+		}
+		return dbType;
+	}
 	
 }

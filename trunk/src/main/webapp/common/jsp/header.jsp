@@ -14,3 +14,7 @@
 <!-- 页面上所有相对路径不再相对于浏览器路径，而是全部相对于basePath！ -->
 <base href="<%=basePath%>">
 </head>
+<link rel="stylesheet" href="themes/redmond/jquery.ui.all.css">
+<script type="text/javascript" src="common/jquery-1.7.2.js"></script>
+<script src="common/ui/jquery-ui-1.8.22.custom.js"></script>
+<!-- <link rel="stylesheet" href="themes/global.css"> -->

@@ -17,11 +17,11 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.DynaActionForm;
 
-import util.OraclePage;
 import vo.MessageVO;
 import dao.MessageDAO;
 import framework.BaseAction;
 import framework.Page;
+import framework.PageFactory;
 
 
 public class MessageAction extends BaseAction
@@ -193,6 +193,7 @@ public class MessageAction extends BaseAction
 			currentPageIndex = currentPageIndex2;
 		}
 		
+		Page page = PageFactory.getPage();
 		setQuerySql(request,page);
 		
 		page.setTOClassName("vo.MessageVO");

@@ -7,10 +7,8 @@
 
 package framework;
 
-import org.apache.struts.actions.DispatchAction;
-
-
-public class BaseAction extends DispatchAction
-{
-	
+public class FWConstants {
+	public enum DataBaseType{
+		ORACLE,MYSQL,UNDEFINE
+	}
 }

@@ -9,7 +9,9 @@ package framework;
 
 import org.apache.struts.actions.DispatchAction;
 
+import util.MySQLPage;
+
 public class BaseAction extends DispatchAction
 {
-	
+	public Page page = new MySQLPage();
 }

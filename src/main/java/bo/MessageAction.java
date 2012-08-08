@@ -193,9 +193,6 @@ public class MessageAction extends BaseAction
 			currentPageIndex = currentPageIndex2;
 		}
 		
-		OraclePage page = new OraclePage();
-//		page.setQuerySql("SELECT * FROM devfw_message");
-//		page.setCountSql("SELECT COUNT(ID) AS n FROM devfw_message");
 		setQuerySql(request,page);
 		
 		page.setTOClassName("vo.MessageVO");

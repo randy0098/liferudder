@@ -13,10 +13,10 @@ import java.sql.SQLException;
 
 public class DBConnection
 {
-	private static String driver = "oracle.jdbc.driver.OracleDriver";
-	private static String url = "jdbc:oracle:thin:@127.0.0.1:1521:orcl";
-	private static String user = "system";
-	private static String password = "system";
+	private static String driver = "com.mysql.jdbc.Driver";
+	private static String url = "jdbc:mysql://localhost:3306/lifeRudder";
+	private static String user = "root";
+	private static String password = "root";
 	
 	/**
 	 * 

@@ -14,7 +14,17 @@
 <!-- 页面上所有相对路径不再相对于浏览器路径，而是全部相对于basePath！ -->
 <base href="<%=basePath%>">
 </head>
+<!-- jquery -->
+<script type="text/javascript" src="plugins/jquery-1.7.2/jquery-1.7.2.js"></script>
+<!-- jquery ui -->
+<script src="plugins/jquery-ui-1.8.22/jquery-ui-1.8.22.custom.min.js"></script>
+<!-- jquery ui theme: redmond-->
 <link rel="stylesheet" href="themes/redmond/jquery.ui.all.css">
-<script type="text/javascript" src="common/jquery-1.7.2.js"></script>
-<script src="common/ui/jquery-ui-1.8.22.custom.js"></script>
+<script src="plugins/jquery-ui-1.8.22/i18n/jquery.ui.datepicker-zh-CN.js" type="text/javascript"></script>
 <!-- <link rel="stylesheet" href="themes/global.css"> -->
+<!-- jquery.jqGrid-->
+<script src="plugins/jquery.jqGrid-4.4.0/i18n/grid.locale-cn.js" type="text/javascript"></script>
+<script src="plugins/jquery.jqGrid-4.4.0/js/jquery.jqGrid.src.js" type="text/javascript"></script>
+<script src="plugins/jquery.jqGrid-4.4.0/plugins/ui.multiselect.js" type="text/javascript"></script>
+<script src="plugins/jquery.jqGrid-4.4.0/plugins/jquery.tablednd.js" type="text/javascript"></script>
+<script src="plugins/jquery.jqGrid-4.4.0/plugins/jquery.contextmenu.js" type="text/javascript"></script>

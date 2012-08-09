@@ -28,3 +28,5 @@
 <script src="plugins/jquery.jqGrid-4.4.0/plugins/ui.multiselect.js" type="text/javascript"></script>
 <script src="plugins/jquery.jqGrid-4.4.0/plugins/jquery.tablednd.js" type="text/javascript"></script>
 <script src="plugins/jquery.jqGrid-4.4.0/plugins/jquery.contextmenu.js" type="text/javascript"></script>
+<!-- jquery.layout-->
+<SCRIPT type="text/javascript" src="plugins/jquery-layout-1.3.0-rc30.6/jquery.layout-latest.min.js"></SCRIPT>

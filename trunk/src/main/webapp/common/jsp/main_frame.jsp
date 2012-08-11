@@ -13,6 +13,12 @@
 		
 	});
 </script>
+<style type="text/css"> 
+	li{
+	    list-style:none;      /*去掉li前的点*/
+	    margin-left:20px;     /*调整距离*/
+	}
+</style>
 <body>
  	<div class="ui-layout-north">
 		<DIV class="header-footer ui-state-default ui-corner-all" style="text-align: center;">
@@ -27,9 +33,18 @@
 		</UL>
 		<DIV id="tab_1" style="border: 1;height: 100%; width: 100%;padding: 0;margin: 0">
 			<div class="ui-layout-west">
-				功能菜单
+				<ul style="border: 1;width: 100%;margin: 0;padding: 0">
+					<a href="" onclick="return false">菜单1</a>
+					<li><a href="" id="message.do?method=message_query" onclick="return false">子菜单1</a></li>
+					<li>子菜单2</li>
+				</ul>
+				<ul style="border: 1;width: 100%;margin: 0;padding: 0">
+					<a href="" onclick="return false">菜单2</a>
+					<li>子菜单3</li>
+					<li>子菜单4</li>
+				</ul>
 			</div>
-			<IFRAME class="ui-layout-center" height="600" src="message/message_query.jsp" frameBorder="0" width="100%" name="mainFrame" scrolling="no"></IFRAME>
+			<IFRAME id="content" class="ui-layout-center" height="600" frameBorder="0" width="100%" name="mainFrame" scrolling="no"></IFRAME>
 		</DIV>
 		<DIV id="tab_2">2</DIV>
 		<DIV id="tab_3">3</DIV>
@@ -41,4 +56,20 @@
 	$('body').layout({ applyDefaultStyles: true });
 	$("#tabs_div").tabs();
 	$('#tab_1').layout({ applyDefaultStyles: true });
+	
+	$(document).ready(function(){
+	    var as=$("ul>a");
+	    as.click(function(){
+	       //这里需要找到ul中的li，然后让li显示出来
+	        var aNode=$(this);
+	        var lis=aNode.nextAll("li");
+	        //toggle()方法，改变显示状态
+	        lis.toggle();
+	    });
+	    
+	    //display iframe content dynamically
+	    $("li>a").click(function(){
+	       $("#content").attr("src",$(this).attr("id"));
+	    });
+	});
 </script>

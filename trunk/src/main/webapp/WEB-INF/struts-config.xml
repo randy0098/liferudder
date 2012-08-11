@@ -148,7 +148,7 @@
     
       <action path="/login" type="bo.LoginAction" parameter="method">
           <forward name="fail" path="/fail.jsp" />
-          <forward name="success" path="/message.do?method=message_query" />
+          <forward name="success" path="/common/jsp/main_frame.jsp" />
       </action>
       
       <action path="/message" name="messageForm" scope="request" type="bo.MessageAction" parameter="method">

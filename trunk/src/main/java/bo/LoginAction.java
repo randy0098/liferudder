@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import menus.MenusReadTest;
+
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
@@ -33,6 +35,9 @@ public class LoginAction extends BaseAction
 		}else{
 			actionForward = mapping.findForward("fail");
 		}
+		
+		MenusReadTest.readMenuTest();
+		
 		//设置用户session
 		System.out.println("login session start:"+new Date());
 		HttpSession session = request.getSession();

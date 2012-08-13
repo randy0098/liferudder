@@ -8,12 +8,14 @@
 package bo;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import menus.MenusReadTest;
+import menus.MenuReader;
+import menus.Module;
 
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -36,7 +38,8 @@ public class LoginAction extends BaseAction
 			actionForward = mapping.findForward("fail");
 		}
 		
-		MenusReadTest.readMenuTest();
+		List<Module> modules = MenuReader.read();
+		request.setAttribute("modules", modules);
 		
 		//设置用户session
 		System.out.println("login session start:"+new Date());

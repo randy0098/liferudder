@@ -3,16 +3,6 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
 	version="2.4">
 	<display-name>lifeRudder</display-name>
-	
-	<jsp-config>
-		<jsp-property-group>
-			<description>configuration for all jsp</description>
-			<display-name>JSPConfiguration</display-name>
-			<url-pattern>*.jsp</url-pattern>
-			<page-encoding>UTF-8</page-encoding>
-		</jsp-property-group>
-	</jsp-config>
-	
 	<!-- Standard Action Servlet Configuration (with debugging) -->
 	<servlet>
 		<servlet-name>action</servlet-name>

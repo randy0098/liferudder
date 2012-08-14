@@ -30,6 +30,7 @@ public class LoginAction extends BaseAction
 	    throws Exception
 	{
 		String name = request.getParameter("name");
+		System.out.println("name:"+name);
 		String password = request.getParameter("password");
 		ActionForward actionForward = null;
 		if((name!=null&&name.equalsIgnoreCase("1")==true)&&(password!=null&&password.equalsIgnoreCase("1")==true)){

@@ -15,6 +15,11 @@ import framework.BaseVO;
 
 public class MessageVO extends BaseVO
 {
+	/**
+	 * serialVersionUID
+	 * long
+	 */
+	private static final long serialVersionUID = 1L;
 	private String id;
 	private String sender;
 	private String receiver;

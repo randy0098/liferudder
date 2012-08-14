@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" isErrorPage="true"%>
 <%@ include file="/common/jsp/header.jsp"%>     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -9,6 +11,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-	error
+<font color="red"> 
+<%
+ 	if (exception != null) {
+ 		out.println("error message:" + exception.getMessage() + "<br>");
+ 	}
+ %>
+</font>
 </body>
 </html>

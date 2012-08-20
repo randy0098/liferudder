@@ -11,6 +11,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<!-- <html:errors /> -->
 <font color="red"> 
 <%
  	if (exception != null) {

@@ -8,7 +8,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>登陆页面</title>
 </head>
-<% int x = 1/0;%>
 <body>
 	<form action="login.do?method=login" method="post">
 		用户名：<input name="name"><br /> 

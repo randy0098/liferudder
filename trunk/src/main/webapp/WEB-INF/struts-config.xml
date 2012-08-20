@@ -33,8 +33,8 @@
 	<!-- ========================================= Global Exception Definitions -->
 
 	<global-exceptions>
-		<!-- sample exception handler <exception key="expired.password" type="app.ExpiredPasswordException" 
-			path="/changePassword.jsp"/> end sample -->
+		<exception key="my.exception" type="java.lang.Exception" scope="request"
+			path="/fail.jsp"/>		
 	</global-exceptions>
 
 
@@ -82,6 +82,7 @@
 
 	<!-- ======================================== Message Resources Definitions -->
 	<!-- <message-resources parameter="MessageResources" /> -->
+	<message-resources parameter="ApplicationResources" />
 
 	<!-- =============================================== Plug Ins Configuration -->
 

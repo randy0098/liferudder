@@ -86,7 +86,6 @@
 */		
 	});
 </script>
-<% int x = 1/0;%>
 <body>
 		<form action="message.do?method=message_query" name="f1" method="post" >
 		<table width="100%">

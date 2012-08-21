@@ -7,10 +7,16 @@
 
 package framework;
 
-import org.apache.struts.actions.DispatchAction;
+import org.springframework.web.struts.DispatchActionSupport;
 
-
-public class BaseAction extends DispatchAction
-{
-	
+public class BaseAction extends DispatchActionSupport {
+	/**
+	 * get Spring bean instance with beanName
+	 * 
+	 * @param beanName beanName in Spring container
+	 * @return return bean instance in Spring container
+	 */
+	public Object getBean(String beanName) {
+		return getWebApplicationContext().getBean(beanName);
+	}
 }

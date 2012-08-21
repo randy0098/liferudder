@@ -58,13 +58,13 @@
 			name="inputForm" scope="request" validate="true" input="/pages/Edit{1}.jsp"/> 
 			end samples -->
 
-		<action path="/login" type="bo.LoginAction" parameter="method">
+		<action path="/login" type="action.LoginAction" parameter="method">
 			<forward name="fail" path="/fail.jsp" />
 			<forward name="success" path="/common/jsp/main_frame.jsp" />
 		</action>
 
 		<action path="/message" name="messageForm" scope="request"
-			type="bo.MessageAction" parameter="method">
+			type="action.MessageAction" parameter="method">
 			<forward name="fail" path="/fail.jsp" />
 			<forward name="query_success" path="/message/message_query.jsp" />
 			<forward name="insert_success" path="/message.do?method=message_query" />

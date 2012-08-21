@@ -5,7 +5,7 @@
  * Copyright (c) 2010   All rights reserved. ======================
  */
 
-package action;
+package bo;
 
 public class LoginBo {
 	public boolean valid(String name, String password) {

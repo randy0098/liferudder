@@ -1,4 +1,4 @@
-package action;
+package bo;
 
 import java.util.Date;
 

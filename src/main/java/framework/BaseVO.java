@@ -14,6 +14,12 @@ import java.sql.SQLException;
 public abstract class BaseVO implements Serializable,Cloneable
 {
 	/**
+	 * serialVersionUID
+	 * long
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * 
 	 * clone方法
 	 *

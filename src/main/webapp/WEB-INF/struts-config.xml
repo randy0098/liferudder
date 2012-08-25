@@ -31,12 +31,13 @@
 
 
 	<!-- ========================================= Global Exception Definitions -->
-
+	<!-- open this in runtime -->
+<!--
 	<global-exceptions>
 		<exception key="my.exception" type="java.lang.Exception" scope="request"
 			path="/fail.jsp"/>		
 	</global-exceptions>
-
+-->
 
 	<!-- =========================================== Global Forward Definitions -->
 

@@ -7,13 +7,12 @@
 
 package dao;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.orm.hibernate3.HibernateTemplate;
 
 import vo.MessageVO;
 import framework.BaseDAO;
-import framework.DAOController;
 
 
 public class MessageDAO extends BaseDAO
@@ -23,30 +22,10 @@ public class MessageDAO extends BaseDAO
 	 * 查询短信记录列表
 	 *
 	 * @return
-	 * @throws CloneNotSupportedException
-	 * @throws SQLException 
 	 */
-	public static ArrayList getMessageList() throws CloneNotSupportedException, SQLException{
-		DAOController controller = new DAOController();
-		String sql = "SELECT * FROM DEVFW_MESSAGE";
-		ResultSet rs = controller.select(sql);
-    	ArrayList messages = new ArrayList();
-        while (rs.next())
-        {
-        	String id = rs.getString("ID");
-        	String sender = rs.getString("SENDER");
-        	String receiver = rs.getString("RECEIVER");
-        	String content = rs.getString("CONTENT");
-        	String msg_time = rs.getString("MSG_TIME");
-    		MessageVO messageVO = new MessageVO();
-    		messageVO.setId(id);
-    		messageVO.setSender(sender);
-    		messageVO.setReceiver(receiver);
-    		messageVO.setContent(content);
-    		messageVO.setMsg_time(msg_time);
-        	messages.add(messageVO.clone());
-        }
-        controller.close();
+	public List<MessageVO> getMessageList(){
+		HibernateTemplate template = getHibernateTemplate();
+		List<MessageVO> messages = template.find("from MessageVO");
 		return messages;
 	}
 	
@@ -56,16 +35,10 @@ public class MessageDAO extends BaseDAO
 	 *
 	 * @param form
 	 * @return
-	 * @throws SQLException 
 	 */
-	public static boolean insertMessage(MessageVO message) throws SQLException{
-		DAOController controller = new DAOController();
-		String values = "'"+message.getSender()+"'," + "'"+message.getReceiver()+"'," + "'"+message.getContent()+"'," + "'"+message.getMsg_time()+"'";
-		String sql = "INSERT INTO DEVFW_MESSAGE(SENDER,RECEIVER,CONTENT,MSG_TIME) VALUES("+ values + ")";
-		System.out.println("insertMessage:" + sql);
-		boolean result = controller.insert(sql);
-		controller.close();
-		return result;
+	public void insertMessage(MessageVO message){
+		HibernateTemplate template = getHibernateTemplate();
+		template.save(message);
 	}
 	
 	/**
@@ -73,28 +46,10 @@ public class MessageDAO extends BaseDAO
 	 * 查询单条短信记录
 	 *
 	 * @return
-	 * @throws CloneNotSupportedException
-	 * @throws SQLException 
 	 */
-	public static MessageVO getMessageInfo(String id) throws CloneNotSupportedException, SQLException{
-		DAOController controller = new DAOController();
-		String sql = "SELECT * FROM DEVFW_MESSAGE WHERE ID = " + id;
-		System.out.println("getMessageInfo:" + sql);
-		ResultSet rs = controller.selectOne(sql);
-		MessageVO messageVO = new MessageVO();
-        while (rs.next())
-        {
-        	String sender = rs.getString("SENDER");
-        	String receiver = rs.getString("RECEIVER");
-        	String content = rs.getString("CONTENT");
-        	String msg_time = rs.getString("MSG_TIME");
-    		messageVO.setId(id);
-    		messageVO.setSender(sender);
-    		messageVO.setReceiver(receiver);
-    		messageVO.setContent(content);
-    		messageVO.setMsg_time(msg_time);
-        }
-        controller.close();
+	public MessageVO getMessageInfo(int id){
+		HibernateTemplate template = getHibernateTemplate();
+		MessageVO messageVO = (MessageVO)template.get(MessageVO.class, new Integer(id));
 		return messageVO;
 	}
 	
@@ -104,20 +59,10 @@ public class MessageDAO extends BaseDAO
 	 * 保存单条短信记录
 	 *
 	 * @return
-	 * @throws CloneNotSupportedException
-	 * @throws SQLException 
 	 */
-	public static int updateMessage(MessageVO message) throws CloneNotSupportedException, SQLException{
-		DAOController controller = new DAOController();
-		String updateSql = "SENDER = '"+message.getSender()+"'," 
-						+ "RECEIVER = '"+message.getReceiver()+"',"
-						+ "CONTENT = '"+message.getContent()+"',"
-						+ "MSG_TIME = '"+message.getMsg_time()+"'";
-		String sql = "UPDATE DEVFW_MESSAGE SET " + updateSql + " WHERE ID = " + message.getId();
-		System.out.println("updateMessage:" + sql);
-		int result = controller.update(sql);
-		controller.close();
-		return result;
+	public void updateMessage(MessageVO message){
+		HibernateTemplate template = getHibernateTemplate();
+		template.update(message);
 	}
 	
 	/**
@@ -125,46 +70,65 @@ public class MessageDAO extends BaseDAO
 	 * 删除单条短信记录
 	 *
 	 * @return
-	 * @throws CloneNotSupportedException
-	 * @throws SQLException 
 	 */
-	public static boolean deleteMessage(String id) throws CloneNotSupportedException, SQLException{
-		DAOController controller = new DAOController();
-		String sql = "DELETE FROM DEVFW_MESSAGE WHERE ID = " + id;
-		System.out.println("deleteMessage:" + sql);
-		boolean result = controller.delete(sql);
-		controller.close();
-		return result;
+	public void deleteMessage(String id){
+		HibernateTemplate template = getHibernateTemplate();
+		template.delete(template.get(MessageVO.class, new Integer(id)));
 	}
 	
-	public static void main(String[] args) throws SQLException
+	public static void main(String[] args)
 	{
-		DAOController controller = new DAOController();
-		String sql = "SELECT * FROM DEVFW_MESSAGE";
-		ResultSet rs = controller.select(sql);
-		try
-        {
-	        while (rs.next())
-	        {
-	        	String ID = rs.getString("ID");
-	        	String SENDER = rs.getString("SENDER");
-	        	String RECEIVER = rs.getString("RECEIVER");
-	        	String CONTENT = rs.getString("CONTENT");
-	        	String MSG_TIME = rs.getString("MSG_TIME");
-	        	System.out.println("ID:" + ID);
-	        	System.out.println("SENDER:" + SENDER);
-	        	System.out.println("RECEIVER:" + RECEIVER);
-	        	System.out.println("CONTENT:" + CONTENT);
-	        	System.out.println("MSG_TIME:" + MSG_TIME);
-	        	System.out.println("0:"+rs.getString(1));
-	        	System.out.println("######################");
-	        }
-	        controller.close();
-        }
-        catch (SQLException e)
-        {
-	        // TODO Auto-generated catch block
-	        e.printStackTrace();
-        }
+//		DAOController controller = new DAOController();
+//		String sql = "SELECT * FROM DEVFW_MESSAGE";
+//		ResultSet rs = controller.select(sql);
+//		try
+//        {
+//	        while (rs.next())
+//	        {
+//	        	String ID = rs.getString("ID");
+//	        	String SENDER = rs.getString("SENDER");
+//	        	String RECEIVER = rs.getString("RECEIVER");
+//	        	String CONTENT = rs.getString("CONTENT");
+//	        	String MSG_TIME = rs.getString("MSG_TIME");
+//	        	System.out.println("ID:" + ID);
+//	        	System.out.println("SENDER:" + SENDER);
+//	        	System.out.println("RECEIVER:" + RECEIVER);
+//	        	System.out.println("CONTENT:" + CONTENT);
+//	        	System.out.println("MSG_TIME:" + MSG_TIME);
+//	        	System.out.println("0:"+rs.getString(1));
+//	        	System.out.println("######################");
+//	        }
+//	        controller.close();
+//        }
+//        catch (SQLException e)
+//        {
+//	        // TODO Auto-generated catch block
+//	        e.printStackTrace();
+//        }
+		
+//		Configuration configuration;
+//		SessionFactory sessionFactory;
+//		Session session;
+//		
+//		configuration=new Configuration().configure();
+//		sessionFactory = configuration.buildSessionFactory();
+//		session = sessionFactory.openSession() ;
+//		Transaction tx = session.beginTransaction();
+//		MessageVO message = new MessageVO();
+//		message.setSender("randy.xia");
+//		message.setReceiver("smile.lee");
+//		message.setContent("hibernateTest");
+//		session.save(message);
+//		tx.commit();
+//		session.close();
+		
+		
+//		Session session = HibernateUtil.currentSession();
+//		Transaction tx = session.beginTransaction();
+//		List<MessageVO> messages = session.createQuery("from MessageVO").list();
+//		tx.commit();
+//		HibernateUtil.closeSession();
+		
+//		System.out.println(new MessageDAO().getMessageList().get(0).getSender());
 	}
 }

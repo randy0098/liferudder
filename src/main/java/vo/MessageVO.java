@@ -20,20 +20,19 @@ public class MessageVO extends BaseVO
 	 * long
 	 */
 	private static final long serialVersionUID = 1L;
-	private String id;
+	private int id;
 	private String sender;
 	private String receiver;
 	private String content;
 	private String msg_time;
 	
-	public String getId()
-    {
-    	return id;
-    }
-	public void setId(String id)
-    {
-    	this.id = id;
-    }
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getSender()
     {
     	return sender;
@@ -72,7 +71,7 @@ public class MessageVO extends BaseVO
     {
 	    // TODO Auto-generated method stub
 		MessageVO to = new MessageVO();
-		to.setId(rs.getString("ID"));
+		to.setId(rs.getInt("ID"));
 		to.setSender(rs.getString("SENDER"));
 		to.setReceiver(rs.getString("RECEIVER"));
 		to.setContent(rs.getString("CONTENT"));

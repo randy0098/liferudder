@@ -26,6 +26,12 @@ import framework.PageFactory;
 
 public class MessageAction extends BaseAction
 {
+	public MessageDAO messageDAO;
+
+	public MessageDAO getMessageDAO(){
+		return (MessageDAO)getBean("messageDAO") ;
+	}
+	
 	/**
 	 * 
 	 * 短信记录查询
@@ -48,19 +54,6 @@ public class MessageAction extends BaseAction
 		return actionForward;
 	}
 	
-//	public HashMap getOptions(HttpServletRequest request){
-//		HashMap map = new HashMap();
-//		String[] options = request.getParameterValues("option");
-//		for(int i=0; i<options.length; i++){
-//			String option = options[i];
-//			String filedName = option.split("-")[0];
-//			String operator = option.split("-")[1];
-//			String value = request.getParameter(filedName);
-//			map.put(filedName, operator+"-"+value);
-//		}
-//		return null;
-//	}
-	
 	/**
 	 * 
 	 * 短信记录新增
@@ -81,7 +74,7 @@ public class MessageAction extends BaseAction
 		DynaActionForm messageForm = (DynaActionForm)form;
 		BeanUtils.copyProperties(message, messageForm);
 		message.setMsg_time("20111226");
-		MessageDAO.insertMessage(message);
+		getMessageDAO().insertMessage(message);
 		ActionForward forward = mapping.findForward("insert_success");
 		return forward;
 	}
@@ -104,7 +97,7 @@ public class MessageAction extends BaseAction
 	{
 		HttpSession session = request.getSession(false);
 		System.out.println("username:" + session.getAttribute("username"));
-		MessageVO messageVO = MessageDAO.getMessageInfo(request.getParameter("id"));
+		MessageVO messageVO = getMessageDAO().getMessageInfo(Integer.parseInt(request.getParameter("id")));
 		request.setAttribute("messageVO", messageVO);
 		ActionForward forward = mapping.findForward("selectOne_success");
 		return forward;
@@ -130,7 +123,7 @@ public class MessageAction extends BaseAction
 		DynaActionForm messageForm = (DynaActionForm)form;
 		BeanUtils.copyProperties(message, messageForm);
 		message.setMsg_time("20111227");
-		MessageDAO.updateMessage(message);
+		getMessageDAO().updateMessage(message);
 		ActionForward forward = mapping.findForward("update_success");
 		return forward;
 	}
@@ -152,7 +145,7 @@ public class MessageAction extends BaseAction
 	        HttpServletResponse httpservletresponse)
 	    throws Exception
 	{
-		MessageDAO.deleteMessage(request.getParameter("id"));
+		getMessageDAO().deleteMessage(request.getParameter("id"));
 		ActionForward forward = mapping.findForward("delete_success");
 		return forward;
 	}

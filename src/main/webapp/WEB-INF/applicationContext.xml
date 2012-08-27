@@ -32,23 +32,57 @@
 			<list>
 				<value>Message.hbm.xml</value>
 			</list>
+			<!-- add other xxx.hbm.xml here -->
 		</property>
 	</bean>
-	
+	<!-- Hibernate's transactionManager -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+	<!-- Hibernate's transactionInterceptor -->
+	<bean id="transactionInterceptor"
+		class="org.springframework.transaction.interceptor.TransactionInterceptor">
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="transactionAttributes">
+			<props>
+				<prop key="insert*">PROPAGATION_REQUIRED</prop>
+				<prop key="find*">PROPAGATION_REQUIRED,readOnly</prop>
+				<prop key="*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+	<!-- Bean's post processor -->
+	<bean
+		class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+		<property name="beanNames">
+			<list>
+				<!-- <value>messageDAO</value> -->
+			</list>
+			<!-- add other beans here -->
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>transactionInterceptor</value>
+			</list>
+			<!-- add other interceptors here -->
+		</property>
+		<!-- solve problems like "$Proxy0 cannot be cast to dao.MessageDAO"...--> 
+		<property name="proxyTargetClass">
+			<value>true</value>
+		</property>
+	</bean>
 	<!-- Bo beans -->
 	<bean id="loginBo" class="bo.LoginBo" />
 	
-	<!-- dao beans -->
+	<!-- DAO beans -->
 	<bean id="messageDAO" class="dao.MessageDAO">
 		<property name="sessionFactory">
 			<ref local="sessionFactory"/>
 		</property>
 	</bean>
-<!-- 	
-	<bean id="BaseDAO" class="framework.BaseDAO">
-		<property name="sessionFactory">
-			<ref local="sessionFactory"/>
-		</property>
-	</bean>
--->	
+	
+	
 </beans>

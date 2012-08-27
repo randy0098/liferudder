@@ -9,9 +9,6 @@ package dao;
 
 import java.util.List;
 
-import javax.sql.DataSource;
-
-import org.springframework.jdbc.datasource.DataSourceUtils;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
 import vo.MessageVO;
@@ -42,8 +39,6 @@ public class MessageDAO extends BaseDAO
 	public void insertMessage(MessageVO message){
 		HibernateTemplate template = getHibernateTemplate();
 		template.save(message);
-		DataSource ds = null;
-		DataSourceUtils.getConnection(ds);
 	}
 	
 	/**

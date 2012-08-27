@@ -54,26 +54,15 @@
 			</props>
 		</property>
 	</bean>
-	<!-- Bean's post processor -->
-	<bean
-		class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
-		<property name="beanNames">
-			<list>
-				<!-- <value>messageDAO</value> -->
-			</list>
-			<!-- add other beans here -->
-		</property>
-		<property name="interceptorNames">
-			<list>
-				<value>transactionInterceptor</value>
-			</list>
-			<!-- add other interceptors here -->
-		</property>
-		<!-- solve problems like "$Proxy0 cannot be cast to dao.MessageDAO"...--> 
-		<property name="proxyTargetClass">
-			<value>true</value>
-		</property>
+	
+	<!-- transaction's advisor -->
+	<bean class="org.springframework.transaction.interceptor.TransactionAttributeSourceAdvisor">
+		<property name="transactionInterceptor" ref="transactionInterceptor" />
 	</bean>
+	
+	<!-- transaction's auto creator -->
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"/>
+
 	<!-- Bo beans -->
 	<bean id="loginBo" class="bo.LoginBo" />
 	

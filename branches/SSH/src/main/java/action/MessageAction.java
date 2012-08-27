@@ -48,9 +48,14 @@ public class MessageAction extends BaseAction
 	        HttpServletResponse httpservletresponse)
 	    throws Exception
 	{
-		request.setAttribute("action", "go");
-		request.setAttribute("currentPageIndex", "1");
-		ActionForward actionForward = message_page(mapping,form,request,httpservletresponse);
+//		request.setAttribute("action", "go");
+//		request.setAttribute("currentPageIndex", "1");
+//		ActionForward actionForward = message_page(mapping,form,request,httpservletresponse);
+		for (int i = 0; i < 10; i++) {
+			getMessageDAO().insertMessage(new MessageVO(String.valueOf(i)));
+		}
+		
+		ActionForward actionForward = mapping.findForward("query_success");
 		return actionForward;
 	}
 	

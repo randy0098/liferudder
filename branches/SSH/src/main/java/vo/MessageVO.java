@@ -26,15 +26,6 @@ public class MessageVO extends BaseVO
 	private String content;
 	private String msg_time;
 	
-	public MessageVO() {
-		super();
-	}
-	
-	public MessageVO(String content) {
-		super();
-		this.content = content;
-	}
-	
 	public int getId() {
 		return id;
 	}

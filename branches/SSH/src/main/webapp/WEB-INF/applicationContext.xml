@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 <beans>
-	<!-- Hibernate beans -->
+	<!-- Hibernate's dataSource-->
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName">
@@ -17,6 +17,8 @@
 			<value>root</value>
 		</property>
 	</bean>
+	
+	<!-- Hibernate's sessionFactory-->
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
 		<property name="dataSource">
@@ -35,6 +37,7 @@
 			<!-- add other xxx.hbm.xml here -->
 		</property>
 	</bean>
+	
 	<!-- Hibernate's transactionManager -->
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
@@ -42,6 +45,7 @@
 			<ref local="sessionFactory" />
 		</property>
 	</bean>
+	
 	<!-- Hibernate's transactionInterceptor -->
 	<bean id="transactionInterceptor"
 		class="org.springframework.transaction.interceptor.TransactionInterceptor">
@@ -55,13 +59,18 @@
 		</property>
 	</bean>
 	
-	<!-- transaction's advisor -->
+	<!-- Hibernate transaction's advisor -->
 	<bean class="org.springframework.transaction.interceptor.TransactionAttributeSourceAdvisor">
 		<property name="transactionInterceptor" ref="transactionInterceptor" />
 	</bean>
 	
-	<!-- transaction's auto creator -->
-    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"/>
+	<!-- Hibernate transaction's auto creator -->
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator">
+    	<!-- solve problems like "$Proxy15 cannot be cast to dao.MessageDAO" -->
+    	<property name="proxyTargetClass">
+    		<value>true</value>
+    	</property>
+    </bean>
 
 	<!-- Bo beans -->
 	<bean id="loginBo" class="bo.LoginBo" />

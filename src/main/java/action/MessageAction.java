@@ -18,7 +18,7 @@ import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.DynaActionForm;
 
 import vo.MessageVO;
-import dao.MessageDAO;
+import dao.impl.MessageDAOImpl;
 import framework.BaseAction;
 import framework.Page;
 import framework.PageFactory;
@@ -26,10 +26,10 @@ import framework.PageFactory;
 
 public class MessageAction extends BaseAction
 {
-	public MessageDAO messageDAO;
+	public MessageDAOImpl messageDAO;
 
-	public MessageDAO getMessageDAO(){
-		return (MessageDAO)getBean("messageDAO") ;
+	public MessageDAOImpl getMessageDAO(){
+		return (MessageDAOImpl)getBean("messageDAO") ;
 	}
 	
 	/**

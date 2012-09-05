@@ -39,4 +39,9 @@ public abstract class BaseVO implements Serializable,Cloneable
 	 */
 	
 	public abstract BaseVO buildTO(ResultSet rs) throws SQLException;
+	
+	//for Hibernate's PO
+//	public abstract String toString();
+//	public abstract boolean equals(Object o);
+//	public abstract int hashCode();
 }

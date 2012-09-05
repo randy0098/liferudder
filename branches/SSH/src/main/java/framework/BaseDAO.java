@@ -7,8 +7,12 @@
 
 package framework;
 
-import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import java.io.Serializable;
+import java.util.List;
 
-public class BaseDAO extends HibernateDaoSupport{
-
+public interface BaseDAO {
+	public List getObjects(Class clazz);
+	public Object getObject(Class clazz , Serializable id);
+	public void saveObject(Object obj);
+	public void removeObject(Class clazz , Serializable id);
 }

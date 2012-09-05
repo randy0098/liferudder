@@ -75,12 +75,5 @@
 	<!-- Bo beans -->
 	<bean id="loginBo" class="bo.LoginBo" />
 	
-	<!-- DAO beans -->
-	<bean id="messageDAO" class="dao.MessageDAO">
-		<property name="sessionFactory">
-			<ref local="sessionFactory"/>
-		</property>
-	</bean>
-	
 	
 </beans>

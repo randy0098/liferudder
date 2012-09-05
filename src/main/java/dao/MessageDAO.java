@@ -22,6 +22,6 @@ public interface MessageDAO extends BaseDAO{
 	
 	public void updateMessage(MessageVO message);
 	
-	public void deleteMessage(String id);
+	public void deleteMessage(int id);
 	
 }

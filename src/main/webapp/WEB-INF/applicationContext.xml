@@ -58,22 +58,19 @@
 			</props>
 		</property>
 	</bean>
-	
-	<!-- Hibernate transaction's advisor -->
-	<bean class="org.springframework.transaction.interceptor.TransactionAttributeSourceAdvisor">
-		<property name="transactionInterceptor" ref="transactionInterceptor" />
-	</bean>
-	
-	<!-- Hibernate transaction's auto creator -->
-    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator">
-    	<!-- solve problems like "$Proxy15 cannot be cast to dao.MessageDAO" -->
-    	<property name="proxyTargetClass">
-    		<value>true</value>
-    	</property>
-    </bean>
 
-	<!-- Bo beans -->
-	<bean id="loginBo" class="bo.LoginBo" />
-	
-	
+	<bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+		<property name="beanNames">
+			<list>
+				<value>messageBo</value>
+				<!-- add other Bo who needs transaction control here -->
+			</list>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>transactionInterceptor</value>
+				<!-- add other interceptor here. -->
+			</list>
+		</property>
+	</bean>
 </beans>

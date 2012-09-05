@@ -18,6 +18,7 @@ import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.DynaActionForm;
 
 import vo.MessageVO;
+import bo.MessageBo;
 import dao.impl.MessageDAOImpl;
 import framework.BaseAction;
 import framework.Page;
@@ -26,10 +27,10 @@ import framework.PageFactory;
 
 public class MessageAction extends BaseAction
 {
-	public MessageDAOImpl messageDAO;
+	public MessageBo messageBo;
 
-	public MessageDAOImpl getMessageDAO(){
-		return (MessageDAOImpl)getBean("messageDAO") ;
+	public MessageBo getMessageBo(){
+		return (MessageBo)getBean("messageBo") ;
 	}
 	
 	/**
@@ -74,7 +75,7 @@ public class MessageAction extends BaseAction
 		DynaActionForm messageForm = (DynaActionForm)form;
 		BeanUtils.copyProperties(message, messageForm);
 		message.setMsg_time("20111226");
-		getMessageDAO().insertMessage(message);
+		getMessageBo().insertMessage(message);
 		ActionForward forward = mapping.findForward("insert_success");
 		return forward;
 	}
@@ -97,7 +98,7 @@ public class MessageAction extends BaseAction
 	{
 		HttpSession session = request.getSession(false);
 		System.out.println("username:" + session.getAttribute("username"));
-		MessageVO messageVO = getMessageDAO().getMessageInfo(Integer.parseInt(request.getParameter("id")));
+		MessageVO messageVO = getMessageBo().getMessageInfo(Integer.parseInt(request.getParameter("id")));
 		request.setAttribute("messageVO", messageVO);
 		ActionForward forward = mapping.findForward("selectOne_success");
 		return forward;
@@ -123,7 +124,7 @@ public class MessageAction extends BaseAction
 		DynaActionForm messageForm = (DynaActionForm)form;
 		BeanUtils.copyProperties(message, messageForm);
 		message.setMsg_time("20111227");
-		getMessageDAO().updateMessage(message);
+		getMessageBo().updateMessage(message);
 		ActionForward forward = mapping.findForward("update_success");
 		return forward;
 	}
@@ -145,7 +146,7 @@ public class MessageAction extends BaseAction
 	        HttpServletResponse httpservletresponse)
 	    throws Exception
 	{
-		getMessageDAO().deleteMessage(request.getParameter("id"));
+		getMessageBo().deleteMessage(Integer.parseInt(request.getParameter("id")));
 		ActionForward forward = mapping.findForward("delete_success");
 		return forward;
 	}

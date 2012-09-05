@@ -79,7 +79,7 @@ public class MessageDAOImpl extends BaseDAOImpl implements MessageDAO
 	 *
 	 * @return
 	 */
-	public void deleteMessage(String id){
+	public void deleteMessage(int id){
 		HibernateTemplate template = getHibernateTemplate();
 		template.delete(template.get(MessageVO.class, new Integer(id)));
 	}

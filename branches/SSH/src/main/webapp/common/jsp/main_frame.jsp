@@ -16,31 +16,37 @@
 	});
 </script>
 <style type="text/css"> 
-	li{
-	    list-style:none;      /*去掉li前的点*/
-	    margin-left:20px;     /*调整距离*/
+	li
+	{
+		/*remove dot in front of li*/
+	    list-style-type:none;     
+	    margin-left:20px;     		
 	}
+	/*remove under line*/
+	a {text-decoration:none;}  
+	/* mouse over link */
+	a:hover {color:#e17009;}
 </style>
 <body>
  	<div class="ui-layout-north">
-		<DIV class="header-footer ui-state-default ui-corner-all" style="text-align: center;">
+		<DIV style="text-align: center;color: #1d5987;font-weight: 500;">
 			欢迎使用LifeRudder个人管理系统
 		</DIV>
 	</div>
 	<div id="tabs_div" class="ui-layout-center">
 		<!-- generate modules-->
-		<UL style="-moz-border-radius-bottomleft: 0; -moz-border-radius-bottomright: 0;">
+		<UL>
 			<c:forEach var="module" items="${modules}" varStatus="status">
 				<LI><A href="#tab_${status.index}" ><SPAN>${module.name}</SPAN></A></LI>
 			</c:forEach>
 		</UL>
 		<!-- generate menus -->
 		<c:forEach var="module" items="${modules}" varStatus="status">
-			<DIV id="tab_${status.index}" style="border: 1;height: 100%; width: 100%;padding: 0;margin: 0">
+			<DIV id="tab_${status.index}" style="height: 100%; width: 100%;">
 				<div class="ui-layout-west">
 					<!-- generate menu -->
 					<c:forEach var="menus" items="${module.menus}">
-						<ul style="border: 1;width: 100%;margin: 0;padding: 0">
+						<ul style="width: 100%;margin: 0;padding: 0;">
 							<a href="" onclick="return false">${menus.name}</a>
 							<c:forEach var="menu" items="${menus.menu}">
 								<li><a href="" index="${status.index}" id="${menu.href}" onclick="return false">${menu.name}</a></li>
@@ -66,10 +72,10 @@
 	$(document).ready(function(){
 	    var as=$("ul>a");
 	    as.click(function(){
-	       //这里需要找到ul中的li，然后让li显示出来
+	       //find all li in ul
 	        var aNode=$(this);
 	        var lis=aNode.nextAll("li");
-	        //toggle()方法，改变显示状态
+	        //hidden or display all li
 	        lis.toggle();
 	    });
 	    

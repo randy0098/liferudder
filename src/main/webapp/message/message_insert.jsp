@@ -12,6 +12,32 @@
 <title>新增短信信息</title>
 </head>
 <script type="text/javascript">
+$(document).ready(function() {
+	$("#form1").validate({
+		rules : {
+			sender : {
+				required : true
+			},
+			receiver : {
+				required : true
+			},
+			content : {
+				required : true
+			}
+		},
+		messages : {
+			sender: {
+				required: "发送者名称不能为空",
+			},
+			receiver: {
+				required: "接收者名称不能为空",
+			},
+			content: {
+				required: "发送者名称不能为空",
+			},
+		}
+	});
+});
 </script>
 <body>
 	<form id="form1" action="message.do?method=message_insert" method="post">

@@ -7,11 +7,14 @@
 <!-- place base in head area -->
 <!-- all relative URLs in page are no longer base on browser, but are all base on basePath! -->
 <base href="<%=basePath%>">
+<script type="text/javascript" src="common/js/include.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>新增短信信息</title>
 </head>
+<script type="text/javascript">
+</script>
 <body>
-	<form action="message.do?method=message_insert" method="post">
+	<form id="form1" action="message.do?method=message_insert" method="post">
 		<table border="1" width="100%">
 			<tr>
 				<td width="30%">发送者：</td>
@@ -34,3 +37,4 @@
 	</form>
 </body>
 </html>
+

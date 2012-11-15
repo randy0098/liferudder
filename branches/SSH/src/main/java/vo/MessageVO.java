@@ -7,9 +7,6 @@
 
 package vo;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 import framework.BaseVO;
 
 
@@ -63,19 +60,6 @@ public class MessageVO extends BaseVO
 	public void setMsg_time(String msg_time)
     {
     	this.msg_time = msg_time;
-    }
-	
-	@Override
-    public BaseVO buildTO(ResultSet rs) throws SQLException
-    {
-	    // TODO Auto-generated method stub
-		MessageVO to = new MessageVO();
-		to.setId(rs.getInt("ID"));
-		to.setSender(rs.getString("SENDER"));
-		to.setReceiver(rs.getString("RECEIVER"));
-		to.setContent(rs.getString("CONTENT"));
-		to.setMsg_time(rs.getString("MSG_TIME"));
-		return to;
     }
 	
 }

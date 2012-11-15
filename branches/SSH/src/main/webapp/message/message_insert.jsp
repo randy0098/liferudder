@@ -11,6 +11,20 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>新增短信信息</title>
 </head>
+<style type="text/css"> 
+/*
+	label.error	
+	{
+	    color: red;
+	    padding-left: 20px;
+	}
+	input.error
+	{
+    	border: red;
+	}
+*/	
+</style>
+
 <script type="text/javascript">
 $(document).ready(function() {
 	$("#form1").validate({

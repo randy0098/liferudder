@@ -98,6 +98,16 @@
 			<artifactId>hibernate</artifactId>
 			<version>3.1.2</version>
 		</dependency>
+		<dependency>
+			<groupId>org.hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+			<version>2.2.9</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1-b07</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>lifeRudder</finalName>

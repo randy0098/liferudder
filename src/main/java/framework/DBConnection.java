@@ -15,10 +15,10 @@ import framework.FWConstants.DataBaseType;
 
 public class DBConnection
 {
-	private static String driver = "com.mysql.jdbc.Driver";
-	private static String url = "jdbc:mysql://localhost:3306/lifeRudder";
-	private static String user = "root";
-	private static String password = "root";
+	private static String driver = "org.hsqldb.jdbcDriver";
+	private static String url = "jdbc:hsqldb:hsql://localhost/lifeRudder;ifexists=true";
+	private static String user = "sa";
+	private static String password = "";
 	
 	/**
 	 * 
@@ -52,6 +52,9 @@ public class DBConnection
 		}
 		else if(driver.contains("mysql")){
 			dbType = DataBaseType.MYSQL;
+		}
+		else if(driver.contains("hsqldb")){
+			dbType = DataBaseType.HSQLDB;
 		}
 		return dbType;
 	}

@@ -9,6 +9,6 @@ package framework;
 
 public class FWConstants {
 	public enum DataBaseType{
-		ORACLE,MYSQL,UNDEFINE
+		ORACLE,MYSQL,HSQLDB,UNDEFINE
 	}
 }

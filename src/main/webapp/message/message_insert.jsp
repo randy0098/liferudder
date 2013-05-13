@@ -7,11 +7,54 @@
 <!-- place base in head area -->
 <!-- all relative URLs in page are no longer base on browser, but are all base on basePath! -->
 <base href="<%=basePath%>">
+<script type="text/javascript" src="common/js/include.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>新增短信信息</title>
 </head>
+<style type="text/css"> 
+/*
+	label.error	
+	{
+	    color: red;
+	    padding-left: 20px;
+	}
+	input.error
+	{
+    	border: red;
+	}
+*/	
+</style>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#form1").validate({
+		rules : {
+			sender : {
+				required : true
+			},
+			receiver : {
+				required : true
+			},
+			content : {
+				required : true
+			}
+		},
+		messages : {
+			sender: {
+				required: "发送者名称不能为空",
+			},
+			receiver: {
+				required: "接收者名称不能为空",
+			},
+			content: {
+				required: "发送者名称不能为空",
+			},
+		}
+	});
+});
+</script>
 <body>
-	<form action="message.do?method=message_insert" method="post">
+	<form id="form1" action="message.do?method=message_insert" method="post">
 		<table border="1" width="100%">
 			<tr>
 				<td width="30%">发送者：</td>
@@ -34,3 +77,4 @@
 	</form>
 </body>
 </html>
+

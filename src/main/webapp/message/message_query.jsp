@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" errorPage="/error.jsp"%>
+	pageEncoding="UTF-8" %>
 <%@ include file="/common/jsp/header.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -7,6 +7,7 @@
 <!-- place base in head area -->
 <!-- all relative URLs in page are no longer base on browser, but are all base on basePath! -->
 <base href="<%=basePath%>">
+<script type="text/javascript" src="common/js/include.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>短信记录查询</title>
 </head>
@@ -18,7 +19,7 @@
 	
 	//分页跳转
 	function paging(action){
-		var url = "message.do?method=message_page&action=";
+		var url = "message.do?method=message_query&action=";
 		//首页
 		if(action == "goToFirst"){
 			url = url + "goToFirst";

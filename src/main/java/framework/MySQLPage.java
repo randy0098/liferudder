@@ -34,7 +34,7 @@ public class MySQLPage extends Page
 		page.setCountSql("SELECT COUNT(ID) AS n FROM devfw_message");
 		page.setPageRecordNum(1);
 		page.setCurrentPageIndex(1);
-		page.setTOClassName("vo.MessageVO");
+//		page.setTOClassName("vo.MessageVO");
 		page.createPage();
 		System.out.println(page.getRecords().size());
 		System.out.println(page.getRecordNum());

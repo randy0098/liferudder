@@ -7,6 +7,7 @@
 <!-- place base in head area -->
 <!-- all relative URLs in page are no longer base on browser, but are all base on basePath! -->
 <base href="<%=basePath%>">
+<script type="text/javascript" src="common/js/include.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>修改短信信息</title>
 </head>

@@ -8,11 +8,15 @@
 package framework;
 
 import java.io.Serializable;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 public abstract class BaseVO implements Serializable,Cloneable
 {
+	/**
+	 * serialVersionUID
+	 * long
+	 */
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * 
 	 * clone方法
@@ -24,13 +28,8 @@ public abstract class BaseVO implements Serializable,Cloneable
 		return super.clone();
 	}
 	
-	/**
-	 * 
-	 * 用于将数据库记录封装成TO对象
-	 *
-	 * @param rs
-	 * @throws SQLException 
-	 */
-	
-	public abstract BaseVO buildTO(ResultSet rs) throws SQLException;
+	//for Hibernate's PO
+//	public abstract String toString();
+//	public abstract boolean equals(Object o);
+//	public abstract int hashCode();
 }

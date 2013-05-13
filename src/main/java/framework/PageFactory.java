@@ -21,6 +21,9 @@ public class PageFactory {
 		else if(dbType == DataBaseType.MYSQL){
 			page = new MySQLPage();
 		}
+		else if(dbType == DataBaseType.HSQLDB){
+			page = new HSQLDBPage();
+		}
 		return page;
 	}
 }

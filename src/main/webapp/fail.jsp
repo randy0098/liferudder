@@ -1,17 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" %>
-<%@ include file="/common/jsp/header.jsp"%>     
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<%@ page contentType="text/html; charset=UTF-8" language="java" errorPage="" %>
+<%@taglib prefix="s" uri="/struts-tags"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<!-- place base in head area -->
-<!-- all relative URLs in page are no longer base on browser, but are all base on basePath! -->
-<base href="<%=basePath%>">
-<script type="text/javascript" src="common/js/include.js"></script>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+	<title>异常处理页面</title>
 </head>
 <body>
-	fail
+	异常信息：<s:property value="exceptionStack"/>
 </body>
 </html>

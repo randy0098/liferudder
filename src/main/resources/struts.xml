@@ -5,10 +5,17 @@
 <struts>
 	<constant name="struts.custom.i18n.resources" value="mess"/>
 	<constant name="struts.i18n.encoding" value="UTF-8"/>
+	<constant name="struts.enable.DynamicMethodInvocation" value="true"/>
 	<package name="action" extends="struts-default">
-		<action name="login" class="action.LoginAction">
-			<result name="input">/login.jsp</result>
-			<result name="error">/error.jsp</result>
+		<global-results>
+			<result name="fail">/fail.jsp</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping result="fail" exception="java.lang.Exception"></exception-mapping>
+		</global-exception-mappings>
+		<action name="*Action" class="action.LoginAction" method="{1}">
+			<result name="input">/{1}.jsp</result>
+			<result name="error" type="redirect">/login.jsp</result>
 			<result name="success">/welcome.jsp</result>
 		</action>
 	</package>

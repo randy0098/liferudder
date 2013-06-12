@@ -1,60 +1,35 @@
-/*
- * Copyright Notice ====================================================
- * This file contains proprietary information of SNS.
- * Copying or reproduction without prior written approval is prohibited.
- * Copyright (c) 2010   All rights reserved. ======================
- */
-
 package action;
 
-import java.util.Date;
-import java.util.List;
+import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.ActionSupport;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+public class LoginAction extends ActionSupport {
+	private String username;
+	private String password;
 
-import menus.MenuReader;
-import menus.Module;
-
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionMapping;
-
-import bo.LoginBo;
-
-import framework.BaseAction;
-
-public class LoginAction extends BaseAction
-{
-	private LoginBo loginBo;
-	public LoginBo getLoginBo(){
-		return (LoginBo)getBean("loginBo") ;
+	public String getUsername() {
+		return username;
 	}
-	
-	public ActionForward login(ActionMapping mapping, ActionForm form, HttpServletRequest request,
-	        HttpServletResponse httpservletresponse)
-	    throws Exception
-	{
-		String name = request.getParameter("name");
-		System.out.println("name:"+name);
-		String password = request.getParameter("password");
-		ActionForward actionForward = null;
-		boolean result = getLoginBo().valid(name, password);
-		if(result == true){
-			actionForward = mapping.findForward("success");
-		}else{
-			actionForward = mapping.findForward("fail");
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String execute() throws Exception {
+		if (getUsername().equals("hp")
+				&& getPassword().equals("randy")) {
+			ActionContext.getContext().getSession().put("user", getUsername());
+			return SUCCESS;
+		} else {
+			return ERROR;
 		}
-		List<Module> modules = MenuReader.read();
-		request.setAttribute("modules", modules);
-		
-		//设置用户session
-		System.out.println("login session start:"+new Date());
-		HttpSession session = request.getSession();
-		session.setAttribute("username", name);
-		session.setMaxInactiveInterval(120);
-		System.out.println("login session end"+new Date());
-		return actionForward;
 	}
 }

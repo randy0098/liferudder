@@ -1,6 +1,8 @@
-#Tue Aug 14 15:10:45 CST 2012
+#Wed Jun 12 14:33:52 CST 2013
 eclipse.preferences.version=1
 encoding//src/main/java/menus/Menu.java=utf-8
+encoding//src/main/resources/mess.properties=UTF-8
+encoding//src/main/resources/struts.xml=UTF-8
 encoding//src/main/webapp/common/jsp/main_frame.jsp=UTF-8
 encoding//src/main/webapp/login.jsp=UTF-8
 encoding//src/main/webapp/message/message_insert.jsp=UTF-8

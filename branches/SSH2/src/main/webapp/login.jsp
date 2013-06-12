@@ -5,10 +5,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
 <title><s:text name="loginPage"/></title>
 </head>
 <body>
-<s:form action="login">
+<s:form action="loginAction">
 	<s:textfield name="username" key="user"/>
 	<s:textfield name="password" key="pass"/>
 	<s:submit key="login"/>

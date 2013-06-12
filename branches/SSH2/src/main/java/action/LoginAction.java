@@ -23,7 +23,7 @@ public class LoginAction extends ActionSupport {
 		this.password = password;
 	}
 
-	public String execute() throws Exception {
+	public String login() throws Exception {
 		if (getUsername().equals("hp")
 				&& getPassword().equals("randy")) {
 			ActionContext.getContext().getSession().put("user", getUsername());

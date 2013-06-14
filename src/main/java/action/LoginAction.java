@@ -24,6 +24,7 @@ public class LoginAction extends ActionSupport {
 	}
 
 	public String login() throws Exception {
+		System.out.println("login----------------------");
 		if (getUsername().equals("hp")
 				&& getPassword().equals("randy")) {
 			ActionContext.getContext().getSession().put("user", getUsername());
@@ -31,5 +32,10 @@ public class LoginAction extends ActionSupport {
 		} else {
 			return ERROR;
 		}
+	}
+	
+	public String query() throws Exception {
+		System.out.println("query----------------------");
+		return "query";
 	}
 }

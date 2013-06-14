@@ -11,7 +11,8 @@
 <title><s:text name="loginPage"/></title>
 </head>
 <body>
-<s:form action="loginAction" validate="true">
+${tip}
+<s:form action="loginAction">
 	<s:textfield name="username" key="user"/>
 	<s:textfield name="password" key="pass"/>
 	<s:submit key="login"/>

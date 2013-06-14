@@ -3,20 +3,32 @@
 	"-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
 	"http://struts.apache.org/dtds/struts-2.1.7.dtd">
 <struts>
-	<constant name="struts.custom.i18n.resources" value="mess"/>
-	<constant name="struts.i18n.encoding" value="UTF-8"/>
-	<constant name="struts.enable.DynamicMethodInvocation" value="true"/>
+	<constant name="struts.custom.i18n.resources" value="mess" />
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
 	<package name="action" extends="struts-default">
+		<interceptors>
+			<interceptor name="authority" class="framework.AuthorityInterceptor">
+				<param name="excludeMethods">login</param>
+			</interceptor>
+			<interceptor-stack name="myDefaultAuthority">
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+				<interceptor-ref name="authority"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="myDefaultAuthority"></default-interceptor-ref>
 		<global-results>
-			<result name="fail">/fail.jsp</result>
+			<result name="fail">/WEB-INF/JSP/fail.jsp</result>
+			<result name="login">/WEB-INF/JSP/login.jsp</result>
 		</global-results>
 		<global-exception-mappings>
 			<exception-mapping result="fail" exception="java.lang.Exception"></exception-mapping>
 		</global-exception-mappings>
 		<action name="*Action" class="action.LoginAction" method="{1}">
-			<result name="input">/WEB-INF/JSP/input.jsp</result>
-			<result name="error">/WEB-INF/JSP/loginAction.jsp</result>
+			<result name="input">/WEB-INF/JSP/login.jsp</result>
+			<result name="error">/WEB-INF/JSP/error.jsp</result>
 			<result name="success">/WEB-INF/JSP/welcome.jsp</result>
+			<result name="query">/WEB-INF/JSP/success.jsp</result>
 		</action>
 		<action name="*">
 			<result>/WEB-INF/JSP/{1}.jsp</result>

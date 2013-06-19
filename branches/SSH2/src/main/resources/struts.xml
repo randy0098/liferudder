@@ -10,7 +10,7 @@
 		<interceptors>
 			<interceptor name="authority" class="framework.AuthorityInterceptor">
 				<!-- 注意这里的excute是为了不拦截访问login.jsp和ajaxLogin.jsp的方法! -->
-				<param name="excludeMethods">execute,login,ajaxLoginTest</param>
+				<param name="excludeMethods">execute,login,ajaxLogin</param>
 			</interceptor>
 			<interceptor-stack name="myDefaultAuthority">
 				<interceptor-ref name="defaultStack"></interceptor-ref>
@@ -30,9 +30,7 @@
 			<result name="error">/WEB-INF/JSP/error.jsp</result>
 			<result name="success">/WEB-INF/JSP/welcome.jsp</result>
 			<result name="query">/WEB-INF/JSP/success.jsp</result>
-		</action>
-		<action name="ajaxLoginTest" class="action.LoginAjaxAction" method="ajaxLoginTest">
-			<result name="success" type="stream">
+			<result name="ajax_success" type="stream">
 				<param name="contentType">text/html</param>
 				<param name="inputName">result</param>
 			</result>

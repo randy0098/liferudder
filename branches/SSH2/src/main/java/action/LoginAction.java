@@ -49,13 +49,13 @@ public class LoginAction extends ActionSupport {
 		return "query";
 	}
 	
-	public String ajaxLoginTest() throws Exception {
+	public String ajaxLogin() throws Exception {
 		if (getUsername().equals("hp")
 				&& getPassword().equals("randy")) {
 			inputStream = new ByteArrayInputStream("登陆成功".getBytes("UTF-8"));
 		} else {
 			inputStream = new ByteArrayInputStream("登陆失败".getBytes("UTF-8"));
 		}
-		return SUCCESS;
+		return "ajax_success";
 	}
 }

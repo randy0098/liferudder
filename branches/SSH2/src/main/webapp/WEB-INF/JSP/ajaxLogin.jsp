@@ -23,7 +23,7 @@
 	$("#loginBn").click(function()
 	{
 		//指定向ajaxLoginTest发送请求，以id为loginForm表单里各表单控件作为请求参数
-		$.get("ajaxLoginTest" , $("#loginForm").serializeArray() , 
+		$.get("ajaxLoginAction" , $("#loginForm").serializeArray() , 
 			//指定回调函数
 			function(data , statusText)
 			{

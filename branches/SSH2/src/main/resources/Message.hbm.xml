@@ -3,7 +3,7 @@
 	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="vo">
-	<class name="MessageVO" table="DEVFW_MESSAGE">
+	<class name="MessageVO" table="lifeRudder2_MESSAGE">
 		<id name="id" unsaved-value="null">
 			<generator class="increment" />
 		</id>

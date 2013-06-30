@@ -4,12 +4,12 @@
 <html>  
     <head>  
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">  
-        <title>登录界面</title>  
+        <title>登录页面</title>  
     </head>  
       
     <body>  
         <form action="login" method="post">  
-            name:<input type="text" name="name" />  
+            name:<input type="text" name="username" />  
             password:<input type="password" name="password" />  
               
             <input type="submit" value="登录" />  

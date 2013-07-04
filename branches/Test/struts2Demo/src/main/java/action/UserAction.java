@@ -75,4 +75,9 @@ public class UserAction extends ActionSupport
 		}
 
 	}
+	
+	public String execute() throws Exception{
+		return null;
+		
+	}
 }

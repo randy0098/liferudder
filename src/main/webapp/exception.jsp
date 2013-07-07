@@ -5,10 +5,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>登录出错页面</title>
+<title>异常处理页面</title>
 </head>
 
 <body>
-出错了,<s:url action="">请返回</s:url>
+异常信息：<s:property value="exception.message"/>&nbsp;&nbsp;<s:property value="exceptionStack"/>
 </body>
 </html>

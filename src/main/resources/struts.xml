@@ -29,8 +29,14 @@
         <action name="loginTest" class="action.LoginAction">
            <exception-mapping result="my" exception="exception.MyException"></exception-mapping>
            <result name="success">/welcome.jsp</result>
-           <result name="my">exception.jsp</result>
-           <result name="error">error.jsp</result>
+           <result name="my">/exception.jsp</result>
+           <result name="error">/error.jsp</result>
+        </action>
+    </package>
+    <package name="regist" extends="struts-default">
+        <action name="register" class="action.RegistAction" method="regist">
+           <result>/show.jsp</result>
+           <result name="input">/regist.jsp</result>
         </action>
     </package>
 </struts>

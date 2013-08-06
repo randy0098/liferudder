@@ -14,14 +14,25 @@ import framework.BaseDAO;
 
 public interface MessageDAO extends BaseDAO{
 	
-	public List<MessageVO> getMessageList();
+//	public List<MessageVO> getMessageList();
+//	
+//	public void insertMessage(MessageVO message);
+//	
+//	public MessageVO getMessageInfo(int id);
+//	
+//	public void updateMessage(MessageVO message);
+//	
+//	public void deleteMessage(int id);
 	
-	public void insertMessage(MessageVO message);
+	public MessageVO get(Integer id);
 	
-	public MessageVO getMessageInfo(int id);
+	public Integer save(MessageVO message);
 	
-	public void updateMessage(MessageVO message);
+	public void update(MessageVO message);
 	
-	public void deleteMessage(int id);
+	public void delete(MessageVO message);
 	
+	public void delete(Integer id);
+	
+	public List<MessageVO> findAll();
 }

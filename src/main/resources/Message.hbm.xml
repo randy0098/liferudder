@@ -4,12 +4,13 @@
 	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="vo">
 	<class name="MessageVO" table="lifeRudder2_MESSAGE">
-		<id name="id" unsaved-value="null">
-			<generator class="increment" />
+		<cache usage="read-only" />
+		<id name="id" type="integer" unsaved-value="null">
+			<generator class="identity" />
 		</id>
-		<property name="sender" />
-		<property name="receiver" />
-		<property name="content" />
-		<property name="msg_time" />
+		<property name="sender" type="string"/>
+		<property name="receiver" type="string"/>
+		<property name="content" type="string"/>
+		<property name="msg_time" type="string"/>
 	</class>
 </hibernate-mapping>

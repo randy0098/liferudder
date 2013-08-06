@@ -1,11 +1,19 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
-<beans>
-	<!-- Bo beans -->
-	<bean id="loginBo" class="bo.LoginBo" />	
+<?xml version="1.0" encoding="GBK"?>
+<!-- 指定Spring配置文件的Schema信息 -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	
-	<bean id="messageBo" class="bo.MessageBo">
-		<property name="messageDAO" ref="messageDAO"/>
-	</bean>
-	
+	<!-- 定义业务逻辑组件模板 -->
+	<!-- 为之注入DAO组件 -->
+	<bean id="boTemplate" abstract="true" lazy-init="true"
+		p:messageDao-ref="messageDao"
+
+	<!-- 定义两个业务逻辑组件，继承业务逻辑组件的模板 -->
+	<bean id="messageBO"
+		class="bo.MessageBo"
+		parent="boTemplate"/>
+
 </beans>

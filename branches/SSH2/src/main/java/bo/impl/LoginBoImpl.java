@@ -5,9 +5,9 @@
  * Copyright (c) 2010   All rights reserved. ======================
  */
 
-package bo;
+package bo.impl;
 
-public class LoginBo {
+public class LoginBoImpl {
 	public boolean valid(String name, String password) {
 		boolean result = false;
 		if ((name != null && name.equalsIgnoreCase("1") == true)

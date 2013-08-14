@@ -6,9 +6,9 @@
 <hibernate-configuration>
 	<session-factory name="foo">
 	    <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-	    <property name="connection.url">jdbc:mysql:///test</property>
+	    <property name="connection.url">jdbc:mysql:///demo</property>
         <property name="connection.username">root</property>
-        <property name="connection.password">123456</property>
+        <property name="connection.password">123</property>
         <property name="c3p0.max_size">20</property>
         <property name="c3p0.min_size">1</property>
         <property name="c3p0.timeout">5000</property>
@@ -16,13 +16,11 @@
         <property name="c3p0.idle_test_period">3000</property>
         <property name="c3p0.acquire_increment">2</property>
         <property name="c3p0.validate">true</property>
-        <property name="dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>
-        <property name="show_sql">true</property>
+        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+        
+        <property name="format_sql">true</property>
         <property name="hbm2ddl.auto">update</property>
-		<mapping resource="org/hibernate/test/legacy/Simple.hbm.xml"/>
-		<class-cache
-			class="org.hibernate.test.legacy.Simple"
-			region="Simple"
-			usage="read-write"/>
+		<mapping resource="User.hbm.xml"/>
+		
 	</session-factory>
 </hibernate-configuration>

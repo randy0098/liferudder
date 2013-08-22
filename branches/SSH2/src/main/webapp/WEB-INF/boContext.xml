@@ -9,11 +9,11 @@
 	<!-- 定义业务逻辑组件模板 -->
 	<!-- 为之注入DAO组件 -->
 	<bean id="boTemplate" abstract="true" lazy-init="true"
-		p:messageDao-ref="messageDao"
+		p:messageDAO-ref="messageDAO"/>
 
 	<!-- 定义两个业务逻辑组件，继承业务逻辑组件的模板 -->
 	<bean id="messageBO"
-		class="bo.MessageBo"
+		class="bo.impl.MessageBOImpl"
 		parent="boTemplate"/>
 
 </beans>

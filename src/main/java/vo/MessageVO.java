@@ -6,6 +6,7 @@ import framework.BaseVO;
 public class MessageVO extends BaseVO
 {
 	private static final long serialVersionUID = 1L;
+	//struts会自动进行String到int的类型转换
 	private int id;
 	private String sender;
 	private String receiver;

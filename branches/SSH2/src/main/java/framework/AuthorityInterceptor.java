@@ -8,6 +8,12 @@ import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.MethodFilterInterceptor;
 
 public class AuthorityInterceptor extends MethodFilterInterceptor{
+	/**
+	 * serialVersionUID
+	 * long
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	protected String doIntercept(ActionInvocation invocation)
 			throws Exception {

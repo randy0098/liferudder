@@ -5,9 +5,14 @@
 <hibernate-mapping package="vo">
 	<class name="MessageVO" table="lifeRudder2_MESSAGE">
 		<!-- xf -->
-		<!-- <cache usage="read-only" /> -->
-		<id name="id" type="integer" unsaved-value="null">
-			<generator class="identity" />
+		<!-- 
+			<cache usage="read-only" /> 
+			<id name="id" type="integer" unsaved-value="null">
+				<generator class="identity" />
+			</id>
+		-->
+		<id name="id" unsaved-value="null">
+			<generator class="increment" />
 		</id>
 		<property name="sender" type="string"/>
 		<property name="receiver" type="string"/>

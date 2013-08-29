@@ -1,0 +1,10 @@
+1.struts2 Action中如果包含user的HTTP请求参数，Action类里是否包含user字段不重要，关键是需要包含void setUser(String user)和String getUser()两个方法。
+
+2.struts2传值方式（Action,JSP）?
+
+3.struts2页面form（DynaActionForm）？
+
+4.//获取封装输出信息的ValueStack对象
+request.getAttribute("struts.valueStack");
+
+5.package命名空间的含义

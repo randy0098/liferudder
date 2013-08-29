@@ -16,7 +16,7 @@ import framework.FWConstants.DataBaseType;
 public class DBConnection
 {
 	private static String driver = "org.hsqldb.jdbcDriver";
-	private static String url = "jdbc:hsqldb:hsql://localhost/lifeRudder;ifexists=true";
+	private static String url = "jdbc:hsqldb:hsql://localhost/lifeRudder2;ifexists=true";
 	private static String user = "sa";
 	private static String password = "";
 	

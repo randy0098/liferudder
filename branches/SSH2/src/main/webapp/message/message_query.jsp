@@ -19,7 +19,7 @@
 	
 	//分页跳转
 	function paging(action){
-		var url = "message.do?method=message_query&action=";
+		var url = "message_query?action=";
 		//首页
 		if(action == "goToFirst"){
 			url = url + "goToFirst";
@@ -88,7 +88,7 @@
 	});
 </script>
 <body>
-		<form action="message.do?method=message_query" name="f1" method="post" >
+		<form action="message_query" name="f1" method="post" >
 		<table width="100%">
 			<tr>
 				<td>sender：</td>
@@ -129,8 +129,8 @@
 					<td>${message.content}</td>
 					<td>${message.msg_time}</td>
 					<td>
-						<a href="message.do?method=message_selectOne&id=${message.id}"/>修改</a>
-						<a href="message.do?method=message_delete&id=${message.id}" onclick="return confirm('确定删除此记录？')">删除</a>
+						<a href="message_selectOne?id=${message.id}"/>修改</a>
+						<a href="message_delete?id=${message.id}" onclick="return confirm('确定删除此记录？')">删除</a>
 					</td>
 				</tr>
 			</c:forEach>

@@ -3,12 +3,15 @@ package action;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
-import javassist.bytecode.ByteArray;
-
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class LoginAction extends ActionSupport {
+	/**
+	 * serialVersionUID
+	 * long
+	 */
+	private static final long serialVersionUID = 1L;
 	private String username;
 	private String password;
 	private InputStream inputStream;
@@ -33,7 +36,7 @@ public class LoginAction extends ActionSupport {
 		this.password = password;
 	}
 
-	public String login() throws Exception {
+	public String login() {
 		System.out.println("login----------------------");
 		if (getUsername().equals("hp")
 				&& getPassword().equals("randy")) {
@@ -44,7 +47,7 @@ public class LoginAction extends ActionSupport {
 		}
 	}
 	
-	public String query() throws Exception {
+	public String query() {
 		System.out.println("query----------------------");
 		return "query";
 	}

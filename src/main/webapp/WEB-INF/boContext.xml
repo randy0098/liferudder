@@ -1,17 +1,17 @@
-<?xml version="1.0" encoding="GBK"?>
-<!-- 指定Spring配置文件的Schema信息 -->
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 鎸囧畾Spring閰嶇疆鏂囦欢鐨凷chema淇℃伅 -->
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	
-	<!-- 定义业务逻辑组件模板 -->
-	<!-- 为之注入DAO组件 -->
+	<!-- 瀹氫箟涓氬姟閫昏緫缁勪欢妯℃澘 -->
+	<!-- 涓轰箣娉ㄥ叆DAO缁勪欢 -->
 	<bean id="boTemplate" abstract="true" lazy-init="true"
 		p:messageDAO-ref="messageDAO"/>
 
-	<!-- 定义两个业务逻辑组件，继承业务逻辑组件的模板 -->
+	<!-- 瀹氫箟涓や釜涓氬姟閫昏緫缁勪欢锛岀户鎵夸笟鍔￠�昏緫缁勪欢鐨勬ā鏉� -->
 	<bean id="messageBO"
 		class="bo.impl.MessageBOImpl"
 		parent="boTemplate"/>

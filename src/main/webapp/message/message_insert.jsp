@@ -54,7 +54,7 @@ $(document).ready(function() {
 });
 </script>
 <body>
-	<form id="form1" action="message.do?method=message_insert" method="post">
+	<form id="form1" action="message_insert" method="post">
 		<table border="1" width="100%">
 			<tr>
 				<td width="30%">发送者：</td>

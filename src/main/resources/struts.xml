@@ -30,15 +30,9 @@
 			<exception-mapping result="fail" exception="java.lang.Exception"></exception-mapping>
 		</global-exception-mappings>
 		
-		<action name="*Action" class="action.LoginAction" method="{1}">
-			<result name="input">/WEB-INF/JSP/login.jsp</result>
-			<result name="error">/WEB-INF/JSP/error.jsp</result>
+		<action name="login" class="action.LoginAction" method="login">
 			<result name="success">/message/message_query.jsp</result>
-			<result name="query">/WEB-INF/JSP/success.jsp</result>
-			<result name="ajax_success" type="stream">
-				<param name="contentType">text/html</param>
-				<param name="inputName">result</param>
-			</result>
+			<result name="error">/WEB-INF/JSP/error.jsp</result>
 		</action>
 		
 		<action name="message_*" class="action.MessageAction" method="message_{1}">

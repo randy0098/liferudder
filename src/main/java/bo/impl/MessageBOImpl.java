@@ -3,8 +3,9 @@ package bo.impl;
 import vo.MessageVO;
 import bo.MessageBO;
 import dao.impl.MessageDAOImpl;
+import framework.BaseBOImpl;
 
-public class MessageBOImpl implements MessageBO{
+public class MessageBOImpl extends BaseBOImpl implements MessageBO{
 	public MessageDAOImpl messageDAO;
 
 	public MessageDAOImpl getMessageDAO() {

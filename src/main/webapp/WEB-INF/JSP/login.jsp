@@ -11,10 +11,9 @@
 <title><s:text name="loginPage"/></title>
 </head>
 <body>
-${tip}
-<s:form action="loginAction">
-	<s:textfield name="username" key="user"/>
-	<s:textfield name="password" key="pass"/>
+<s:form action="login">
+	<s:textfield name="username" />
+	<s:textfield name="password" />
 	<s:submit key="login"/>
 </s:form>
 </body>

@@ -3,49 +3,34 @@ package action;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.opensymphony.xwork2.ModelDriven;
+
 import vo.MessageVO;
 import bo.MessageBO;
-import bo.impl.MessageBOImpl;
 import framework.BaseAction;
 import framework.Page;
 import framework.PageFactory;
 import framework.Wrapper;
 
-public class MessageAction extends BaseAction {
+public class MessageAction extends BaseAction implements ModelDriven{
 	/**
 	 * serialVersionUID
 	 * long
 	 */
 	private static final long serialVersionUID = 1L;
-	//xf int?
-	private String id;
-	private String sender;
-	private String receiver;
 	private String mintime;
 	private String maxtime;
-	private String content;
 	private String action;
 	private String currentPageIndex;
 	private Page page;
-	private MessageVO messageVO;
-	protected MessageBO messageBO;
+	private MessageBO messageBO;
+	private MessageVO messageVO = new MessageVO();
 
-	public String getId() {
-		return id;
+	@Override
+	public MessageVO getModel() {
+		return messageVO;
 	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public String getContent() {
-		return content;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
-	}
-
+	
 	public MessageVO getMessageVO() {
 		return messageVO;
 	}
@@ -78,20 +63,12 @@ public class MessageAction extends BaseAction {
 		this.currentPageIndex = currentPageIndex;
 	}
 
-	public String getSender() {
-		return sender;
+	public MessageBO getMessageBO() {
+		return messageBO;
 	}
 
-	public void setSender(String sender) {
-		this.sender = sender;
-	}
-
-	public String getReceiver() {
-		return receiver;
-	}
-
-	public void setReceiver(String receiver) {
-		this.receiver = receiver;
+	public void setMessageBO(MessageBO messageBO) {
+		this.messageBO = messageBO;
 	}
 
 	public String getMintime() {
@@ -108,14 +85,6 @@ public class MessageAction extends BaseAction {
 
 	public void setMaxtime(String maxtime) {
 		this.maxtime = maxtime;
-	}
-
-	public MessageBO getMessageBO() {
-		return messageBO;
-	}
-
-	public void setMessageBO(MessageBO messageBO) {
-		this.messageBO = messageBO;
 	}
 
 	/**
@@ -161,13 +130,8 @@ public class MessageAction extends BaseAction {
 	 * @throws Exception
 	 */
 	public String message_insert(){
-		MessageVO message = new MessageVO();
-		//xf
-		message.setReceiver(receiver);
-		message.setSender(sender);
-		message.setContent(content);
-		message.setMsg_time("20111226");
-		messageBO.insertMessage(message);
+		messageVO.setMsg_time("20111226");
+		messageBO.insertMessage(messageVO);
 		return "insert_success";
 	}
 
@@ -183,7 +147,7 @@ public class MessageAction extends BaseAction {
 	 * @throws Exception
 	 */
 	public String message_selectOne(){
-		messageVO = messageBO.getMessageInfo(Integer.parseInt(id));
+		messageVO = messageBO.getMessageInfo(messageVO.getId());
 		return "selectOne_success";
 	}
 
@@ -199,13 +163,8 @@ public class MessageAction extends BaseAction {
 	 * @throws Exception
 	 */
 	public String message_update(){
-		MessageVO message = new MessageVO();
-		message.setId(Integer.parseInt(id));
-		message.setReceiver(receiver);
-		message.setSender(sender);
-		message.setContent(content);
-		message.setMsg_time("20111227");
-		messageBO.updateMessage(message);
+		messageVO.setMsg_time("20111227");
+		messageBO.updateMessage(messageVO);
 		return "update_success";
 	}
 
@@ -221,7 +180,7 @@ public class MessageAction extends BaseAction {
 	 * @throws Exception
 	 */
 	public String message_delete(){
-		messageBO.deleteMessage(Integer.parseInt(id));
+		messageBO.deleteMessage(messageVO.getId());
 		return "delete_success";
 	}
 
@@ -233,10 +192,9 @@ public class MessageAction extends BaseAction {
 	 * @param page
 	 */
 	public void setQuerySql(Page page) {
-		String sender = getSender();
-		String receiver = getReceiver();
-		String mintime = getMintime();
-		String maxtime = getMaxtime();
+		String sender = messageVO.getSender();
+		String receiver = messageVO.getReceiver();
+		
 		String sqlPrefix = " SELECT * ";
 		String sql = " FROM liferudder2_message WHERE 1=1 ";
 		if (sender != null && sender.equalsIgnoreCase("") == false) {
@@ -254,4 +212,5 @@ public class MessageAction extends BaseAction {
 		page.setQuerySql(sqlPrefix + sql);
 		page.setCountSql("SELECT COUNT(ID) " + sql);
 	}
+
 }

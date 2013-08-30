@@ -1,16 +1,12 @@
 package action;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import vo.MessageVO;
+import bo.MessageBO;
 
 import com.opensymphony.xwork2.ModelDriven;
 
-import vo.MessageVO;
-import bo.MessageBO;
 import framework.BaseAction;
-import framework.Page;
-import framework.PageFactory;
-import framework.Wrapper;
+import framework.HibernatePage;
 
 public class MessageAction extends BaseAction implements ModelDriven{
 	/**
@@ -22,7 +18,7 @@ public class MessageAction extends BaseAction implements ModelDriven{
 	private String maxtime;
 	private String action;
 	private String currentPageIndex;
-	private Page page;
+	private HibernatePage page;
 	private MessageBO messageBO;
 	private MessageVO messageVO = new MessageVO();
 
@@ -39,11 +35,11 @@ public class MessageAction extends BaseAction implements ModelDriven{
 		this.messageVO = messageVO;
 	}
 
-	public Page getPage() {
+	public HibernatePage getPage() {
 		return page;
 	}
 
-	public void setPage(Page page) {
+	public void setPage(HibernatePage page) {
 		this.page = page;
 	}
 
@@ -91,112 +87,12 @@ public class MessageAction extends BaseAction implements ModelDriven{
 	 * 
 	 * 短信记录查询
 	 * 
-	 * @param mapping
-	 * @param form
-	 * @param request
-	 * @param httpservletresponse
-	 * @return
-	 * @throws Exception 
 	 */
-	public String message_query() throws Exception{
-		page = PageFactory.getPage();
-		setQuerySql(page);
-		page.setWrapper(new Wrapper<MessageVO>() {
-			@Override
-			public MessageVO wrapRecord(ResultSet rs) throws SQLException {
-				MessageVO messageVO = new MessageVO();
-				messageVO.setId(rs.getInt("ID"));
-				messageVO.setSender(rs.getString("SENDER"));
-				messageVO.setReceiver(rs.getString("RECEIVER"));
-				messageVO.setContent(rs.getString("CONTENT"));
-				messageVO.setMsg_time(rs.getString("MSG_TIME"));
-				return messageVO;
-			}
-		});
-		page.setPageRecordNum(1);
-		page.pagingDefault(action, currentPageIndex);
-		return "query_success";
-	}
-
-	/**
-	 * 
-	 * 短信记录新增
-	 * 
-	 * @param mapping
-	 * @param form
-	 * @param request
-	 * @param httpservletresponse
-	 * @return
-	 * @throws Exception
-	 */
-	public String message_insert(){
-		messageVO.setMsg_time("20111226");
-		messageBO.insertMessage(messageVO);
-		return "insert_success";
-	}
-
-	/**
-	 * 
-	 * 查询单条短信记录信息
-	 * 
-	 * @param mapping
-	 * @param form
-	 * @param request
-	 * @param httpservletresponse
-	 * @return
-	 * @throws Exception
-	 */
-	public String message_selectOne(){
-		messageVO = messageBO.getMessageInfo(messageVO.getId());
-		return "selectOne_success";
-	}
-
-	/**
-	 * 
-	 * 保存单条短信记录信息
-	 * 
-	 * @param mapping
-	 * @param form
-	 * @param request
-	 * @param httpservletresponse
-	 * @return
-	 * @throws Exception
-	 */
-	public String message_update(){
-		messageVO.setMsg_time("20111227");
-		messageBO.updateMessage(messageVO);
-		return "update_success";
-	}
-
-	/**
-	 * 
-	 * 删除单条短信记录信息
-	 * 
-	 * @param mapping
-	 * @param form
-	 * @param request
-	 * @param httpservletresponse
-	 * @return
-	 * @throws Exception
-	 */
-	public String message_delete(){
-		messageBO.deleteMessage(messageVO.getId());
-		return "delete_success";
-	}
-
-	/**
-	 * 
-	 * 具体查询逻辑
-	 * 
-	 * @param request
-	 * @param page
-	 */
-	public void setQuerySql(Page page) {
+	public String message_query(){
 		String sender = messageVO.getSender();
 		String receiver = messageVO.getReceiver();
 		
-		String sqlPrefix = " SELECT * ";
-		String sql = " FROM liferudder2_message WHERE 1=1 ";
+		String sql = " FROM MessageVO WHERE 1=1 ";
 		if (sender != null && sender.equalsIgnoreCase("") == false) {
 			sql = sql + " AND sender = '" + sender + "' ";
 		}
@@ -209,8 +105,53 @@ public class MessageAction extends BaseAction implements ModelDriven{
 		if (maxtime != null && maxtime.equalsIgnoreCase("") == false) {
 			sql = sql + " AND msg_time <= '" + maxtime + "' ";
 		}
-		page.setQuerySql(sqlPrefix + sql);
+		page.setQuerySql(sql);
 		page.setCountSql("SELECT COUNT(ID) " + sql);
+		page.setPageRecordNum(1);
+		page.paging(action, currentPageIndex);		
+		return "query_success";
+	}
+
+	/**
+	 * 
+	 * 短信记录新增
+	 * 
+	 */
+	public String message_insert(){
+		messageVO.setMsg_time("20111226");
+		messageBO.insertMessage(messageVO);
+		return "insert_success";
+	}
+
+	/**
+	 * 
+	 * 查询单条短信记录信息
+	 * 
+	 */
+	public String message_selectOne(){
+		messageVO = messageBO.getMessageInfo(messageVO.getId());
+		return "selectOne_success";
+	}
+
+	/**
+	 * 
+	 * 保存单条短信记录信息
+	 * 
+	 */
+	public String message_update(){
+		messageVO.setMsg_time("20111227");
+		messageBO.updateMessage(messageVO);
+		return "update_success";
+	}
+
+	/**
+	 * 
+	 * 删除单条短信记录信息
+	 * 
+	 */
+	public String message_delete(){
+		messageBO.deleteMessage(messageVO.getId());
+		return "delete_success";
 	}
 
 }

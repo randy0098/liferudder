@@ -20,16 +20,17 @@
 		</interceptors>
 		<!-- 
 			<default-interceptor-ref name="myDefaultAuthority"></default-interceptor-ref> 
-		-->
+		
 			
 			<global-results>
 				<result name="fail">/WEB-INF/JSP/fail.jsp</result>
 				<result name="login">/WEB-INF/JSP/login.jsp</result>
 			</global-results>
+		
 		<global-exception-mappings>
 			<exception-mapping result="fail" exception="java.lang.Exception"></exception-mapping>
 		</global-exception-mappings>
-		
+		-->	
 		<action name="login" class="action.LoginAction" method="login">
 			<result name="success">/message/message_query.jsp</result>
 			<result name="error">/WEB-INF/JSP/error.jsp</result>

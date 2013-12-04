@@ -8,3 +8,9 @@
 request.getAttribute("struts.valueStack");
 
 5.package命名空间的含义
+
+6.mess.properties与mess_zh_CN.properties的区别
+
+7.居中问题
+
+8.各种字体的设置问题

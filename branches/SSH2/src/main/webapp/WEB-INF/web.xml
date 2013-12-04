@@ -16,17 +16,41 @@
 		</listener-class>
 	</listener>
 
+	<!-- 定义ActionContextCleanUp的Filter -->
+	<filter>
+		<filter-name>struts-cleanup</filter-name>
+		<filter-class>org.apache.struts2.dispatcher.ActionContextCleanUp</filter-class>
+	</filter>
+	<!-- 定义SiteMesh框架的核心Filter -->
+	<filter>
+		<filter-name>sitemesh</filter-name>
+		<filter-class>com.opensymphony.module.sitemesh.filter.PageFilter</filter-class>
+	</filter>
 	<!-- 定义Struts 2的核心Filter -->
 	<filter>
 		<filter-name>struts2</filter-name>
 		<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
 	</filter>
-	<!-- 让Struts 2的核心Filter拦截所有请求 -->
+	
+	<!-- 第1个过滤器：让ActionContextCleanUp的核心Filter拦截所有请求 -->
+	<filter-mapping>
+		<filter-name>struts-cleanup</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<!-- 第2个过滤器：让SiteMesh框架的核心Filter过滤所有用户请求 -->
+	<filter-mapping>
+		<filter-name>sitemesh</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<!-- 第3个过滤器：让Struts 2的核心Filter拦截所有请求 -->
 	<filter-mapping>
 		<filter-name>struts2</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
+	
 	<!-- 定义Web应用的首页 -->
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>

@@ -10,6 +10,7 @@
 <meta http-equiv="expires" content="0">
 <title><s:text name="loginPage" /></title>
 <style type="text/css">
+<%--
 .align-center {
 	margin: 0 auto;
 	width: 500px;
@@ -22,10 +23,10 @@
 	/*border: 1px solid;
 	border-color: blue;*/
 }
-
 body {font-size:1.5em}
-
+--%>
 </style>
+<link href="common/css/login.css" type="text/css" rel="stylesheet">
 </head>
 <body>
 	<div class="align-center">

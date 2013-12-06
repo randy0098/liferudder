@@ -10,6 +10,21 @@
 <script type="text/javascript" src="common/js/include.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>短信记录查询</title>
+<style type="text/css">
+table {
+	padding: 0;
+	margin: 0;
+	/*边框重合*/
+	border-collapse: collapse;
+	width: 85%;
+	font-family: Arial;
+	cellspacing: 0;
+}
+.row {
+	text-align:center;
+}
+</style>
+
 <script type="text/javascript">
 	//删除时进行确认
 	function deleteCheck(){
@@ -89,7 +104,7 @@
 </head>
 <body>
 		<form action="message_query" name="f1" method="post">
-		<table width="85%">
+		<table>
 			<tr>
 				<td>sender：</td>
 				<td>
@@ -119,10 +134,10 @@
 		</table>
 		
 		<a href="message/message_insert.jsp" style="float: right">增加</a>
-		<table border="1" width="85%">
+		<table border="1">
 			<tr><th>id</th><th>sender</th><th>receiver</th><th>content</th><th>msg_time</th><th>操作</th></tr>
 			<c:forEach var="message" items="${page.records}">
-				<tr>
+				<tr class="row">
 					<td>${message.id}</td>
 					<td>${message.sender}</td>
 					<td>${message.receiver}</td>
@@ -140,8 +155,8 @@
 					<a href="" onclick="paging('goToLast');return false">尾页</a>
 					<a href="" onclick="paging('back');return false">上一页</a>
 					<a href="" onclick="paging('next');return false">下一页</a>
-					转到第<input type="text" id="pageIndex" onkeypress="return event.keyCode>=48&&event.keyCode<=57" onpaste="return !clipboardData.getData('text').match(/\D/)" ondragenter="return false" style="ime-mode:Disabled">页
-					<input type="button" value="go" onclick="paging('go')">
+					转到第<input type="text" id="pageIndex">页
+					<input type="button" value="go" onclick="paging('go')"/>
 					每页显示${page.pageRecordNum}条
 					第${page.currentPageIndex}/${page.totalPage}页			
 				</td>

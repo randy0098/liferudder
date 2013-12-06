@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" %>
-<%@ include file="/common/jsp/header.jsp"%>
+	pageEncoding="UTF-8"%>
+<%@ include file="/common/jsp/header.jsp"%> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,7 +10,6 @@
 <script type="text/javascript" src="common/js/include.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>短信记录查询</title>
-</head>
 <script type="text/javascript">
 	//删除时进行确认
 	function deleteCheck(){
@@ -87,9 +86,10 @@
 */		
 	});
 </script>
+</head>
 <body>
-		<form action="message_query" name="f1" method="post" >
-		<table width="100%">
+		<form action="message_query" name="f1" method="post">
+		<table width="85%">
 			<tr>
 				<td>sender：</td>
 				<td>
@@ -119,7 +119,7 @@
 		</table>
 		
 		<a href="message/message_insert.jsp" style="float: right">增加</a>
-		<table width="100%" border="1">
+		<table border="1" width="85%">
 			<tr><th>id</th><th>sender</th><th>receiver</th><th>content</th><th>msg_time</th><th>操作</th></tr>
 			<c:forEach var="message" items="${page.records}">
 				<tr>

@@ -11,18 +11,20 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>短信记录查询</title>
 <style type="text/css">
+/*
 table {
 	padding: 0;
 	margin: 0;
-	/*边框重合*/
 	border-collapse: collapse;
 	width: 85%;
 	font-family: Arial;
 	cellspacing: 0;
 }
+
 .row {
 	text-align:center;
 }
+*/
 </style>
 
 <script type="text/javascript">
@@ -65,8 +67,8 @@ table {
 	}
 	
 	$(function() {
-		$("[name='mintime']").datepicker();
-		$("[name='maxtime']").datepicker();
+//		$("[name='mintime']").datepicker();
+//		$("[name='maxtime']").datepicker();
 /*		
 		//test jqgrid
 		jQuery("#list4").jqGrid({
@@ -151,12 +153,18 @@ table {
 			</c:forEach>
 			<tr>
 				<td colspan="6">
+				<!-- 
+					<ul class="pager">
+						<li><a href="#">上一页</a></li>
+						<li><a href="#">下一页</a></li>
+					</ul> 
+				-->	
 					<a href="" onclick="paging('goToFirst');return false">首页</a>
 					<a href="" onclick="paging('goToLast');return false">尾页</a>
 					<a href="" onclick="paging('back');return false">上一页</a>
 					<a href="" onclick="paging('next');return false">下一页</a>
 					转到第<input type="text" id="pageIndex">页
-					<input type="button" value="go" onclick="paging('go')"/>
+					<input type="button" value="go" onclick="paging('go')" class="btn btn-default btn-xs"/>
 					每页显示${page.pageRecordNum}条
 					第${page.currentPageIndex}/${page.totalPage}页			
 				</td>

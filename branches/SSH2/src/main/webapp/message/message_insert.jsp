@@ -54,6 +54,10 @@ $(document).ready(function() {
 });
 </script>
 <body>
+
+<div class="panel panel-info">
+  <div class="panel-heading">新增短信信息</div>
+  <div class="panel-body">
 	<form id="form1" action="message_insert" method="post">
 		<table border="1" width="100%">
 			<tr>
@@ -75,6 +79,8 @@ $(document).ready(function() {
 		<input type="hidden" name="id">
 		<input type="hidden" name="msg_time">	
 	</form>
+  </div>
+</div>
 </body>
 </html>
 

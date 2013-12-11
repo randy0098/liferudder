@@ -7,8 +7,17 @@ function includeCSS(src){
 }
 
 //jquery
-includeJS("plugins/jquery-1.7.2/dev/jquery-1.7.2.js");
+includeJS("plugins/jquery-1.10.2/dev/jquery-1.10.2.js");
 
+//bootstrap
+includeJS("plugins/bootstrap-3.0.3/dev/bootstrap-3.0.3.js");
+includeCSS("plugins/bootstrap-3.0.3/dev/bootstrap-3.0.3.css");
+//includeCSS("plugins/bootstrap-3.0.3/dev/bootstrap-theme-3.0.3.js");
+
+//less
+includeJS("plugins/less-1.5.0/runtime/less-1.5.0.min.js");
+
+/*
 //jquery ui
 includeJS("plugins/jquery-ui-1.8.22/dev/jquery-ui-1.8.22.custom.js");
 
@@ -30,3 +39,4 @@ includeJS("plugins/jquery-layout-1.3.0-rc30.6/dev/jquery.layout-latest.js");
 
 //jquery.validation
 includeJS("plugins/jquery-validation-1.10.0/dev/jquery.validate.js");
+*/

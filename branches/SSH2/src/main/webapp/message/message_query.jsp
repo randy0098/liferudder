@@ -9,22 +9,26 @@
 <base href="<%=basePath%>">
 <script type="text/javascript" src="common/js/include.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>短信记录查询</title>
 <style type="text/css">
-/*
-table {
-	padding: 0;
-	margin: 0;
-	border-collapse: collapse;
-	width: 85%;
-	font-family: Arial;
-	cellspacing: 0;
+form {
+	width: 100%;
+	height: 100%;
+	border:1px solid orange
 }
 
-.row {
-	text-align:center;
+.query_table {
+	width: 100%;
+	height: 20%;
+	/*border:1px solid green*/
 }
-*/
+
+.result_table {
+	width: 100%;
+	/*border:1px solid red*/
+}
+
 </style>
 
 <script type="text/javascript">
@@ -106,7 +110,7 @@ table {
 </head>
 <body>
 		<form action="message_query" name="f1" method="post">
-		<table>
+		<table class="query_table">
 			<tr>
 				<td>sender：</td>
 				<td>
@@ -136,7 +140,7 @@ table {
 		</table>
 		
 		<a href="message/message_insert.jsp" style="float: right">增加</a>
-		<table border="1">
+		<table class="result_table" border="1">
 			<tr><th>id</th><th>sender</th><th>receiver</th><th>content</th><th>msg_time</th><th>操作</th></tr>
 			<c:forEach var="message" items="${page.records}">
 				<tr class="row">

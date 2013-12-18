@@ -9,20 +9,30 @@
 <head>
 <script type="text/javascript" src="common/js/include.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title><decorator:title default="lifeRudder" /></title>
 <decorator:head />
 <style type="text/css">
-	<%--body {height:100%}--%>
-	.logo {border:solid 1px red; width:100%; height:150px}
-	.menu_left {border:solid 1px green; width:10%; height:800px; float:left}
-	.content {border:solid 1px brown; width:100%; height:800px;margin:0px;padding:0px;}
-	.footer {border:solid 1px blue; width:100%; height:150px}
+html,body{
+	height:100%;
+}
 </style>
 </head>
 <body>
-	<div class="logo"><%@ include file="/common/jsp/logo.jsp"%></div>
-	<div class="menu_left"><%@ include file="/common/jsp/menu_left.jsp"%></div>
-	<div class="content"><decorator:body /></div>
-	<!--<div class="footer">footer</div>-->
+	<div class="container-fluid" style="height:100%">
+		<div class="navbar navbar-default navbar-static-top" role="navigation" style="height:10%;">
+			<div class="col-lg-12" style="border:solid 1px red;height:100%">
+				<%@ include file="/common/jsp/logo.jsp"%>
+			</div>
+		</div>
+		<div class="row-fluid" style="height:90%">
+			<div class="col-lg-2" style="border:solid 1px green;height:100%">
+				<%@ include file="/common/jsp/menu_left.jsp"%>
+			</div>
+			<div class="col-lg-10" style="border:solid 1px blue;height:100%">
+				<decorator:body />
+			</div>
+		</div>
+	</div>
 </body>
 </html>

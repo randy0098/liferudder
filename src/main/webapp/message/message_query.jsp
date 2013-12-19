@@ -73,7 +73,7 @@ form {
 	$(function() {
 //		$("[name='mintime']").datepicker();
 //		$("[name='maxtime']").datepicker();
-/*		
+		$( "#button" ).button();
 		//test jqgrid
 		jQuery("#list4").jqGrid({
 			datatype: "local",
@@ -104,7 +104,6 @@ form {
 				];
 		for(var i=0;i<=mydata.length;i++)
 			jQuery("#list4").jqGrid('addRowData',i+1,mydata[i]);
-*/		
 	});
 </script>
 </head>
@@ -143,7 +142,7 @@ form {
 		<table class="result_table" border="1">
 			<tr><th>id</th><th>sender</th><th>receiver</th><th>content</th><th>msg_time</th><th>操作</th></tr>
 			<c:forEach var="message" items="${page.records}">
-				<tr class="row">
+				<tr>
 					<td>${message.id}</td>
 					<td>${message.sender}</td>
 					<td>${message.receiver}</td>
@@ -167,13 +166,14 @@ form {
 					<a href="" onclick="paging('goToLast');return false">尾页</a>
 					<a href="" onclick="paging('back');return false">上一页</a>
 					<a href="" onclick="paging('next');return false">下一页</a>
-					转到第<input type="text" id="pageIndex">页
+					转到第<input type="text" id="pageIndex"/>页
 					<input type="button" value="go" onclick="paging('go')" class="btn btn-default btn-xs"/>
 					每页显示${page.pageRecordNum}条
 					第${page.currentPageIndex}/${page.totalPage}页			
 				</td>
 			</tr>
 		</table>
+		<button id="button">A button element</button>
 		<table id="list4"></table>
 	</form>
 </BODY>

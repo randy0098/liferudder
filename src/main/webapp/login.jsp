@@ -94,7 +94,7 @@ body {
  -->	
  
 	<div class="container">
-      <form class="form-signin" action="login" role="form" method="post">
+      <s:form action="login" theme="simple" role="form" method="post" cssClass="form-signin" >
         <h2 class="form-signin-heading">请输入用户名和密码</h2>
         <input type="text" name="username" class="form-control" placeholder="用户名" required autofocus>
         <input type="password" name="password" class="form-control" placeholder="密码" required>
@@ -102,7 +102,7 @@ body {
           <input type="checkbox" value="remember-me"> Remember me
         </label>
         <button class="btn btn-lg btn-primary btn-block" type="submit">登陆</button>
-      </form>
+      </s:form>
     </div>
 </body>
 </html>

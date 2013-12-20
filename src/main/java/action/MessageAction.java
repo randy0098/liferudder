@@ -1,5 +1,6 @@
 package action;
 
+import net.sf.json.JSONArray;
 import vo.MessageVO;
 import bo.MessageBO;
 
@@ -108,7 +109,9 @@ public class MessageAction extends BaseAction implements ModelDriven{
 		page.setQuerySql(sql);
 		page.setCountSql("SELECT COUNT(ID) " + sql);
 		page.setPageRecordNum(1);
-		page.paging(action, currentPageIndex);		
+		page.paging(action, currentPageIndex);	
+		JSONArray jsonRecords = JSONArray.fromObject(page.getRecords());
+		System.out.println("jsonRecords:"+jsonRecords);
 		return "query_success";
 	}
 

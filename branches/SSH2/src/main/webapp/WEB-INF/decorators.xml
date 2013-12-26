@@ -4,6 +4,6 @@
 		<pattern>/login.jsp</pattern>
 	</excludes>
 	<decorator name="main" page="main.jsp">
-		<pattern>*</pattern>
+		<pattern>message_query</pattern>
 	</decorator>
 </decorators>

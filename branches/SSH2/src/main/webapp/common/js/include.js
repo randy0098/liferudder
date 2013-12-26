@@ -30,6 +30,8 @@ includeJS("plugins/jquery.jqGrid-4.5.4/js/jquery.jqGrid.src.js");
 includeJS("plugins/jquery.jqGrid-4.5.4/plugins/jquery.tablednd.js");
 includeJS("plugins/jquery.jqGrid-4.5.4/plugins/jquery.contextmenu.js");
 
+includeJS("plugins/json2.js");
+
 /*
 //jquery ui
 includeJS("plugins/jquery-ui-1.8.22/dev/jquery-ui-1.8.22.custom.js");

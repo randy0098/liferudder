@@ -44,11 +44,20 @@
 			<result name="selectOne_success">/message/message_update.jsp</result>
 			<result name="delete_success" type="chain">message_query</result>
 		</action>
-		
 		<!-- 
 			<action name="*">
 				<result>/WEB-INF/JSP/{1}.jsp</result>
 			</action>
 		-->
+	</package>
+	
+	<package name="example" extends="json-default">
+		<action name="message_queryAjax" class="action.MessageAction" method="message_queryAjax">
+			<result type="json">
+				<param name="includeProperties">
+					test
+				</param>
+			</result>
+		</action>
 	</package>
 </struts>

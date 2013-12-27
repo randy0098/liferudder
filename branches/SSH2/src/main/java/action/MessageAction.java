@@ -25,14 +25,6 @@ public class MessageAction extends BaseAction implements ModelDriven{
 	private MessageBO messageBO;
 	private MessageVO messageVO = new MessageVO();
 	private ArrayList records;
-	private String test = "hello Ajax";
-	
-	public String getTest() {
-		return test;
-	}
-	public void setTest(String test) {
-		this.test = test;
-	}
 
 	public ArrayList getRecords() {
 		return records;
@@ -131,33 +123,6 @@ public class MessageAction extends BaseAction implements ModelDriven{
 //		System.out.println("jsonRecords:"+jsonRecords);
 		return "query_success";
 	}
-
-//	public String message_queryAjax(){
-//		String sender = messageVO.getSender();
-//		String receiver = messageVO.getReceiver();
-//		
-//		String sql = " FROM MessageVO WHERE 1=1 ";
-//		if (sender != null && sender.equalsIgnoreCase("") == false) {
-//			sql = sql + " AND sender = '" + sender + "' ";
-//		}
-//		if (receiver != null && receiver.equalsIgnoreCase("") == false) {
-//			sql = sql + " AND receiver LIKE '%" + receiver + "%' ";
-//		}
-//		if (mintime != null && mintime.equalsIgnoreCase("") == false) {
-//			sql = sql + " AND msg_time >= '" + mintime + "' ";
-//		}
-//		if (maxtime != null && maxtime.equalsIgnoreCase("") == false) {
-//			sql = sql + " AND msg_time <= '" + maxtime + "' ";
-//		}
-//		page.setQuerySql(sql);
-//		page.setCountSql("SELECT COUNT(ID) " + sql);
-//		page.setPageRecordNum(1);
-//		page.paging(action, currentPageIndex);	
-//		JSONArray jsonRecords = JSONArray.fromObject(page.getRecords());
-//		System.out.println("jsonRecords123:"+jsonRecords);
-//		return jsonRecords.toString();
-//	}
-	
 	
 	public String message_queryAjax() {
 		String sender = messageVO.getSender();
@@ -181,7 +146,7 @@ public class MessageAction extends BaseAction implements ModelDriven{
 		page.setPageRecordNum(1);
 		page.paging(action, currentPageIndex);
 		records = page.getRecords();
-		System.out.println("records:"+records.size());
+		System.out.println("ajaxRecords:"+records.size());
 		return Action.SUCCESS;
 	}
 	

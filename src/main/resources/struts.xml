@@ -55,7 +55,7 @@
 		<action name="message_queryAjax" class="action.MessageAction" method="message_queryAjax">
 			<result type="json">
 				<param name="includeProperties">
-					test
+					records.*
 				</param>
 			</result>
 		</action>

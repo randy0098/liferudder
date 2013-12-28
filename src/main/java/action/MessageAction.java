@@ -24,14 +24,14 @@ public class MessageAction extends BaseAction implements ModelDriven{
 	private HibernatePage page;
 	private MessageBO messageBO;
 	private MessageVO messageVO = new MessageVO();
-	private ArrayList records;
+	private ArrayList rows;
+	public ArrayList getRows() {
+		return rows;
+	}
+	public void setRows(ArrayList rows) {
+		this.rows = rows;
+	}
 
-	public ArrayList getRecords() {
-		return records;
-	}
-	public void setRecords(ArrayList records) {
-		this.records = records;
-	}
 	@Override
 	public MessageVO getModel() {
 		return messageVO;
@@ -145,8 +145,8 @@ public class MessageAction extends BaseAction implements ModelDriven{
 		page.setCountSql("SELECT COUNT(ID) " + sql);
 		page.setPageRecordNum(1);
 		page.paging(action, currentPageIndex);
-		records = page.getRecords();
-		System.out.println("ajaxRecords:"+records.size());
+		rows = page.getRecords();
+		System.out.println("ajaxRecords:"+rows.size());
 		return Action.SUCCESS;
 	}
 	

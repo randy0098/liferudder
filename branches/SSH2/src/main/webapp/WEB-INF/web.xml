@@ -23,10 +23,12 @@
             org.apache.struts2.dispatcher.ng.filter.StrutsPrepareFilter</filter-class>
     </filter>
 	<!-- 定义SiteMesh框架的核心Filter -->
+<!-- 	
     <filter>
         <filter-name>sitemesh</filter-name>
         <filter-class>com.opensymphony.sitemesh.webapp.SiteMeshFilter</filter-class>
     </filter>
+-->    
     <!-- 定义Struts2框架的核心的Filter -->
     <filter>
         <filter-name>struts2Execute</filter-name>
@@ -41,11 +43,12 @@
 	</filter-mapping>
 	
 	<!-- 第2个过滤器：让SiteMesh框架的核心Filter过滤所有用户请求 -->
+<!-- 	
 	<filter-mapping>
 		<filter-name>sitemesh</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	
+-->	
 	<!-- 第3个过滤器：让Struts 2的核心Filter拦截所有请求 -->
 	<filter-mapping>
 		<filter-name>struts2Execute</filter-name>

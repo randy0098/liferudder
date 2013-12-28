@@ -8,5 +8,6 @@
 </head>
 <body>
 	异常信息：<s:property value="exceptionStack"/>
+	<s:debug></s:debug> 
 </body>
 </html>

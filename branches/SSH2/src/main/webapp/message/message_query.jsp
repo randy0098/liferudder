@@ -71,6 +71,63 @@ form {
 	}
 	
 	$(function() {
+/*		
+		 $.get("http://localhost:8080/lifeRudder2/message_queryAjax",
+				 function(data) {
+				 //alert( "Data Loaded: " + JSON.parse(data));
+				 alert("Data Loaded: " + JSON.stringify(data));
+				 });
+*/		 
+		jQuery("#list2").jqGrid({
+			url : 'http://localhost:8080/lifeRudder2/message_queryAjax',
+			datatype : "json",
+			jsonReader: {  
+			    root:"rows",  
+			    repeatitems: false
+			},
+			prmNames : {  
+			    page:"page1"
+			}, 
+			colNames : [ 'id', 'sender', 'receiver', 'content', 'msg_time' ],
+			colModel : [ {
+				name : 'id',
+				index : 'id',
+				width : 55
+			}, {
+				name : 'sender',
+				index : 'invdate',
+				width : 90
+			}, {
+				name : 'receiver',
+				index : 'name asc, invdate',
+				width : 100
+			}, {
+				name : 'content',
+				index : 'amount',
+				width : 80,
+				align : "right"
+			}, {
+				name : 'msg_time',
+				index : 'tax',
+				width : 80,
+				align : "right"
+			} ],
+			rowNum : 10,
+			rowList : [ 10, 20, 30 ],
+			pager : '#pager2',
+			sortname : 'id',
+			viewrecords : true,
+			sortorder : "desc",
+			caption : "JSON Example"
+		});
+		jQuery("#list2").jqGrid('navGrid', '#pager2', {
+			edit : false,
+			add : false,
+			del : false
+		});
+	})
+	
+/*		
 //		$("[name='mintime']").datepicker();
 //		$("[name='maxtime']").datepicker();
 		$( "#button" ).button();
@@ -105,6 +162,7 @@ form {
 		for(var i=0;i<=mydata.length;i++)
 			jQuery("#list4").jqGrid('addRowData',i+1,mydata[i]);
 	});
+*/	
 /*	
     jQuery("#list").jqGrid({
         url:'http://localhost:8080/lifeRudder2/message_query',
@@ -136,47 +194,25 @@ form {
 });
 jQuery("#list").jqGrid('navGrid','#pager',{edit:false,add:false,del:false});
 alert("hi");
-
-jQuery("#list2").jqGrid({
-   	url:'message_query',
-	datatype: "json",
-   	colNames:['id','sender','receiver','content','msg_time'],
-   	colModel:[
-   		{name:'id',index:'id', width:55},
-   		{name:'sender',index:'invdate', width:90},
-   		{name:'receiver',index:'name asc, invdate', width:100},
-   		{name:'content',index:'amount', width:80, align:"right"},
-   		{name:'msg_time',index:'tax', width:80, align:"right"}	
-   	],
-   	rowNum:10,
-   	rowList:[10,20,30],
-   	pager: '#pager2',
-   	sortname: 'id',
-    viewrecords: true,
-    sortorder: "desc",
-    caption:"JSON Example"
-});
-jQuery("#list2").jqGrid('navGrid','#pager2',{edit:false,add:false,del:false});
 */
+	/*
+	 $.post("http://localhost:8080/lifeRudder2/login.jsp", null, function(data,
+	 textStatus) {
 
-/*
-	$.post("http://localhost:8080/lifeRudder2/login.jsp", null, function(data,
-			textStatus) {
+	 // data 可以是 xmlDoc, jsonObj, html, text, 等等.
+	 //this; // 这个Ajax请求的选项配置信息，请参考jQuery.get()说到的this
+	 alert(data.result);
 
-		// data 可以是 xmlDoc, jsonObj, html, text, 等等.
-		//this; // 这个Ajax请求的选项配置信息，请参考jQuery.get()说到的this
-		alert(data.result);
-
-	}, "json");
+	 }, "json");
 	
-$('#test').load('www.baidu.com');
-*/
+	 $('#test').load('www.baidu.com');
 
-	$.get("http://localhost:8080/lifeRudder2/message_queryAjax",
-			function(data) {
-				//alert( "Data Loaded: " + JSON.parse(data));
-				alert("Data Loaded: " + JSON.stringify(data));
-			});
+	 $.get("http://localhost:8080/lifeRudder2/message_queryAjax",
+	 function(data) {
+	 //alert( "Data Loaded: " + JSON.parse(data));
+	 alert("Data Loaded: " + JSON.stringify(data));
+	 });
+	 */
 </script>
 </head>
 <body>
@@ -248,7 +284,7 @@ $('#test').load('www.baidu.com');
 		<button id="button">A button element</button>
 		<table id="list2"></table>
 		<div id="pager2"></div>
-		<h3 id="test">请点击下面的按钮，通过 jQuery AJAX 改变这段文本。</h3>
+		<table id="list4"></table>
 	</form>
 </BODY>
 </body>

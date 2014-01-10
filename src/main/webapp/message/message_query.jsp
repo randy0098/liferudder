@@ -9,7 +9,6 @@
 <base href="<%=basePath%>">
 <script type="text/javascript" src="common/js/include.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>短信记录查询</title>
 <style type="text/css">
 form {
@@ -32,62 +31,22 @@ form {
 </style>
 
 <script type="text/javascript">
-	//删除时进行确认
-	function deleteCheck(){
-		return confirm("确定删除此记录？");
-	}
-	
-	//分页跳转
-	function paging(action){
-		var url = "message_query?action=";
-		//首页
-		if(action == "goToFirst"){
-			url = url + "goToFirst";
-		}
-		//尾页
-		else if(action == "goToLast"){
-			url = url + "goToLast";
-		}
-		//上一页
-		else if(action == "back"){
-			url = url + "back&currentPageIndex="+${page.currentPageIndex};
-		}
-		//下一页
-		else if(action == "next"){
-			url = url + "next&currentPageIndex="+${page.currentPageIndex};
-		}
-		//转到第几页
-		else if(action == "go"){
-			var pageIndex = document.getElementById("pageIndex").value;
-			if(isNaN(parseInt(pageIndex)) == true){
-				alert("请输入正确的页数！");
-				return;
-			}else{
-				url = url + "go&currentPageIndex="+pageIndex;
-			}
-		}
-		f1.action = url;
-		f1.submit();
-	}
-	
+
 	$(function() {
-/*		
-		 $.get("http://localhost:8080/lifeRudder2/message_queryAjax",
-				 function(data) {
-				 //alert( "Data Loaded: " + JSON.parse(data));
-				 alert("Data Loaded: " + JSON.stringify(data));
-				 });
-*/		 
 		jQuery("#list2").jqGrid({
 			url : 'http://localhost:8080/lifeRudder2/message_queryAjax',
 			datatype : "json",
-			jsonReader: {  
-			    root:"rows",  
-			    repeatitems: false
+		    jsonReader : { 
+				root: "records", 
+				page: "currentPageIndex", 
+				total: "totalPage", 
+				records: "recordNum", 
+				repeatitems: false,
+				id: "id"
 			},
-			prmNames : {  
-			    page:"page1"
-			}, 
+			prmNames : {
+				page : "pager1"
+			},
 			colNames : [ 'id', 'sender', 'receiver', 'content', 'msg_time' ],
 			colModel : [ {
 				name : 'id',
@@ -95,124 +54,45 @@ form {
 				width : 55
 			}, {
 				name : 'sender',
-				index : 'invdate',
-				width : 90
+				index : 'sender',
+				width : 90,
+				editable : true,
+				editoptions : {
+					size : 20
+				},
+				editrules : {
+					required : true
+				}
 			}, {
 				name : 'receiver',
-				index : 'name asc, invdate',
+				index : 'receiver',
 				width : 100
 			}, {
 				name : 'content',
-				index : 'amount',
+				index : 'content',
 				width : 80,
 				align : "right"
 			}, {
 				name : 'msg_time',
-				index : 'tax',
+				index : 'msg_time',
 				width : 80,
 				align : "right"
 			} ],
 			rowNum : 10,
 			rowList : [ 10, 20, 30 ],
-			pager : '#pager2',
+			pager : '#pager1',
 			sortname : 'id',
 			viewrecords : true,
 			sortorder : "desc",
 			caption : "JSON Example"
 		});
-		jQuery("#list2").jqGrid('navGrid', '#pager2', {
-			edit : false,
-			add : false,
-			del : false
+		
+		$("#button1").click(function(){
+			jQuery("#list2").jqGrid('editGridRow', "new", {
+				height : 280
+			});
 		});
 	})
-	
-/*		
-//		$("[name='mintime']").datepicker();
-//		$("[name='maxtime']").datepicker();
-		$( "#button" ).button();
-		//test jqgrid
-		jQuery("#list4").jqGrid({
-			datatype: "local",
-			height: 250,
-		   	colNames:['Inv No','Date', 'Client', 'Amount','Tax','Total','Notes'],
-		   	colModel:[
-		   		{name:'id',index:'id', width:60, sorttype:"int"},
-		   		{name:'invdate',index:'invdate', width:90, sorttype:"date"},
-		   		{name:'name',index:'name', width:100},
-		   		{name:'amount',index:'amount', width:80, align:"right",sorttype:"float"},
-		   		{name:'tax',index:'tax', width:80, align:"right",sorttype:"float"},		
-		   		{name:'total',index:'total', width:80,align:"right",sorttype:"float"},		
-		   		{name:'note',index:'note', width:150, sortable:false}		
-		   	],
-		   	multiselect: true,
-		   	caption: "Manipulating Array Data"
-		});
-		var mydata = [
-				{id:"1",invdate:"2007-10-01",name:"test",note:"note",amount:"200.00",tax:"10.00",total:"210.00"},
-				{id:"2",invdate:"2007-10-02",name:"test2",note:"note2",amount:"300.00",tax:"20.00",total:"320.00"},
-				{id:"3",invdate:"2007-09-01",name:"test3",note:"note3",amount:"400.00",tax:"30.00",total:"430.00"},
-				{id:"4",invdate:"2007-10-04",name:"test",note:"note",amount:"200.00",tax:"10.00",total:"210.00"},
-				{id:"5",invdate:"2007-10-05",name:"test2",note:"note2",amount:"300.00",tax:"20.00",total:"320.00"},
-				{id:"6",invdate:"2007-09-06",name:"test3",note:"note3",amount:"400.00",tax:"30.00",total:"430.00"},
-				{id:"7",invdate:"2007-10-04",name:"test",note:"note",amount:"200.00",tax:"10.00",total:"210.00"},
-				{id:"8",invdate:"2007-10-03",name:"test2",note:"note2",amount:"300.00",tax:"20.00",total:"320.00"},
-				{id:"9",invdate:"2007-09-01",name:"test3",note:"note3",amount:"400.00",tax:"30.00",total:"430.00"}
-				];
-		for(var i=0;i<=mydata.length;i++)
-			jQuery("#list4").jqGrid('addRowData',i+1,mydata[i]);
-	});
-*/	
-/*	
-    jQuery("#list").jqGrid({
-        url:'http://localhost:8080/lifeRudder2/message_query',
-        datatype: 'json',
-        mtype: 'POST',
-        colNames:['id','sender','receiver','content','msg_time'],
-        colModel:[
-                 {name:'id',index:'id', width:180,editable:true},
-                 {name:'sender',index:'sender',width:120,editable:true},
-                 {name:'receiver',index:'receiver', width:90,editable:true},
-                 {name:'content',index:'content', align:'center',width:60,editable:true},
-                 {name:'msg_time',index:'msg_time',width:200,editable:true}
-                 ],
-        pager: '#pager',
-        sortable: true,
-        rowNum:10,
-        multiselect: true,
-        prmNames:{rows:"pageSize",page:"page"},
-        jsonReader: {
-                root: "rows",
-                repeatitems : false,
-                id:"0"
-                },
-        rowList:[10,20,30],
-        sortname: 'id',
-        sortorder: 'desc',
-        viewrecords: true,
-        caption: 'My first grid'
-});
-jQuery("#list").jqGrid('navGrid','#pager',{edit:false,add:false,del:false});
-alert("hi");
-*/
-	/*
-	 $.post("http://localhost:8080/lifeRudder2/login.jsp", null, function(data,
-	 textStatus) {
-
-	 // data 可以是 xmlDoc, jsonObj, html, text, 等等.
-	 //this; // 这个Ajax请求的选项配置信息，请参考jQuery.get()说到的this
-	 alert(data.result);
-
-	 }, "json");
-	
-	 $('#test').load('www.baidu.com');
-
-	 $.get("http://localhost:8080/lifeRudder2/message_queryAjax",
-	 function(data) {
-	 //alert( "Data Loaded: " + JSON.parse(data));
-	 alert("Data Loaded: " + JSON.stringify(data));
-	 });
-	 */
 </script>
 </head>
 <body>
@@ -281,11 +161,10 @@ alert("hi");
 				</td>
 			</tr>
 		</table>
-		<button id="button">A button element</button>
-		<table id="list2"></table>
-		<div id="pager2"></div>
-		<table id="list4"></table>
 	</form>
+	<button id="button1">A button element</button>
+	<table id="list2"></table>
+	<div id="pager1"></div>
 </BODY>
 </body>
 </html>

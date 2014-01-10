@@ -15,8 +15,8 @@
 	</global-results>
 		<action name="message_queryAjax" class="action.MessageAction" method="message_queryAjax">
 			<result type="json">
-				<param name="includeProperties">
-					rows.*
+				<param name="root">
+					page
 				</param>
 			</result>
 			<result name="input">/WEB-INF/JSP/fail.jsp</result>

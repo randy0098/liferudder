@@ -66,12 +66,26 @@ form {
 			}, {
 				name : 'receiver',
 				index : 'receiver',
-				width : 100
+				width : 100,
+				editable : true,
+				editoptions : {
+					size : 20
+				},
+				editrules : {
+					required : true
+				}
 			}, {
 				name : 'content',
 				index : 'content',
 				width : 80,
-				align : "right"
+				align : "right",
+				editable : true,
+				editoptions : {
+					size : 20
+				},
+				editrules : {
+					required : true
+				}
 			}, {
 				name : 'msg_time',
 				index : 'msg_time',
@@ -84,12 +98,22 @@ form {
 			sortname : 'id',
 			viewrecords : true,
 			sortorder : "desc",
+			editurl:"http://localhost:8080/lifeRudder2/message_operator",
 			caption : "JSON Example"
 		});
-		
-		$("#button1").click(function(){
+
+		$("#button1").click(function() {
 			jQuery("#list2").jqGrid('editGridRow', "new", {
-				height : 280
+				height : 280,
+				closeOnEscape:true,
+				reloadAfterSubmit:true,
+				addedrow:"first",
+				closeAfterAdd:true,
+				serializeEditData : function(data) {
+					return $.param($.extend({}, data, {
+						id : 0
+					}));
+				}
 			});
 		});
 	})

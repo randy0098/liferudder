@@ -21,6 +21,11 @@
 			</result>
 			<result name="input">/WEB-INF/JSP/fail.jsp</result>
 		</action>
+		<action name="message_operator" class="action.MessageAction" method="message_operator">
+			<result type="json">
+			</result>
+			<result name="input">/WEB-INF/JSP/fail.jsp</result>
+		</action>
 	</package>
 		
 	<package name="action" extends="struts-default">

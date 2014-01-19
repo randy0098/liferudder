@@ -25,6 +25,14 @@ public class MessageAction extends BaseAction implements ModelDriven{
 	private MessageBO messageBO;
 	private MessageVO messageVO = new MessageVO();
 	private ArrayList rows;
+	private String oper;
+	
+	public String getOper() {
+		return oper;
+	}
+	public void setOper(String oper) {
+		this.oper = oper;
+	}
 	public ArrayList getRows() {
 		return rows;
 	}
@@ -101,7 +109,7 @@ public class MessageAction extends BaseAction implements ModelDriven{
 	public String message_query(){
 		String sender = messageVO.getSender();
 		String receiver = messageVO.getReceiver();
-		
+		System.out.println("oper:" + oper);
 		String sql = " FROM MessageVO WHERE 1=1 ";
 		if (sender != null && sender.equalsIgnoreCase("") == false) {
 			sql = sql + " AND sender = '" + sender + "' ";
@@ -150,6 +158,17 @@ public class MessageAction extends BaseAction implements ModelDriven{
 		return Action.SUCCESS;
 	}
 	
+	public void message_operator(){
+		if(oper!=null && oper.equalsIgnoreCase("add")){
+			message_insert();
+		}
+		else if(oper!=null && oper.equalsIgnoreCase("del")){
+			
+		}
+		else if(oper!=null && oper.equalsIgnoreCase("edit")){
+			
+		}
+	}
 	/**
 	 * 
 	 * 短信记录新增

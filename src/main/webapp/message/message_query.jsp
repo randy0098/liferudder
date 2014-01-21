@@ -31,92 +31,43 @@ form {
 </style>
 
 <script type="text/javascript">
-
-	$(function() {
-		jQuery("#list2").jqGrid({
-			url : 'http://localhost:8080/lifeRudder2/message_queryAjax',
-			datatype : "json",
-		    jsonReader : { 
-				root: "records", 
-				page: "currentPageIndex", 
-				total: "totalPage", 
-				records: "recordNum", 
-				repeatitems: false,
-				id: "id"
-			},
-			prmNames : {
-				page : "pager1"
-			},
-			colNames : [ 'id', 'sender', 'receiver', 'content', 'msg_time' ],
-			colModel : [ {
-				name : 'id',
-				index : 'id',
-				width : 55
-			}, {
-				name : 'sender',
-				index : 'sender',
-				width : 90,
-				editable : true,
-				editoptions : {
-					size : 20
-				},
-				editrules : {
-					required : true
-				}
-			}, {
-				name : 'receiver',
-				index : 'receiver',
-				width : 100,
-				editable : true,
-				editoptions : {
-					size : 20
-				},
-				editrules : {
-					required : true
-				}
-			}, {
-				name : 'content',
-				index : 'content',
-				width : 80,
-				align : "right",
-				editable : true,
-				editoptions : {
-					size : 20
-				},
-				editrules : {
-					required : true
-				}
-			}, {
-				name : 'msg_time',
-				index : 'msg_time',
-				width : 80,
-				align : "right"
-			} ],
-			rowNum : 10,
-			rowList : [ 10, 20, 30 ],
-			pager : '#pager1',
-			sortname : 'id',
-			viewrecords : true,
-			sortorder : "desc",
-			editurl:"http://localhost:8080/lifeRudder2/message_operator",
-			caption : "JSON Example"
-		});
-
-		$("#button1").click(function() {
-			jQuery("#list2").jqGrid('editGridRow', "new", {
-				height : 280,
-				closeOnEscape:true,
-				reloadAfterSubmit:true,
-				addedrow:"first",
-				closeAfterAdd:true,
-				serializeEditData : function(data) {
-					return $.param($.extend({}, data, {
-						id : 0
-					}));
-				}
-			});
-		});
-	})
+	//删除时进行确认
+	function deleteCheck(){
+		return confirm("确定删除此记录？");
+	}
+	
+	//分页跳转
+	function paging(action){
+		var url = "message_query?action=";
+		//首页
+		if(action == "goToFirst"){
+			url = url + "goToFirst";
+		}
+		//尾页
+		else if(action == "goToLast"){
+			url = url + "goToLast";
+		}
+		//上一页
+		else if(action == "back"){
+			url = url + "back&currentPageIndex="+${page.currentPageIndex};
+		}
+		//下一页
+		else if(action == "next"){
+			url = url + "next&currentPageIndex="+${page.currentPageIndex};
+		}
+		//转到第几页
+		else if(action == "go"){
+			var pageIndex = document.getElementById("pageIndex").value;
+			if(isNaN(parseInt(pageIndex)) == true){
+				alert("请输入正确的页数！");
+				return;
+			}else{
+				url = url + "go&currentPageIndex="+pageIndex;
+			}
+		}
+		f1.action = url;
+		f1.submit();
+	}
 </script>
 </head>
 <body>
@@ -186,9 +137,6 @@ form {
 			</tr>
 		</table>
 	</form>
-	<button id="button1">A button element</button>
-	<table id="list2"></table>
-	<div id="pager1"></div>
 </BODY>
 </body>
 </html>

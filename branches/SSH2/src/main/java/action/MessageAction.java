@@ -1,11 +1,8 @@
 package action;
 
-import java.util.ArrayList;
-
 import vo.MessageVO;
 import bo.MessageBO;
 
-import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ModelDriven;
 
 import framework.BaseAction;
@@ -24,21 +21,6 @@ public class MessageAction extends BaseAction implements ModelDriven{
 	private HibernatePage page;
 	private MessageBO messageBO;
 	private MessageVO messageVO = new MessageVO();
-	private ArrayList rows;
-	private String oper;
-	
-	public String getOper() {
-		return oper;
-	}
-	public void setOper(String oper) {
-		this.oper = oper;
-	}
-	public ArrayList getRows() {
-		return rows;
-	}
-	public void setRows(ArrayList rows) {
-		this.rows = rows;
-	}
 
 	@Override
 	public MessageVO getModel() {
@@ -109,7 +91,6 @@ public class MessageAction extends BaseAction implements ModelDriven{
 	public String message_query(){
 		String sender = messageVO.getSender();
 		String receiver = messageVO.getReceiver();
-		System.out.println("oper:" + oper);
 		String sql = " FROM MessageVO WHERE 1=1 ";
 		if (sender != null && sender.equalsIgnoreCase("") == false) {
 			sql = sql + " AND sender = '" + sender + "' ";
@@ -127,48 +108,9 @@ public class MessageAction extends BaseAction implements ModelDriven{
 		page.setCountSql("SELECT COUNT(ID) " + sql);
 		page.setPageRecordNum(1);
 		page.paging(action, currentPageIndex);	
-//		JSONArray jsonRecords = JSONArray.fromObject(page.getRecords());
-//		System.out.println("jsonRecords:"+jsonRecords);
 		return "query_success";
 	}
 	
-	public String message_queryAjax() {
-		String sender = messageVO.getSender();
-		String receiver = messageVO.getReceiver();
-
-		String sql = " FROM MessageVO WHERE 1=1 ";
-		if (sender != null && sender.equalsIgnoreCase("") == false) {
-			sql = sql + " AND sender = '" + sender + "' ";
-		}
-		if (receiver != null && receiver.equalsIgnoreCase("") == false) {
-			sql = sql + " AND receiver LIKE '%" + receiver + "%' ";
-		}
-		if (mintime != null && mintime.equalsIgnoreCase("") == false) {
-			sql = sql + " AND msg_time >= '" + mintime + "' ";
-		}
-		if (maxtime != null && maxtime.equalsIgnoreCase("") == false) {
-			sql = sql + " AND msg_time <= '" + maxtime + "' ";
-		}
-		page.setQuerySql(sql);
-		page.setCountSql("SELECT COUNT(ID) " + sql);
-		page.setPageRecordNum(1);
-		page.paging(action, currentPageIndex);
-		rows = page.getRecords();
-		System.out.println("ajaxRecords:"+rows.size());
-		return Action.SUCCESS;
-	}
-	
-	public void message_operator(){
-		if(oper!=null && oper.equalsIgnoreCase("add")){
-			message_insert();
-		}
-		else if(oper!=null && oper.equalsIgnoreCase("del")){
-			
-		}
-		else if(oper!=null && oper.equalsIgnoreCase("edit")){
-			
-		}
-	}
 	/**
 	 * 
 	 * 短信记录新增

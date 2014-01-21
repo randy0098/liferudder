@@ -21,15 +21,7 @@ includeJS("plugins/less-1.5.0/runtime/less-1.5.0.min.js");
 includeCSS("plugins/jquery-ui-1.10.3/css/redmond/jquery-ui-1.10.3.custom.css");
 includeJS("plugins/jquery-ui-1.10.3/js/jquery-ui-1.10.3.custom.js");
 
-//jquery.jqGrid
-includeCSS("plugins/jquery.jqGrid-4.5.4/css/ui.jqgrid.css");
-includeCSS("plugins/jquery.jqGrid-4.5.4/plugins/ui.multiselect.css");
-includeJS("plugins/jquery.jqGrid-4.5.4/js/i18n/grid.locale-cn.js");
-includeJS("plugins/jquery.jqGrid-4.5.4/plugins/ui.multiselect.js");
-includeJS("plugins/jquery.jqGrid-4.5.4/js/jquery.jqGrid.src.js");
-includeJS("plugins/jquery.jqGrid-4.5.4/plugins/jquery.tablednd.js");
-includeJS("plugins/jquery.jqGrid-4.5.4/plugins/jquery.contextmenu.js");
-
+//json2
 includeJS("plugins/json2.js");
 
 /*

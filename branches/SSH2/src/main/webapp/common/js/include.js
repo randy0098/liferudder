@@ -7,22 +7,23 @@ function includeCSS(src){
 }
 
 //jquery
-includeJS("plugins/jquery-1.10.2/dev/jquery-1.10.2.js");
+//includeJS("plugins/jquery-1.10.2/dev/jquery-1.10.2.js");
+includeJS("plugins/jquery-ui-1.10.4/js/jquery-1.10.2.js");
 
 //bootstrap
-includeJS("plugins/bootstrap-3.0.3/dev/bootstrap-3.0.3.js");
-includeCSS("plugins/bootstrap-3.0.3/dev/bootstrap-3.0.3.css");
+//includeJS("plugins/bootstrap-3.0.3/dev/bootstrap-3.0.3.js");
+//includeCSS("plugins/bootstrap-3.0.3/dev/bootstrap-3.0.3.css");
 //includeCSS("plugins/bootstrap-3.0.3/dev/bootstrap-theme-3.0.3.js");
 
 //less
-includeJS("plugins/less-1.5.0/runtime/less-1.5.0.min.js");
+//includeJS("plugins/less-1.5.0/runtime/less-1.5.0.min.js");
 
 //jquery ui
-includeCSS("plugins/jquery-ui-1.10.3/css/redmond/jquery-ui-1.10.3.custom.css");
-includeJS("plugins/jquery-ui-1.10.3/js/jquery-ui-1.10.3.custom.js");
+includeCSS("plugins/jquery-ui-1.10.4/css/redmond/jquery-ui-1.10.4.custom.css");
+includeJS("plugins/jquery-ui-1.10.4/js/jquery-ui-1.10.4.custom.js");
 
 //json2
-includeJS("plugins/json2.js");
+//includeJS("plugins/json2.js");
 
 /*
 //jquery ui

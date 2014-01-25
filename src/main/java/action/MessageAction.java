@@ -106,7 +106,7 @@ public class MessageAction extends BaseAction implements ModelDriven{
 		}
 		page.setQuerySql(sql);
 		page.setCountSql("SELECT COUNT(ID) " + sql);
-		page.setPageRecordNum(1);
+		page.setPageRecordNum(2);
 		page.paging(action, currentPageIndex);	
 		return "query_success";
 	}

@@ -12,21 +12,40 @@
 <title>短信记录查询</title>
 <style type="text/css">
 form {
-	width: 100%;
 	height: 100%;
-	border:1px solid orange
+	/*border:1px solid orange*/
+}
+
+table{
+	width: 100%;
+	border:#a6c9e2 solid 1px;
+}
+
+table caption{
+	text-align:left;
+	padding-left:5px;
+}
+
+button {
+	height:25px;
+	width:25px;
 }
 
 .query_table {
-	width: 100%;
 	height: 20%;
 	/*border:1px solid green*/
 }
 
-.result_table {
-	width: 100%;
-	/*border:1px solid red*/
+.result_table th,.result_table td{
+	border:#a6c9e2 solid 1px;
 }
+
+.result_table th,.pager{
+	text-align:center;
+	background-color:#e3f1fc;
+	color:#217bc0;
+}
+
 
 </style>
 
@@ -68,6 +87,16 @@ form {
 		f1.action = url;
 		f1.submit();
 	}
+	
+
+	$(function() {
+		$('#goToFirst').button({text:false,icons:{primary:'ui-icon-seek-first'}});
+		$('#goToLast').button({text:false,icons:{primary:'ui-icon-seek-end'}});
+		$('#back').button({text:false,icons:{primary:'ui-icon-seek-prev'}});
+		$('#next').button({text:false,icons:{primary:'ui-icon-seek-next'}});
+		$('#go').button();
+	})
+	
 </script>
 </head>
 <body>
@@ -102,8 +131,9 @@ form {
 		</table>
 		
 		<a href="message/message_insert.jsp" style="float: right">增加</a>
-		<table class="result_table" border="1">
-			<tr><th>id</th><th>sender</th><th>receiver</th><th>content</th><th>msg_time</th><th>操作</th></tr>
+		<table class="result_table">
+			<caption class="ui-widget-header">短信记录列表</caption>
+			<tr><th>Id</th><th>Sender</th><th>Receiver</th><th>Content</th><th>Msg_time</th><th>操作</th></tr>
 			<c:forEach var="message" items="${page.records}">
 				<tr>
 					<td>${message.id}</td>
@@ -117,22 +147,16 @@ form {
 					</td>
 				</tr>
 			</c:forEach>
-			<tr>
-				<td colspan="6">
-				<!-- 
-					<ul class="pager">
-						<li><a href="#">上一页</a></li>
-						<li><a href="#">下一页</a></li>
-					</ul> 
-				-->	
-					<a href="" onclick="paging('goToFirst');return false">首页</a>
-					<a href="" onclick="paging('goToLast');return false">尾页</a>
-					<a href="" onclick="paging('back');return false">上一页</a>
-					<a href="" onclick="paging('next');return false">下一页</a>
-					转到第<input type="text" id="pageIndex"/>页
-					<input type="button" value="go" onclick="paging('go')" class="btn btn-default btn-xs"/>
-					每页显示${page.pageRecordNum}条
-					第${page.currentPageIndex}/${page.totalPage}页			
+			<tr class="pager">
+				<td colspan="6" >
+					<div style="width:60%;float:left;text-align:right">
+						<button id="goToFirst" onclick="paging('goToFirst')">首页</button>
+						<button id="back" onclick="paging('back')">上一页</button>
+						<button id="next" onclick="paging('next')">下一页</button>
+						<button id="goToLast" onclick="paging('goToLast')">尾页</button>
+						转到第<input type="text" id="pageIndex"/>页<button id="go" onclick="paging('go')" style="height:28px;width:46px">go</button>
+					</div>
+					<div style="width:40%;float:right;text-align:right;">每页显示${page.pageRecordNum}条&nbsp第${page.currentPageIndex}/${page.totalPage}页</div>
 				</td>
 			</tr>
 		</table>

@@ -92,7 +92,7 @@ button {
 		}
 		f1.action = url;
 		f1.submit();
-}
+	}
 	
 	$(function() {
 		$('#goToFirst').button({text:false,icons:{primary:'ui-icon-seek-first'}});
@@ -192,11 +192,11 @@ button {
 			<tr class="pager">
 				<td colspan="6" >
 					<div style="width:60%;float:left;text-align:right">
-						<button id="goToFirst" onclick="paging('goToFirst')">首页</button>
-						<button id="back" onclick="paging('back')">上一页</button>
-						<button id="next" onclick="paging('next')">下一页</button>
-						<button id="goToLast" onclick="paging('goToLast')">尾页</button>
-						转到第<input type="text" id="pageIndex" size="1" maxlength="3"/>页<button id="go" onclick="paging('go')" style="height:28px;width:46px">go</button>
+						<button type="button" id="goToFirst" onclick="paging('goToFirst')">首页</button>
+						<button type="button" id="back" onclick="paging('back')">上一页</button>
+						<button type="button" id="next" onclick="paging('next')">下一页</button>
+						<button type="button" id="goToLast" onclick="paging('goToLast')">尾页</button>
+						转到第<input type="text" id="pageIndex" size="1" maxlength="3"/>页<button type="button" id="go" onclick="paging('go')" style="height:28px;width:46px">go</button>
 					</div>
 					<div style="width:40%;float:right;text-align:right;">每页显示${page.pageRecordNum}条&nbsp第${page.currentPageIndex}/${page.totalPage}页</div>
 				</td>

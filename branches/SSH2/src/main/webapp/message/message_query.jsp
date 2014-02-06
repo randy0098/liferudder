@@ -19,6 +19,7 @@ form {
 table{
 	width: 100%;
 	border:#a6c9e2 solid 1px;
+	border-collapse:collapse;
 }
 
 table caption{
@@ -29,6 +30,11 @@ table caption{
 button {
 	height:25px;
 	width:25px;
+}
+
+/*让button字体居中显示*/
+.ui-button-text-only .ui-button-text {
+	padding: 0;
 }
 
 .query_table {
@@ -68,11 +74,11 @@ button {
 		}
 		//上一页
 		else if(action == "back"){
-			url = url + "back&currentPageIndex="+${page.currentPageIndex};
+			url = url + "back&currentPageIndex="+${page!=null?page.currentPageIndex:0};
 		}
 		//下一页
 		else if(action == "next"){
-			url = url + "next&currentPageIndex="+${page.currentPageIndex};
+			url = url + "next&currentPageIndex="+${page!=null?page.currentPageIndex:0};
 		}
 		//转到第几页
 		else if(action == "go"){
@@ -86,15 +92,51 @@ button {
 		}
 		f1.action = url;
 		f1.submit();
-	}
+}
 	
-
 	$(function() {
 		$('#goToFirst').button({text:false,icons:{primary:'ui-icon-seek-first'}});
 		$('#goToLast').button({text:false,icons:{primary:'ui-icon-seek-end'}});
 		$('#back').button({text:false,icons:{primary:'ui-icon-seek-prev'}});
 		$('#next').button({text:false,icons:{primary:'ui-icon-seek-next'}});
 		$('#go').button();
+		$('button').button();
+		
+		//控制按钮显示
+		var currentPageIndex = ${page!=null?page.currentPageIndex:0};
+		var lastPageIndex = ${page!=null?page.totalPage:0};
+		//页面初始化时禁用所有按钮
+		if(currentPageIndex == 0){
+			$('#goToFirst').button('disable');
+			$('#goToLast').button('disable');
+			$('#back').button('disable');
+			$('#next').button('disable');
+			$('#go').button('disable');
+			$('#pageIndex').attr("disabled",true);
+		}
+		//在首页时
+		else if(currentPageIndex == 1){
+			$('#goToFirst').button('disable');
+			$('#goToLast').button('enable');
+			$('#back').button('disable');
+			$('#next').button('enable');
+			$('#pageIndex').attr("disabled",false);
+		}
+		//在尾页时
+		else if(currentPageIndex == lastPageIndex){
+			$('#goToFirst').button('enable');
+			$('#goToLast').button('disable');
+			$('#back').button('enable');
+			$('#next').button('disable');
+			$('#pageIndex').attr("disabled",false);
+		}
+		else{
+			$('#goToFirst').button('enable');
+			$('#goToLast').button('enable');
+			$('#back').button('enable');
+			$('#next').button('enable');
+			$('#pageIndex').attr("disabled",false);
+		}
 	})
 	
 </script>
@@ -133,7 +175,7 @@ button {
 		<a href="message/message_insert.jsp" style="float: right">增加</a>
 		<table class="result_table">
 			<caption class="ui-widget-header">短信记录列表</caption>
-			<tr><th>Id</th><th>Sender</th><th>Receiver</th><th>Content</th><th>Msg_time</th><th>操作</th></tr>
+			<tr><th width="10%">Id</th><th width="10%">Sender</th><th width="10%">Receiver</th><th width="20%">Content</th><th width="10%">Msg_time</th><th>操作</th></tr>
 			<c:forEach var="message" items="${page.records}">
 				<tr>
 					<td>${message.id}</td>
@@ -154,7 +196,7 @@ button {
 						<button id="back" onclick="paging('back')">上一页</button>
 						<button id="next" onclick="paging('next')">下一页</button>
 						<button id="goToLast" onclick="paging('goToLast')">尾页</button>
-						转到第<input type="text" id="pageIndex"/>页<button id="go" onclick="paging('go')" style="height:28px;width:46px">go</button>
+						转到第<input type="text" id="pageIndex" size="1" maxlength="3"/>页<button id="go" onclick="paging('go')" style="height:28px;width:46px">go</button>
 					</div>
 					<div style="width:40%;float:right;text-align:right;">每页显示${page.pageRecordNum}条&nbsp第${page.currentPageIndex}/${page.totalPage}页</div>
 				</td>

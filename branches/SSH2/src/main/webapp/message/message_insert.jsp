@@ -24,22 +24,15 @@
 	}
 */
 
-form {
-}
-
 .myform {
 	width:800px;
-	margin:50px auto;
+	margin:30px auto;
 	text-align:left;
 	border:#a6c9e2 solid 1px;
 }
 
-.myform_content{
-
-}
-
 label {
-	width:150px;
+	width:120px;
 	float:left;
 	text-align:right;
 	font-weight:bold;
@@ -47,11 +40,13 @@ label {
 }
 	
 input {
-	margin-left: 100px;
+	margin-left: 80px;
+	width:400px;
 }	
 
 textarea {
-	margin-left: 100px;
+	margin-left: 80px;
+	width:400px;
 }
 
 button {
@@ -60,14 +55,6 @@ button {
 	margin-left:40px;
 }
 
-/*让button字体居中显示*/
-.ui-button-text-only .ui-button-text {
-	padding: 0;
-}
-
-.center {
-	text-align:center;
-}
 </style>
 
 <script type="text/javascript">
@@ -101,12 +88,8 @@ button {
 		
 		$('#save').button();
 		$('#back').button();
-		$('button').button();
 	});
 
-	function goBack() {
-		history.go(-1);
-	}
 </script>
 <body>
 	<form id="form1" action="message_insert" method="post">

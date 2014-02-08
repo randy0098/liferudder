@@ -45,7 +45,13 @@ includeCSS("plugins/jquery.jqGrid-4.4.0/css/ui.jqgrid.css");
 
 //jquery.layout
 includeJS("plugins/jquery-layout-1.3.0-rc30.6/dev/jquery.layout-latest.js");
+*/
 
 //jquery.validation
 includeJS("plugins/jquery-validation-1.10.0/dev/jquery.validate.js");
-*/
+
+//页面全局样式
+includeCSS("common/css/main.css");
+
+//全局js
+includeJS("common/js/main.js");

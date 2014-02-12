@@ -33,7 +33,7 @@
 		</global-exception-mappings>
 		-->	
 		<action name="login" class="action.LoginAction" method="login">
-			<result name="success">/message/message_query.jsp</result>
+			<result name="success">/common/jsp/main.jsp</result>
 			<result name="error">/WEB-INF/JSP/error.jsp</result>
 		</action>
 	

@@ -54,51 +54,84 @@ table caption{
 </style>
 
 <script type="text/javascript">
-	$(function() {
-		$('#goToFirst').button({text:false,icons:{primary:'ui-icon-seek-first'}});
-		$('#goToLast').button({text:false,icons:{primary:'ui-icon-seek-end'}});
-		$('#back').button({text:false,icons:{primary:'ui-icon-seek-prev'}});
-		$('#next').button({text:false,icons:{primary:'ui-icon-seek-next'}});
-		$('#go').button();
-		$(':submit').button();
-		$(':reset').button();
-		
-		//控制按钮显示
-		var currentPageIndex = ${page!=null?page.currentPageIndex:0};
-		var lastPageIndex = ${page!=null?page.totalPage:0};
-		//页面初始化时禁用所有按钮
-		if(currentPageIndex == 0){
-			$('#goToFirst').button('disable');
-			$('#goToLast').button('disable');
-			$('#back').button('disable');
-			$('#next').button('disable');
-			$('#go').button('disable');
-			$('#pageIndex').attr("disabled",true);
+//分页跳转
+function paging(action) {
+	var url = "message_query?action=";
+	// 首页
+	if (action == "goToFirst") {
+		url = url + "goToFirst";
+	}
+	// 尾页
+	else if (action == "goToLast") {
+		url = url + "goToLast";
+	}
+	// 上一页
+	else if (action == "back") {
+		url = url + "back&currentPageIndex=" + ${page != null ? page.currentPageIndex : 0};
+	}
+	// 下一页
+	else if (action == "next") {
+		url = url + "next&currentPageIndex=" + ${page != null ? page.currentPageIndex : 0};
+	}
+	// 转到第几页
+	else if (action == "go") {
+		var pageIndex = document.getElementById("pageIndex").value;
+		if (isNaN(parseInt(pageIndex)) == true) {
+			alert("请输入正确的页数！");
+			return;
+		} else {
+			url = url + "go&currentPageIndex=" + pageIndex;
 		}
-		//在首页时
-		else if(currentPageIndex == 1){
-			$('#goToFirst').button('disable');
-			$('#goToLast').button('enable');
-			$('#back').button('disable');
-			$('#next').button('enable');
-			$('#pageIndex').attr("disabled",false);
-		}
-		//在尾页时
-		else if(currentPageIndex == lastPageIndex){
-			$('#goToFirst').button('enable');
-			$('#goToLast').button('disable');
-			$('#back').button('enable');
-			$('#next').button('disable');
-			$('#pageIndex').attr("disabled",false);
-		}
-		else{
-			$('#goToFirst').button('enable');
-			$('#goToLast').button('enable');
-			$('#back').button('enable');
-			$('#next').button('enable');
-			$('#pageIndex').attr("disabled",false);
-		}
-	})
+	}
+	f1.action = url;
+	f1.submit();
+}
+
+$(function() {
+	$('#goToFirst').button({text:false,icons:{primary:'ui-icon-seek-first'}});
+	$('#goToLast').button({text:false,icons:{primary:'ui-icon-seek-end'}});
+	$('#back').button({text:false,icons:{primary:'ui-icon-seek-prev'}});
+	$('#next').button({text:false,icons:{primary:'ui-icon-seek-next'}});
+	$('#go').button();
+	$(':submit').button();
+	$(':reset').button();
+	
+	//控制按钮显示
+	var currentPageIndex = ${page!=null?page.currentPageIndex:0};
+	var lastPageIndex = ${page!=null?page.totalPage:0};
+	//页面初始化时禁用所有按钮
+	if(currentPageIndex == 0){
+		$('#goToFirst').button('disable');
+		$('#goToLast').button('disable');
+		$('#back').button('disable');
+		$('#next').button('disable');
+		$('#go').button('disable');
+		$('#pageIndex').attr("disabled",true);
+	}
+	//在首页时
+	else if(currentPageIndex == 1){
+		$('#goToFirst').button('disable');
+		$('#goToLast').button('enable');
+		$('#back').button('disable');
+		$('#next').button('enable');
+		$('#pageIndex').attr("disabled",false);
+	}
+	//在尾页时
+	else if(currentPageIndex == lastPageIndex){
+		$('#goToFirst').button('enable');
+		$('#goToLast').button('disable');
+		$('#back').button('enable');
+		$('#next').button('disable');
+		$('#pageIndex').attr("disabled",false);
+	}
+	else{
+		$('#goToFirst').button('enable');
+		$('#goToLast').button('enable');
+		$('#back').button('enable');
+		$('#next').button('enable');
+		$('#pageIndex').attr("disabled",false);
+	}
+})
 	
 </script>
 </head>

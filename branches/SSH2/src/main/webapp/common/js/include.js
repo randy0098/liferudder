@@ -53,5 +53,10 @@ includeJS("plugins/jquery-validation-1.10.0/dev/jquery.validate.js");
 //页面全局样式
 includeCSS("common/css/main.css");
 
+//table列拖动
+includeJS("plugins/resizableColumns/js/jquery.resizableColumns.js");
+includeJS("plugins/resizableColumns/js/store.js");
+includeCSS("plugins/resizableColumns/css/jquery.resizableColumns.css");
+
 //全局js
 includeJS("common/js/main.js");

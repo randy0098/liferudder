@@ -131,6 +131,8 @@ $(function() {
 		$('#next').button('enable');
 		$('#pageIndex').attr("disabled",false);
 	}
+	
+	$("#result_table").resizableColumns({store:store});
 })
 	
 </script>
@@ -168,9 +170,9 @@ $(function() {
 		
 		<div style="margin-top:20px">
 			<a href="message/message_insert.jsp" style="float: right">增加</a>
-			<table class="result_table">
+			<table id="result_table" class="result_table">
 				<caption class="ui-widget-header">短信记录列表</caption>
-				<tr><th width="10%">Id</th><th width="10%">Sender</th><th width="10%">Receiver</th><th width="20%">Content</th><th width="10%">Msg_time</th><th>操作</th></tr>
+				<tr><th data-resizable-column-id="Id">Id</th><th data-resizable-column-id="Sender">Sender</th><th data-resizable-column-id="Receiver">Receiver</th><th data-resizable-column-id="Content">Content</th><th data-resizable-column-id="Msg_time">Msg_time</th><th>操作</th></tr>
 				<c:forEach var="message" items="${page.records}">
 					<tr>
 						<td>${message.id}</td>

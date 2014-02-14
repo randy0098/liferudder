@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.crazyit.org/mytaglib" prefix="mytag"%>	
 <%@ include file="/common/jsp/header.jsp"%> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -170,6 +171,7 @@ $(function() {
 		
 		<div style="margin-top:20px">
 			<a href="message/message_insert.jsp" style="float: right">增加</a>
+<!-- 			
 			<table id="result_table" class="result_table">
 				<caption class="ui-widget-header">短信记录列表</caption>
 				<tr><th data-resizable-column-id="Id">Id</th><th data-resizable-column-id="Sender">Sender</th><th data-resizable-column-id="Receiver">Receiver</th><th data-resizable-column-id="Content">Content</th><th data-resizable-column-id="Msg_time">Msg_time</th><th>操作</th></tr>
@@ -199,6 +201,12 @@ $(function() {
 					</td>
 				</tr>
 			</table>
+ -->			
+			<mytag:grid >
+				<mytag:cell caption="Id" property="id"/>
+				<mytag:cell caption="Sender" property="sender"/>
+				<mytag:cell caption="Receiver" property="receiver"/>
+			</mytag:grid>		
 		</div>
 	</form>
 </BODY>

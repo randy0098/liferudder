@@ -145,7 +145,7 @@ public class HibernatePage extends BaseDAOImpl{
 			public Object doInHibernate(Session session) throws HibernateException {
 				// 创建query对象
 				Query query = session.createQuery(querySql);
-				// 返回其执行了分布方法的list
+				// 返回其执行了分页方法的list
 				return query.setFirstResult(startRecordIndex-1).setMaxResults(pageRecordNum).list();
 			}
 		});

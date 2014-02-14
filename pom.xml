@@ -258,6 +258,17 @@
 			<artifactId>struts2-json-plugin</artifactId>
 			<version>2.2.1</version>
 		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>jetty</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>2.1-6.0.2</version>
+		</dependency>	
 	</dependencies>
 	<build>
 		<finalName>lifeRudder2</finalName>

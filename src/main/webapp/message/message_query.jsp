@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://www.crazyit.org/mytaglib" prefix="mytag"%>	
-<%@ taglib prefix="JSPBook" tagdir="/WEB-INF/tags/" %>
 <%@ include file="/common/jsp/header.jsp"%> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -203,14 +201,11 @@ $(function() {
 				</tr>
 			</table>
  -->			
-			<mytag:grid >
-				<mytag:cell caption="Id" property="id"/>
-				<mytag:cell caption="Sender" property="sender"/>
-				<mytag:cell caption="Receiver" property="receiver"/>
-			</mytag:grid>	
-			<JSPBook:Parent>	
-				<JSPBook:Child></JSPBook:Child>
-			</JSPBook:Parent>
+			<t:grid property="page" keys="id">
+				<t:cell caption="Id" property="id"/>
+				<t:cell caption="Sender" property="sender"/>
+				<t:cell caption="Receiver" property="receiver"/>
+			</t:grid>	
 		</div>
 	</form>
 </BODY>

@@ -54,38 +54,6 @@ table caption{
 </style>
 
 <script type="text/javascript">
-//分页跳转
-function paging(action) {
-	var url = "message_query?action=";
-	// 首页
-	if (action == "goToFirst") {
-		url = url + "goToFirst";
-	}
-	// 尾页
-	else if (action == "goToLast") {
-		url = url + "goToLast";
-	}
-	// 上一页
-	else if (action == "back") {
-		url = url + "back&currentPageIndex=" + ${page != null ? page.currentPageIndex : 0};
-	}
-	// 下一页
-	else if (action == "next") {
-		url = url + "next&currentPageIndex=" + ${page != null ? page.currentPageIndex : 0};
-	}
-	// 转到第几页
-	else if (action == "go") {
-		var pageIndex = document.getElementById("pageIndex").value;
-		if (isNaN(parseInt(pageIndex)) == true) {
-			alert("请输入正确的页数！");
-			return;
-		} else {
-			url = url + "go&currentPageIndex=" + pageIndex;
-		}
-	}
-	f1.action = url;
-	f1.submit();
-}
 
 $(function() {
 	$('#goToFirst').button({text:false,icons:{primary:'ui-icon-seek-first'}});
@@ -133,8 +101,8 @@ $(function() {
 	}
 	
 	$("#result_table").resizableColumns({store:store});
-})
 	
+})
 </script>
 </head>
 <body>
@@ -169,9 +137,8 @@ $(function() {
 		</table>
 		
 		<div style="margin-top:20px">
-			<a href="message/message_insert.jsp" style="float: right">增加</a>
-<!-- 			
 			<table id="result_table" class="result_table">
+			<a href="message/message_insert.jsp" style="float: right">增加</a>
 				<caption class="ui-widget-header">短信记录列表</caption>
 				<tr><th data-resizable-column-id="Id">Id</th><th data-resizable-column-id="Sender">Sender</th><th data-resizable-column-id="Receiver">Receiver</th><th data-resizable-column-id="Content">Content</th><th data-resizable-column-id="Msg_time">Msg_time</th><th>操作</th></tr>
 				<c:forEach var="message" items="${page.records}">
@@ -188,24 +155,28 @@ $(function() {
 					</tr>
 				</c:forEach>
 				<tr class="pager">
+					
 					<td colspan="6">
 						<div class="pager_navigator">
-							<button type="button" id="goToFirst" onclick="paging('goToFirst')">首页</button>
-							<button type="button" id="back" onclick="paging('back')">上一页</button>
-							<button type="button" id="next" onclick="paging('next')">下一页</button>
-							<button type="button" id="goToLast" onclick="paging('goToLast')">尾页</button>
-							转到第<input type="text" id="pageIndex" size="1" maxlength="3"/>页<button type="button" id="go" onclick="paging('go')" style="height:28px;width:46px">go</button>
+							<button type="button" id="goToFirst" onclick="paging(this,'goToFirst')">首页</button>
+							<button type="button" id="back" onclick="paging(this,'back',${page.currentPageIndex})">上一页</button>
+							<button type="button" id="next" onclick="paging(this,'next',${page.currentPageIndex})">下一页</button>
+							<button type="button" id="goToLast" onclick="paging(this,'goToLast')">尾页</button>
+							转到第<input type="text" id="pageIndex" size="1" maxlength="3"/>页<button type="button" id="go" onclick="paging(this,'go')" style="height:28px;width:46px">go</button>
 						</div>
 						<div class="pager_display">每页显示${page.pageRecordNum}条&nbsp第${page.currentPageIndex}/${page.totalPage}页</div>
+						
 					</td>
 				</tr>
 			</table>
- -->			
+<!-- 			
+ 
 			<t:grid property="page" keys="id">
 				<t:cell caption="Id" property="id"/>
 				<t:cell caption="Sender" property="sender"/>
 				<t:cell caption="Receiver" property="receiver"/>
-			</t:grid>	
+			</t:grid>
+-->			
 		</div>
 	</form>
 </BODY>

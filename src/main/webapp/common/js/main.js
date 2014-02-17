@@ -43,3 +43,52 @@ function paging(p,action,currentPageIndex) {
 	form.attr("action",url);
 	form.submit();
 }
+
+
+
+$(function() {
+	$("button[name='goToFirst']").button({text:false,icons:{primary:'ui-icon-seek-first'}});
+	$("button[name='goToLast']").button({text:false,icons:{primary:'ui-icon-seek-end'}});
+	$("button[name='back']").button({text:false,icons:{primary:'ui-icon-seek-prev'}});
+	$("button[name='next']").button({text:false,icons:{primary:'ui-icon-seek-next'}});
+	$("button[name='go']").button();
+	$(':submit').button();
+	$(':reset').button();
+	
+	//控制按钮显示
+	var currentPageIndex = $("#currentPageIndex").val();
+	var lastPageIndex = $("#lastPageIndex").val();
+	//页面初始化时禁用所有按钮
+	if(currentPageIndex == 0){
+		$("button[name='goToFirst']").button('disable');
+		$("button[name='goToLast']").button('disable');
+		$("button[name='back']").button('disable');
+		$("button[name='next']").button('disable');
+		$("button[name='go']").button('disable');
+		$("input[name='pageIndex']").attr("disabled",true);
+	}
+	//在首页时
+	else if(currentPageIndex == 1){
+		$("button[name='goToFirst']").button('disable');
+		$("button[name='goToLast']").button('enable');
+		$("button[name='back']").button('disable');
+		$("button[name='next']").button('enable');
+		$("input[name='pageIndex']").attr("disabled",false);
+	}
+	//在尾页时
+	else if(currentPageIndex == lastPageIndex){
+		$("button[name='goToFirst']").button('enable');
+		$("button[name='goToLast']").button('disable');
+		$("button[name='back']").button('enable');
+		$("button[name='next']").button('disable');
+		$("input[name='pageIndex']").attr("disabled",false);
+	}
+	else{
+		$("button[name='goToFirst']").button('enable');
+		$("button[name='goToLast']").button('enable');
+		$("button[name='back']").button('enable');
+		$("button[name='next']").button('enable');
+		$("input[name='pageIndex']").attr("disabled",false);
+	}
+	$("table").resizableColumns({store:store});
+})

@@ -55,54 +55,6 @@ table caption{
 
 <script type="text/javascript">
 
-$(function() {
-	$('#goToFirst').button({text:false,icons:{primary:'ui-icon-seek-first'}});
-	$('#goToLast').button({text:false,icons:{primary:'ui-icon-seek-end'}});
-	$('#back').button({text:false,icons:{primary:'ui-icon-seek-prev'}});
-	$('#next').button({text:false,icons:{primary:'ui-icon-seek-next'}});
-	$('#go').button();
-	$(':submit').button();
-	$(':reset').button();
-	
-	//控制按钮显示
-	var currentPageIndex = ${page!=null?page.currentPageIndex:0};
-	var lastPageIndex = ${page!=null?page.totalPage:0};
-	//页面初始化时禁用所有按钮
-	if(currentPageIndex == 0){
-		$('#goToFirst').button('disable');
-		$('#goToLast').button('disable');
-		$('#back').button('disable');
-		$('#next').button('disable');
-		$('#go').button('disable');
-		$('#pageIndex').attr("disabled",true);
-	}
-	//在首页时
-	else if(currentPageIndex == 1){
-		$('#goToFirst').button('disable');
-		$('#goToLast').button('enable');
-		$('#back').button('disable');
-		$('#next').button('enable');
-		$('#pageIndex').attr("disabled",false);
-	}
-	//在尾页时
-	else if(currentPageIndex == lastPageIndex){
-		$('#goToFirst').button('enable');
-		$('#goToLast').button('disable');
-		$('#back').button('enable');
-		$('#next').button('disable');
-		$('#pageIndex').attr("disabled",false);
-	}
-	else{
-		$('#goToFirst').button('enable');
-		$('#goToLast').button('enable');
-		$('#back').button('enable');
-		$('#next').button('enable');
-		$('#pageIndex').attr("disabled",false);
-	}
-	
-	$("#result_table").resizableColumns({store:store});
-	
-})
 </script>
 </head>
 <body>
@@ -158,17 +110,19 @@ $(function() {
 					
 					<td colspan="6">
 						<div class="pager_navigator">
-							<button type="button" id="goToFirst" onclick="paging(this,'goToFirst')">首页</button>
-							<button type="button" id="back" onclick="paging(this,'back',${page.currentPageIndex})">上一页</button>
-							<button type="button" id="next" onclick="paging(this,'next',${page.currentPageIndex})">下一页</button>
-							<button type="button" id="goToLast" onclick="paging(this,'goToLast')">尾页</button>
-							转到第<input type="text" id="pageIndex" size="1" maxlength="3"/>页<button type="button" id="go" onclick="paging(this,'go')" style="height:28px;width:46px">go</button>
+							<button type="button" name="goToFirst" onclick="paging(this,'goToFirst')">首页</button>
+							<button type="button" name="back" onclick="paging(this,'back',${page.currentPageIndex})">上一页</button>
+							<button type="button" name="next" onclick="paging(this,'next',${page.currentPageIndex})">下一页</button>
+							<button type="button" name="goToLast" onclick="paging(this,'goToLast')">尾页</button>
+							转到第<input type="text" name="pageIndex" size="1" maxlength="3"/>页<button type="button" name="go" onclick="paging(this,'go')" style="height:28px;width:46px">go</button>
 						</div>
 						<div class="pager_display">每页显示${page.pageRecordNum}条&nbsp第${page.currentPageIndex}/${page.totalPage}页</div>
-						
+						<input type="hidden" id="currentPageIndex" value="${page.currentPageIndex}">
+						<input type="hidden" id="lastPageIndex" value="${page.totalPage}">
 					</td>
 				</tr>
 			</table>
+			
 <!-- 			
  
 			<t:grid property="page" keys="id">

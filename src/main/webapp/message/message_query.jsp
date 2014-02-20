@@ -51,10 +51,50 @@ table caption{
 	margin-top:4px;/*垂直居中显示*/
 }
 
+.page_function_button{
+	float:right;
+	height:36px;
+	width:46px;
+}
+
+
 </style>
 
 <script type="text/javascript">
-
+ function insertRecord(){
+	 location.href = "message/message_insert.jsp";
+ }
+ 
+ function updateRecord(){
+	 var boxes = $("input:checked");
+	 var size = boxes.size();
+	 if(size == 0){
+		 alert("请选中一条记录信息进行修改！");
+	 }else if(size > 1){
+		 alert("只能选择一条记录信息进行修改！");
+	 }else if(size == 1){
+		 location.href = "message_selectOne?id="+boxes.val();
+	 }
+ }
+ 
+ function deleteRecord(){
+	 var boxes = $("input:checked");
+	 var size = boxes.size();
+	 if(size == 0){
+		 alert("请选中一条记录信息进行删除！");
+	 }else{
+		 var result = confirm('确定删除此记录？')
+		 var ids = "";
+		 if(result == true){
+			 boxes.each(
+				 function(){
+					 ids = ids + "," + $(this).val();
+				 } 
+			 );
+			 location.href = "message_deleteAll?ids="+ids;
+		 }
+	 }
+ }
 </script>
 </head>
 <body>
@@ -90,11 +130,14 @@ table caption{
 		
 		<div style="margin-top:20px">
 			<table id="result_table" class="result_table">
-			<a href="message/message_insert.jsp" style="float: right">增加</a>
+				<button type="button" name="deleteRecord" onclick="deleteRecord()" class="page_function_button">删除</button>
+				<button type="button" name="updateRecord" onclick="updateRecord()" class="page_function_button">修改</button>
+				<button type="button" name="insertRecord" onclick="insertRecord()" class="page_function_button">增加</button>
 				<caption class="ui-widget-header">短信记录列表</caption>
-				<tr><th data-resizable-column-id="Id">Id</th><th data-resizable-column-id="Sender">Sender</th><th data-resizable-column-id="Receiver">Receiver</th><th data-resizable-column-id="Content">Content</th><th data-resizable-column-id="Msg_time">Msg_time</th><th>操作</th></tr>
+				<tr><th data-resizable-column-id="checkbox"></th><th data-resizable-column-id="Id">Id</th><th data-resizable-column-id="Sender">Sender</th><th data-resizable-column-id="Receiver">Receiver</th><th data-resizable-column-id="Content">Content</th><th data-resizable-column-id="Msg_time">Msg_time</th><th>操作</th></tr>
 				<c:forEach var="message" items="${page.records}">
 					<tr>
+						<td><input type="checkbox" name="checkbox" value=${message.id}></td>
 						<td>${message.id}</td>
 						<td>${message.sender}</td>
 						<td>${message.receiver}</td>
@@ -108,7 +151,7 @@ table caption{
 				</c:forEach>
 				<tr class="pager">
 					
-					<td colspan="6">
+					<td colspan="7">
 						<div class="pager_navigator">
 							<button type="button" name="goToFirst" onclick="paging(this,'goToFirst')">首页</button>
 							<button type="button" name="back" onclick="paging(this,'back',${page.currentPageIndex})">上一页</button>

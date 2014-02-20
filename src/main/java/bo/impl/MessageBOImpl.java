@@ -31,4 +31,16 @@ public class MessageBOImpl extends BaseBOImpl implements MessageBO{
 	public void deleteMessage(int id) {
 		messageDAO.delete(id);
 	}
+
+	@Override
+	public void deleteMessages(String ids) {
+		// TODO Auto-generated method stub
+		String[] idsArray = ids.split(",");
+		for(int i=0; i<idsArray.length; i++){
+			String id = idsArray[i];
+			if(id!=null && id.equalsIgnoreCase("")==false){
+				messageDAO.delete(Integer.parseInt(id));
+			}
+		}
+	}
 }

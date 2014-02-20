@@ -152,5 +152,15 @@ public class MessageAction extends BaseAction implements ModelDriven{
 		messageBO.deleteMessage(messageVO.getId());
 		return "delete_success";
 	}
+	
+	/**
+	 * 
+	 * 删除多条短信记录信息
+	 * 
+	 */
+	public String message_deleteAll(){
+		messageBO.deleteMessages(messageVO.getIds());
+		return "delete_success";
+	}
 
 }

@@ -8,11 +8,17 @@ public class MessageVO extends BaseVO
 	private static final long serialVersionUID = 1L;
 	//struts会自动进行String到int的类型转换
 	private int id;
+	private String ids;
 	private String sender;
 	private String receiver;
 	private String content;
 	private String msg_time;
-	
+	public String getIds() {
+		return ids;
+	}
+	public void setIds(String ids) {
+		this.ids = ids;
+	}
 	public int getId() {
 		return id;
 	}

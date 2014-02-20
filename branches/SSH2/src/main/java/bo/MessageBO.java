@@ -16,4 +16,6 @@ public interface MessageBO {
 	public void updateMessage(MessageVO message);
 
 	public void deleteMessage(int id);
+	
+	public void deleteMessages(String ids);
 }

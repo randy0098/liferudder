@@ -91,4 +91,8 @@ $(function() {
 		$("input[name='pageIndex']").attr("disabled",false);
 	}
 	$("table").resizableColumns({store:store});
+	
+	$("button[name='addRecord']").button();
+	$("button[name='updateRecord']").button();
+	$("button[name='deleteRecord']").button();
 })

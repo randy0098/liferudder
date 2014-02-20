@@ -130,9 +130,9 @@ table caption{
 		
 		<div style="margin-top:20px">
 			<table id="result_table" class="result_table">
-				<button type="button" name="deleteRecord" onclick="deleteRecord()" class="page_function_button">删除</button>
-				<button type="button" name="updateRecord" onclick="updateRecord()" class="page_function_button">修改</button>
-				<button type="button" name="insertRecord" onclick="insertRecord()" class="page_function_button">增加</button>
+				<button type="button" name="delete" onclick="deleteRecord()" class="page_function_button">删除</button>
+				<button type="button" name="update" onclick="updateRecord()" class="page_function_button">修改</button>
+				<button type="button" name="insert" onclick="insertRecord()" class="page_function_button">增加</button>
 				<caption class="ui-widget-header">短信记录列表</caption>
 				<tr><th data-resizable-column-id="checkbox"></th><th data-resizable-column-id="Id">Id</th><th data-resizable-column-id="Sender">Sender</th><th data-resizable-column-id="Receiver">Receiver</th><th data-resizable-column-id="Content">Content</th><th data-resizable-column-id="Msg_time">Msg_time</th><th>操作</th></tr>
 				<c:forEach var="message" items="${page.records}">

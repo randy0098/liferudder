@@ -92,7 +92,7 @@ $(function() {
 	}
 	$("table").resizableColumns({store:store});
 	
-	$("button[name='addRecord']").button();
+	$("button[name='insertRecord']").button();
 	$("button[name='updateRecord']").button();
 	$("button[name='deleteRecord']").button();
 })

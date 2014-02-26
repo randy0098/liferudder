@@ -56,22 +56,56 @@ table caption{
 	height:36px;
 	width:46px;
 }
-
-
 </style>
 
 <script type="text/javascript">
+/*
+//获取浏览器显示区域的高度 
+alert($(window).height()); 
+//获取浏览器显示区域的宽度 
+alert($(window).width()); 
+
+//获取页面的文档高度 
+alert($(document.body).height()); 
+//获取页面的文档宽度 
+alert($(document.body).width()); 
+*/
+
+//alert($(window).height()); //浏览器当前窗口可视区域高度 
+//alert($(document).height()); //浏览器当前窗口文档的高度 
+//alert($(document.body).height());//浏览器当前窗口文档body的高度 
+//alert($(document.body).outerHeight(true));//浏览器当前窗口文档body的总高度 包括border padding margin 
+//alert($(window).width()); //浏览器当前窗口可视区域宽度 
+//alert($(document).width());//浏览器当前窗口文档对象宽度 
+//alert($(document.body).width());//浏览器当前窗口文档body的高度 
+//alert($(document.body).outerWidth(true));//浏览器当前窗口文档body的总宽度 包括border padding margin 
+
  function insertRecord(){
-	 location.href = "message/message_insert.jsp";
+	 //location.href = "message/message_insert.jsp";
+	 newPage("<iframe id='editFrame' src='message/message_insert.jsp'  target='_parent' frameborder='0' scrolling='no' width='1000px' height='800px'/>");
  }
  
  function updateRecord(){
 	 var boxes = $("input:checked");
 	 var size = boxes.size();
 	 if(size == 0){
+		 alertMsg("请选中一条记录信息进行修改！");
+/*		 
 		 alert("请选中一条记录信息进行修改！");
+		 $("<div>请选中一条记录信息进行修改！</div>").dialog({
+			  position: [$(window).width()/2-$(window).height()*0.2,150],
+		      modal: true,
+		      resize: false,
+		      width: "auto",
+		      buttons: {
+		        Ok: function() {
+		          $( this ).dialog( "close" );
+		        }
+		      }
+		 });
+*/		 
 	 }else if(size > 1){
-		 alert("只能选择一条记录信息进行修改！");
+		 alertMsg("只能选择一条记录信息进行修改！");
 	 }else if(size == 1){
 		 location.href = "message_selectOne?id="+boxes.val();
 	 }
@@ -81,7 +115,7 @@ table caption{
 	 var boxes = $("input:checked");
 	 var size = boxes.size();
 	 if(size == 0){
-		 alert("请选中一条记录信息进行删除！");
+		 alertMsg("请选中一条记录信息进行删除！");
 	 }else{
 		 var result = confirm('确定删除此记录？')
 		 var ids = "";
@@ -134,7 +168,7 @@ table caption{
 				<button type="button" name="update" onclick="updateRecord()" class="page_function_button">修改</button>
 				<button type="button" name="insert" onclick="insertRecord()" class="page_function_button">增加</button>
 				<caption class="ui-widget-header">短信记录列表</caption>
-				<tr><th data-resizable-column-id="checkbox"></th><th data-resizable-column-id="Id">Id</th><th data-resizable-column-id="Sender">Sender</th><th data-resizable-column-id="Receiver">Receiver</th><th data-resizable-column-id="Content">Content</th><th data-resizable-column-id="Msg_time">Msg_time</th><th>操作</th></tr>
+				<tr><th data-resizable-column-id="checkbox"></th><th data-resizable-column-id="Id">Id</th><th data-resizable-column-id="Sender">Sender</th><th data-resizable-column-id="Receiver">Receiver</th><th data-resizable-column-id="Content">Content</th><th data-resizable-column-id="Msg_time">Msg_time</th></tr>
 				<c:forEach var="message" items="${page.records}">
 					<tr>
 						<td><input type="checkbox" name="checkbox" value=${message.id}></td>
@@ -143,10 +177,6 @@ table caption{
 						<td>${message.receiver}</td>
 						<td>${message.content}</td>
 						<td>${message.msg_time}</td>
-						<td>
-							<a href="message_selectOne?id=${message.id}"/>修改</a>
-							<a href="message_delete?id=${message.id}" onclick="return confirm('确定删除此记录？')">删除</a>
-						</td>
 					</tr>
 				</c:forEach>
 				<tr class="pager">
@@ -165,9 +195,7 @@ table caption{
 					</td>
 				</tr>
 			</table>
-			
 <!-- 			
- 
 			<t:grid property="page" keys="id">
 				<t:cell caption="Id" property="id"/>
 				<t:cell caption="Sender" property="sender"/>

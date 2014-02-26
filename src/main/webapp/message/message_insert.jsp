@@ -89,6 +89,23 @@ button {
 		$('#save').button();
 		$('#back').button();
 	});
+	
+	function test(){
+		alertMsg("test");
+/*		
+		$("<div>请选中一条记录信息进行修改！</div>").dialog({
+			  position: [$(window).width()/2-$(window).height()*0.2,150],
+		      modal: true,
+		      resize: false,
+		      width: "auto",
+		      buttons: {
+		        Ok: function() {
+		          $( this ).dialog( "close" );
+		        }
+		      }
+		});	
+*/
+	}
 
 </script>
 <body>
@@ -110,7 +127,7 @@ button {
 				</p>
 				<p class="center">
 					<button type="submit" id="save">保存</button>
-					<button type="button" id="back" onclick="goBack()">返回</button>
+					<button type="button" id="back" onclick="test()">返回</button>
 				<p>
 				<input type="hidden" name="id"> 
 				<input type="hidden" name="msg_time">

@@ -142,11 +142,11 @@ public class Grid extends BaseTag {
 		String result = "<tr class='pager'>";
 		result = result + "<td colspan='"+children.size()+1+"'>";
 		result = result + "<div class='pager_navigator'>";
-		result = result + "<button type='button' id='goToFirst' onclick=\"paging('goToFirst')\">首页</button>";
-		result = result + "<button type='button' id='back' onclick=\"paging('back')\">上一页</button>";
-		result = result + "<button type='button' id='next' onclick=\"paging('next')\">下一页</button>";
-		result = result + "<button type='button' id='goToLast' onclick=\"paging('goToLast')\">尾页</button>";
-		result = result + "转到第<input type='text' id='pageIndex' size='1' maxlength='3'/>页<button type='button' id='go' onclick=\"paging('go')\" style='height:28px;width:46px'>go</button>";
+		result = result + "<button type='button' name='goToFirst' onclick=\"paging('goToFirst')\">首页</button>";
+		result = result + "<button type='button' name='back' onclick=\"paging('back')\">上一页</button>";
+		result = result + "<button type='button' name='next' onclick=\"paging('next')\">下一页</button>";
+		result = result + "<button type='button' name='goToLast' onclick=\"paging('goToLast')\">尾页</button>";
+		result = result + "转到第<input type='text' name='pageIndex' size='1' maxlength='3'/>页<button type='button' name='go' onclick=\"paging('go')\" style='height:28px;width:46px'>go</button>";
 		result = result + "</div>";
 		result = result + "<div class='pager_display'>每页显示"+page.getPageRecordNum()+"条&nbsp第"+page.getCurrentPageIndex()+"/"+page.getTotalPage()+"页</div>";
 		result = result + "</td>";

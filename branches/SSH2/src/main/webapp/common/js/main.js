@@ -96,3 +96,37 @@ $(function() {
 	$("button[name='update']").button();
 	$("button[name='delete']").button();
 })
+
+
+function alertMsg(message) {
+	parent.myAlert(message);
+}
+
+function myAlert(message) {
+	$("<div>" + message + "</div>").dialog({
+		position : "center",
+		modal : true,
+		resize : false,
+		width : "auto",
+		height : "auto",
+		buttons : {
+			Ok : function() {
+				$(this).dialog("close");
+			}
+		}
+	});
+}
+
+function newPage(pageURL) {
+	parent.myPage(pageURL);
+}
+
+function myPage(pageURL) {
+	$("<div style='border-style:none'>" + pageURL + "</div>").dialog({
+		position : "center",
+		modal : true,
+		resize : false,
+		width : "auto",
+		height : "auto"
+	});
+}

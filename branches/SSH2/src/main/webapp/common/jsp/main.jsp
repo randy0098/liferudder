@@ -35,9 +35,21 @@
 		height:90%;
 		width:89%;
 	}
+
+/*	
+	.ui-dialog-titlebar{
+		padding: .4em 1em;
+		position: relative;
+		height: 20px;
+	}
+*/	
 </style>
 </head>
+<script type="text/javascript">
+
+</script>
 <body>
+	<button type="button" onclick="myAlert('hi')"></button>
 	<div class="container">
 		<div class="header">
 			<%@ include file="/common/jsp/logo.jsp"%>

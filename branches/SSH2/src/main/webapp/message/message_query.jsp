@@ -81,8 +81,7 @@ alert($(document.body).width());
 //alert($(document.body).outerWidth(true));//浏览器当前窗口文档body的总宽度 包括border padding margin 
 
  function insertRecord(){
-	 //location.href = "message/message_insert.jsp";
-	 newPage("<iframe id='editFrame' src='message/message_insert.jsp'  target='_parent' frameborder='0' scrolling='no' width='1000px' height='800px'/>");
+	 newPage("message/message_insert.jsp","addPage");
  }
  
  function updateRecord(){
@@ -117,7 +116,7 @@ alert($(document.body).width());
 	 if(size == 0){
 		 alertMsg("请选中一条记录信息进行删除！");
 	 }else{
-		 var result = confirm('确定删除此记录？')
+		 var result = confirm('确定删除此记录？');
 		 var ids = "";
 		 if(result == true){
 			 boxes.each(
@@ -129,10 +128,12 @@ alert($(document.body).width());
 		 }
 	 }
  }
+ 
 </script>
 </head>
 <body>
 	<form action="message_query" name="f1" method="post">
+	<input type="hidden" id="initMethods" value="${initMethods}">
 		<table class="query_table">
 			<tr>
 				<td>sender：</td>
@@ -165,7 +166,7 @@ alert($(document.body).width());
 		<div style="margin-top:20px">
 			<table id="result_table" class="result_table">
 				<button type="button" name="delete" onclick="deleteRecord()" class="page_function_button">删除</button>
-				<button type="button" name="update" onclick="updateRecord()" class="page_function_button">修改</button>
+				<button type="button" name="update" onclick="closePage()" class="page_function_button">修改</button>
 				<button type="button" name="insert" onclick="insertRecord()" class="page_function_button">增加</button>
 				<caption class="ui-widget-header">短信记录列表</caption>
 				<tr><th data-resizable-column-id="checkbox"></th><th data-resizable-column-id="Id">Id</th><th data-resizable-column-id="Sender">Sender</th><th data-resizable-column-id="Receiver">Receiver</th><th data-resizable-column-id="Content">Content</th><th data-resizable-column-id="Msg_time">Msg_time</th></tr>

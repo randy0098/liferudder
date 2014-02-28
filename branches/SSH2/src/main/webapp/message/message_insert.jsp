@@ -90,26 +90,13 @@ button {
 		$('#back').button();
 	});
 	
-	function test(){
-		alertMsg("test");
-/*		
-		$("<div>请选中一条记录信息进行修改！</div>").dialog({
-			  position: [$(window).width()/2-$(window).height()*0.2,150],
-		      modal: true,
-		      resize: false,
-		      width: "auto",
-		      buttons: {
-		        Ok: function() {
-		          $( this ).dialog( "close" );
-		        }
-		      }
-		});	
-*/
+	function saveAndClose(){
+		form1.submit();
+		$("#initMethods").val("closePage('addPage')");
 	}
-
 </script>
 <body>
-	<form id="form1" action="message_insert" method="post">
+	<form id="form1" action="message_insert" method="post" target="mainFrame">
 		<div class="myform">
 			<div class="ui-widget-header">新增短信信息</div>
 			<div class="myform_content">
@@ -126,13 +113,14 @@ button {
 					<textarea rows="3" cols="30" id="content" name="content"></textarea>
 				</p>
 				<p class="center">
-					<button type="submit" id="save">保存</button>
-					<button type="button" id="back" onclick="test()">返回</button>
+					<button type="submit" id="save" onclick="saveAndClose()">保存并关闭</button>
+					<button type="button" id="back">返回</button>
 				<p>
 				<input type="hidden" name="id"> 
 				<input type="hidden" name="msg_time">
 			</div>
-		</div>	
+		</div>
+		<input type="hidden" id="initMethods" name="initMethods">	
 	</form>
 </body>
 </html>

@@ -47,6 +47,15 @@ function paging(p,action,currentPageIndex) {
 
 
 $(function() {
+	//调用页面初始化的方法
+	var initMethods = $("#initMethods").val();
+	if(initMethods!=""){
+		var initMethodsArray = initMethods.split(",");
+		for(var i=0; i<initMethodsArray.length; i++){
+			eval(initMethodsArray[i]);
+		}
+	}
+	
 	$("button[name='goToFirst']").button({text:false,icons:{primary:'ui-icon-seek-first'}});
 	$("button[name='goToLast']").button({text:false,icons:{primary:'ui-icon-seek-end'}});
 	$("button[name='back']").button({text:false,icons:{primary:'ui-icon-seek-prev'}});
@@ -97,15 +106,13 @@ $(function() {
 	$("button[name='delete']").button();
 })
 
-
-function alertMsg(message) {
-	parent.myAlert(message);
-}
-
-function myAlert(message) {
-	$("<div>" + message + "</div>").dialog({
+function alertMsg(message,modal) {
+	if(modal==null){
+		modal = true;
+	}
+	parent.$("<div>" + message + "</div>").dialog({
 		position : "center",
-		modal : true,
+		modal : modal,
 		resize : false,
 		width : "auto",
 		height : "auto",
@@ -117,16 +124,25 @@ function myAlert(message) {
 	});
 }
 
-function newPage(pageURL) {
-	parent.myPage(pageURL);
-}
-
-function myPage(pageURL) {
-	$("<div style='border-style:none'>" + pageURL + "</div>").dialog({
+function newPage(pageURL,id,modal,width,height) {
+	if(modal==null){
+		modal = true;
+	}
+	if(width==null){
+		width = 1000;
+	}
+	if(height==null){
+		height = 800;
+	}
+	parent.$("<div id='"+id+"' style='border-style:none'><iframe src='"+pageURL+"' frameborder='0' scrolling='no' width='"+width+"' height='"+height+"'/></div>").dialog({
 		position : "center",
-		modal : true,
+		modal : modal,
 		resize : false,
 		width : "auto",
 		height : "auto"
 	});
+}
+
+function closePage(id){
+	parent.$("#"+id).dialog("destroy");
 }

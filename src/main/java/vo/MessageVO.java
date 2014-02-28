@@ -13,6 +13,13 @@ public class MessageVO extends BaseVO
 	private String receiver;
 	private String content;
 	private String msg_time;
+	private String initMethods;
+	public String getInitMethods() {
+		return initMethods;
+	}
+	public void setInitMethods(String initMethods) {
+		this.initMethods = initMethods;
+	}
 	public String getIds() {
 		return ids;
 	}

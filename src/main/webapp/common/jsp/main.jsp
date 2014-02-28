@@ -49,7 +49,6 @@
 
 </script>
 <body>
-	<button type="button" onclick="myAlert('hi')"></button>
 	<div class="container">
 		<div class="header">
 			<%@ include file="/common/jsp/logo.jsp"%>

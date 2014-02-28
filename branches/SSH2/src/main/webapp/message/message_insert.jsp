@@ -114,7 +114,7 @@ button {
 				</p>
 				<p class="center">
 					<button type="submit" id="save" onclick="saveAndClose()">保存并关闭</button>
-					<button type="button" id="back">返回</button>
+					<button type="button" id="back" onclick="goBack()">返回</button>
 				<p>
 				<input type="hidden" name="id"> 
 				<input type="hidden" name="msg_time">

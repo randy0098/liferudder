@@ -49,7 +49,7 @@ function paging(p,action,currentPageIndex) {
 $(function() {
 	//调用页面初始化的方法
 	var initMethods = $("#initMethods").val();
-	if(initMethods!=""){
+	if(initMethods!=null&&initMethods!=""&&typeof(initMethods)!="undefined"){
 		var initMethodsArray = initMethods.split(",");
 		for(var i=0; i<initMethodsArray.length; i++){
 			eval(initMethodsArray[i]);
@@ -118,7 +118,29 @@ function alertMsg(message,modal) {
 		height : "auto",
 		buttons : {
 			Ok : function() {
-				$(this).dialog("close");
+				parent.$(this).dialog("close");
+			}
+		}
+	});
+}
+
+function confirmMsg(message,callback,modal) {
+	if(modal==null){
+		modal = true;
+	}
+	parent.$("<div>" + message + "</div>").dialog({
+		position : "center",
+		modal : modal,
+		resize : false,
+		width : "auto",
+		height : "auto",
+		buttons : {
+			确定 : function() {
+				callback.call();
+				parent.$(this).dialog("close");
+			},
+			取消 : function() {
+				parent.$(this).dialog("close");
 			}
 		}
 	});

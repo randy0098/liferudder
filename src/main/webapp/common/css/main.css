@@ -9,10 +9,12 @@ body {
 	font-size:1.1em;
 }
 
-button {
+/*
+.pager_button {
 	height:25px;
 	width:25px;
 }
+*/
 
 /*让button字体居中显示*/
 .ui-button-text-only .ui-button-text {
@@ -31,4 +33,9 @@ input[type="submit"],input[type="reset"]{
 	text-align:center;
 }
 
+/*缩短弹出页面的标题栏宽度*/
+.ui-dialog .ui-dialog-titlebar {
+    padding: 0.1em 1em;
+    position: relative;
+}
 

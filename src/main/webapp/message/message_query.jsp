@@ -56,6 +56,7 @@ table caption{
 	height:36px;
 	width:46px;
 }
+
 </style>
 
 <script type="text/javascript">
@@ -198,11 +199,11 @@ function deleteRecord(){
 					
 					<td colspan="7">
 						<div class="pager_navigator">
-							<button type="button" name="goToFirst" onclick="paging(this,'goToFirst')">首页</button>
-							<button type="button" name="back" onclick="paging(this,'back',${page.currentPageIndex})">上一页</button>
-							<button type="button" name="next" onclick="paging(this,'next',${page.currentPageIndex})">下一页</button>
-							<button type="button" name="goToLast" onclick="paging(this,'goToLast')">尾页</button>
-							转到第<input type="text" name="pageIndex" size="1" maxlength="3"/>页<button type="button" name="go" onclick="paging(this,'go')" style="height:28px;width:46px">go</button>
+							<button type="button" name="goToFirst" onclick="paging(this,'goToFirst')" style="width:25px;height:25px">首页</button>
+							<button type="button" name="back" onclick="paging(this,'back',${page.currentPageIndex})" style="width:25px;height:25px">上一页</button>
+							<button type="button" name="next" onclick="paging(this,'next',${page.currentPageIndex})" style="width:25px;height:25px">下一页</button>
+							<button type="button" name="goToLast" onclick="paging(this,'goToLast')" style="width:25px;height:25px">尾页</button>
+							转到第<input type="text" name="pageIndex" size="1" maxlength="3"/>页<button type="button" name="go" onclick="paging(this,'go')" style="height:30px;width:40px">go</button>
 						</div>
 						<div class="pager_display">每页显示${page.pageRecordNum}条&nbsp第${page.currentPageIndex}/${page.totalPage}页</div>
 						<input type="hidden" id="currentPageIndex" value="${page.currentPageIndex}">

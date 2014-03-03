@@ -118,7 +118,7 @@ function alertMsg(message,modal) {
 		height : "auto",
 		buttons : {
 			Ok : function() {
-				parent.$(this).dialog("close");
+				parent.$(this).dialog("destroy");
 			}
 		}
 	});
@@ -137,10 +137,10 @@ function confirmMsg(message,callback,modal) {
 		buttons : {
 			确定 : function() {
 				callback.call();
-				parent.$(this).dialog("close");
+				parent.$(this).dialog("destroy");
 			},
 			取消 : function() {
-				parent.$(this).dialog("close");
+				parent.$(this).dialog("destroy");
 			}
 		}
 	});

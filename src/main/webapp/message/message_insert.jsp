@@ -94,6 +94,31 @@ button {
 		form1.submit();
 		$("#initMethods").val("closePage('addPage')");
 	}
+
+	//alert(parent.$("#addPage").data("test"));
+	//alert($(this).data("test"));
+	var obj = this;
+	alert(obj.location.hash);
+	var a = parent.document;
+	var id;
+	//alert(parent.document);
+	//alert(parent.$("iframe").length);
+	parent.$("iframe").each(function(){
+			//$(this).attr("src");
+//			alert($(this).context.src);
+			//alert(this.contentWindow);
+			//alert($(this).context.contentWindow);
+			var a = $(this).context;
+			var b = obj.frameElement;
+			var c = $(this);
+//			alert(obj);
+			if($(this).context == obj.frameElement){
+				//alert($(this).context.src);
+				//alert($(this).context.parentNode.id);
+				id = $(this).context.parentNode.id;
+			}
+		});
+	alert(parent.$("#"+id).data("test1"));
 </script>
 <body>
 	<form id="form1" action="message_insert" method="post" target="mainFrame">

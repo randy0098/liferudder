@@ -113,14 +113,18 @@ function alertMsg(message,modal) {
 	parent.$("<div>" + message + "</div>").dialog({
 		position : "center",
 		modal : modal,
-		resize : false,
 		width : "auto",
 		height : "auto",
 		buttons : {
 			Ok : function() {
 				parent.$(this).dialog("destroy");
 			}
-		}
+		},
+		close: function(){
+			parent.$(this).dialog("destroy");
+		},
+		closeText:"关闭",
+		resizable:false
 	});
 }
 
@@ -131,7 +135,6 @@ function confirmMsg(message,callback,modal) {
 	parent.$("<div>" + message + "</div>").dialog({
 		position : "center",
 		modal : modal,
-		resize : false,
 		width : "auto",
 		height : "auto",
 		buttons : {
@@ -142,7 +145,12 @@ function confirmMsg(message,callback,modal) {
 			取消 : function() {
 				parent.$(this).dialog("destroy");
 			}
-		}
+		},
+		close: function(){
+			parent.$(this).dialog("destroy");
+		},
+		closeText:"关闭",
+		resizable:false
 	});
 }
 
@@ -159,10 +167,15 @@ function newPage(pageURL,id,modal,width,height) {
 	parent.$("<div id='"+id+"' style='border-style:none'><iframe src='"+pageURL+"' frameborder='0' scrolling='no' width='"+width+"' height='"+height+"'/></div>").dialog({
 		position : "center",
 		modal : modal,
-		resize : false,
 		width : "auto",
-		height : "auto"
+		height : "auto",
+		close: function(){
+			parent.$(this).dialog("destroy");
+		},
+		closeText:"关闭",
+		resizable:false
 	});
+	parent.$("#"+id).data("test","456");
 }
 
 function closePage(id){

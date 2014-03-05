@@ -154,7 +154,7 @@ function confirmMsg(message,callback,modal) {
 	});
 }
 
-function newPage(pageURL,id,modal,width,height) {
+function newPage(pageURL,id,paras,modal,width,height) {
 	if(modal==null){
 		modal = true;
 	}
@@ -164,7 +164,7 @@ function newPage(pageURL,id,modal,width,height) {
 	if(height==null){
 		height = 800;
 	}
-	parent.$("<div id='"+id+"' style='border-style:none'><iframe src='"+pageURL+"' frameborder='0' scrolling='no' width='"+width+"' height='"+height+"'/></div>").dialog({
+	parent.$("<div id='"+id+"' style='border-style:none'><iframe src='"+pageURL+"#"+id+"' frameborder='0' scrolling='no' width='"+width+"' height='"+height+"'/></div>").dialog({
 		position : "center",
 		modal : modal,
 		width : "auto",
@@ -175,7 +175,10 @@ function newPage(pageURL,id,modal,width,height) {
 		closeText:"关闭",
 		resizable:false
 	});
-	parent.$("#"+id).data("test","456");
+	//往dialog页面传值
+	for(var key in paras){
+		parent.$("#"+id).data(key,paras[key]);
+	}
 }
 
 function closePage(id){

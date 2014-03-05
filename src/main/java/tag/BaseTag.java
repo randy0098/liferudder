@@ -20,4 +20,14 @@ public class BaseTag extends SimpleTagSupport implements DynamicAttributes {
 		// 添加属性值
 		values.add(value);
 	}
+	
+	public String createDynamicAttributes(){
+		String result = " ";
+		for(int i=0; i<keys.size(); i++){
+			String key = keys.get(i);
+			Object value = values.get(i);
+			result = result + key + "=" + "\'" + value + "\' ";
+		}
+		return result;
+	}
 }

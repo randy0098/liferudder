@@ -24,6 +24,7 @@
 			<name>keys</name>
 			<required>true</required>
 		</attribute>
+		<dynamic-attributes>true</dynamic-attributes>
 	</tag>
 	<tag>
 		<!-- 定义标签名 -->
@@ -39,7 +40,8 @@
 		<attribute>
 			<name>property</name>
 			<required>true</required>
-		</attribute>		
+		</attribute>	
+		<dynamic-attributes>true</dynamic-attributes>	
 	</tag>
 	<tag>
 		<!-- 定义标签名 -->
@@ -50,6 +52,14 @@
 		<body-content>empty</body-content>
 		<attribute>
 			<name>caption</name>
+			<required>true</required>
+		</attribute>
+		<attribute>
+			<name>name</name>
+			<required>true</required>
+		</attribute>
+		<attribute>
+			<name>onclick</name>
 			<required>true</required>
 		</attribute>
 		<dynamic-attributes>true</dynamic-attributes>		

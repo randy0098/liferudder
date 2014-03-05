@@ -25,6 +25,6 @@ public class Cell extends BaseTag {
 
 	public void doTag() throws JspException, IOException {
 		Grid grid = (Grid)this.getParent();
-		grid.getChildren().add(this);
+		grid.getCells().add(this);
 	}
 }

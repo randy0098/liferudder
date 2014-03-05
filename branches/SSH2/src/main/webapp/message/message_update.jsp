@@ -11,6 +11,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>修改短信信息</title>
 </head>
+<script type="text/javascript">
+//alert(parent.$("#"+this.location.hash.replace("#","")).data("test"));
+</script>
 <body>
 	<form action="message_update" method="post">
 		<table border="1" width="100%">

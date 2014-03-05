@@ -82,7 +82,8 @@ alert($(document.body).width());
 //alert($(document.body).outerWidth(true));//浏览器当前窗口文档body的总宽度 包括border padding margin 
 
  function insertRecord(){
-	 newPage("message/message_insert.jsp","addPage");
+	 newPage("message/message_insert.jsp#addPage","addPage");
+	 parent.$("#addPage").data("test1","123");
  }
  
  function updateRecord(){

@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/common/jsp/header.jsp"%> 
-<%@ taglib uri="http://www.crazyit.org/mytaglib" prefix="mytag"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -134,6 +133,7 @@ function deleteRecord(){
 		</table>
 		
 		<div style="margin-top:20px">
+		<!--
 			<table id="result_table" class="result_table">
 				<button type="button" name="delete" onclick="deleteCheck()" class="page_function_button">删除</button>
 				<button type="button" name="update" onclick="updateRecord()" class="page_function_button">修改</button>
@@ -166,17 +166,16 @@ function deleteRecord(){
 					</td>
 				</tr>
 			</table>
-<!-- 			
-			<t:grid property="page" keys="id">
-				<mytag:button caption="删除" name="delete" onclick="deleteCheck()"/>
-				<mytag:button caption="修改" name="update" onclick="updateRecord()"/>
-				<mytag:button caption="增加" name="insert" onclick="insertRecord()"/>
+			  -->
+			<t:grid property="page" keys="id" >
+				<t:button caption="删除" name="delete" onclick="deleteCheck()"/>
+				<t:button caption="修改" name="update" onclick="updateRecord()"/>
+				<t:button caption="增加" name="insert" onclick="insertRecord()"/>
 				<t:cell caption="Id" property="id"/>
 				<t:cell caption="Sender" property="sender"/>
 				<t:cell caption="Receiver" property="receiver"/>
+				<t:cell caption="Content" property="content"/>
 			</t:grid>
--->			
-			<t:button caption="删除" name="delete" b="test" onclick="deleteCheck()"/>
 
 		</div>
 	</form>

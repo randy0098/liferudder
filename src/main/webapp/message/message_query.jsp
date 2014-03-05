@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/common/jsp/header.jsp"%> 
+<%@ taglib uri="http://www.crazyit.org/mytaglib" prefix="mytag"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -60,27 +61,6 @@ table caption{
 </style>
 
 <script type="text/javascript">
-/*
-//获取浏览器显示区域的高度 
-alert($(window).height()); 
-//获取浏览器显示区域的宽度 
-alert($(window).width()); 
-
-//获取页面的文档高度 
-alert($(document.body).height()); 
-//获取页面的文档宽度 
-alert($(document.body).width()); 
-*/
-
-//alert($(window).height()); //浏览器当前窗口可视区域高度 
-//alert($(document).height()); //浏览器当前窗口文档的高度 
-//alert($(document.body).height());//浏览器当前窗口文档body的高度 
-//alert($(document.body).outerHeight(true));//浏览器当前窗口文档body的总高度 包括border padding margin 
-//alert($(window).width()); //浏览器当前窗口可视区域宽度 
-//alert($(document).width());//浏览器当前窗口文档对象宽度 
-//alert($(document.body).width());//浏览器当前窗口文档body的高度 
-//alert($(document.body).outerWidth(true));//浏览器当前窗口文档body的总宽度 包括border padding margin 
-
  function insertRecord(){
 	 newPage("message/message_insert.jsp","addPage",{test:"123"});
  }
@@ -90,24 +70,11 @@ alert($(document.body).width());
 	 var size = boxes.size();
 	 if(size == 0){
 		 alertMsg("请选中一条记录信息进行修改！");
-/*		 
-		 alert("请选中一条记录信息进行修改！");
-		 $("<div>请选中一条记录信息进行修改！</div>").dialog({
-			  position: [$(window).width()/2-$(window).height()*0.2,150],
-		      modal: true,
-		      resize: false,
-		      width: "auto",
-		      buttons: {
-		        Ok: function() {
-		          $( this ).dialog( "close" );
-		        }
-		      }
-		 });
-*/		 
 	 }else if(size > 1){
 		 alertMsg("只能选择一条记录信息进行修改！");
 	 }else if(size == 1){
-		 location.href = "message_selectOne?id="+boxes.val();
+		 //location.href = "message_selectOne?id="+boxes.val();
+		 newPage("message_selectOne?id="+boxes.val(),"updatePage",{test:"456"});
 	 }
  }
  
@@ -117,19 +84,7 @@ alert($(document.body).width());
 	 if(size == 0){
 		 alertMsg("请选中一条记录信息进行删除！");
 	 }else{
-		 confirmMsg('确定删除此记录？',deleteRecord);
-/*		 
-		 var result = confirm('确定删除此记录？');
-		 var ids = "";
-		 if(result == true){
-			 boxes.each(
-				 function(){
-					 ids = ids + "," + $(this).val();
-				 } 
-			 );
-			 location.href = "message_deleteAll?ids="+ids;
-		 }
-*/		 
+		 confirmMsg("确定删除此记录？",deleteRecord);
 	 }
  }
  
@@ -213,11 +168,16 @@ function deleteRecord(){
 			</table>
 <!-- 			
 			<t:grid property="page" keys="id">
+				<mytag:button caption="删除" name="delete" onclick="deleteCheck()"/>
+				<mytag:button caption="修改" name="update" onclick="updateRecord()"/>
+				<mytag:button caption="增加" name="insert" onclick="insertRecord()"/>
 				<t:cell caption="Id" property="id"/>
 				<t:cell caption="Sender" property="sender"/>
 				<t:cell caption="Receiver" property="receiver"/>
 			</t:grid>
 -->			
+			<t:button caption="删除" name="delete" b="test" onclick="deleteCheck()"/>
+
 		</div>
 	</form>
 </BODY>

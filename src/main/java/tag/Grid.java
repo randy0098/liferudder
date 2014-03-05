@@ -11,7 +11,9 @@ import framework.HibernatePage;
 public class Grid extends BaseTag {
 	private String property;
 	private String keys;
-
+	private ArrayList cells = new ArrayList();
+	private ArrayList buttons = new ArrayList();
+	
 	public String getProperty() {
 		return property;
 	}
@@ -28,14 +30,20 @@ public class Grid extends BaseTag {
 		this.keys = keys;
 	}
 
-	private ArrayList children = new ArrayList();
-	
-	public ArrayList getChildren() {
-		return children;
+	public ArrayList getCells() {
+		return cells;
 	}
 
-	public void setChildren(ArrayList children) {
-		this.children = children;
+	public void setCells(ArrayList cells) {
+		this.cells = cells;
+	}
+
+	public ArrayList getButtons() {
+		return buttons;
+	}
+
+	public void setButtons(ArrayList buttons) {
+		this.buttons = buttons;
 	}
 
 /*
@@ -69,7 +77,8 @@ public class Grid extends BaseTag {
 		</tr>
 	</table>
 */
-	
+
+
 	public void doTag() throws JspException, IOException {
 		getJspBody().invoke(null); 
 		JspWriter writer = getJspContext().getOut();
@@ -87,8 +96,8 @@ public class Grid extends BaseTag {
 	//生成表头
 	public String createTH(){
 		String result="<tr>";
-		for(int i=0; i<children.size(); i++){
-			Cell child = (Cell) children.get(i);
+		for(int i=0; i<cells.size(); i++){
+			Cell child = (Cell) cells.get(i);
 			result = result + "<th data-resizable-column-id='" + child.getCaption() + "'>" + child.getCaption() + "</th>";
 		}
 		result = result+"<th>操作</th></tr>";
@@ -104,8 +113,8 @@ public class Grid extends BaseTag {
 			result = result + "<tr>";
 			String propertyValue = "";
 			String id="";
-			for(int j=0; j<children.size(); j++){
-				Cell cell = (Cell)children.get(j);
+			for(int j=0; j<cells.size(); j++){
+				Cell cell = (Cell)cells.get(j);
 				String property = cell.getProperty();
 				Field field1;
 				try {
@@ -140,7 +149,7 @@ public class Grid extends BaseTag {
 	public String createPager(){
 		HibernatePage page = (HibernatePage) getJspContext().findAttribute("page");
 		String result = "<tr class='pager'>";
-		result = result + "<td colspan='"+children.size()+1+"'>";
+		result = result + "<td colspan='"+cells.size()+1+"'>";
 		result = result + "<div class='pager_navigator'>";
 		result = result + "<button type='button' name='goToFirst' onclick=\"paging('goToFirst')\">首页</button>";
 		result = result + "<button type='button' name='back' onclick=\"paging('back')\">上一页</button>";

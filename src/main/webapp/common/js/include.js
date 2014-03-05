@@ -58,5 +58,8 @@ includeJS("plugins/resizableColumns/js/jquery.resizableColumns.js");
 includeJS("plugins/resizableColumns/js/store.js");
 includeCSS("plugins/resizableColumns/css/jquery.resizableColumns.css");
 
+//json string互转
+includeJS("plugins/json2.js");
+
 //全局js
 includeJS("common/js/main.js");

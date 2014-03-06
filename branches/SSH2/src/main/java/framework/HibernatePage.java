@@ -104,6 +104,10 @@ public class HibernatePage extends BaseDAOImpl{
 			// 获得记录总数和总页数
 			this.calculateTotalPage();
 		}
+		//此时查询不出任何的记录
+		else if(this.currentPageIndex == 0){
+			this.records = new ArrayList();
+		}
 	}
 
 	/**
@@ -211,9 +215,10 @@ public class HibernatePage extends BaseDAOImpl{
 	public void go(int pageIndex) {
 		// 获得记录总数和总页数
 		this.calculateTotalPage();
+		//注意这里如果查询不出记录时，this.totalPage=0，而CurrentPageIndex也会为0！
 		if (pageIndex < 1) {
 			pageIndex = 1;
-		} else if (pageIndex > this.totalPage) {
+		} else if (pageIndex>this.totalPage) {
 			pageIndex = this.totalPage;
 		}
 		this.setCurrentPageIndex(pageIndex);

@@ -10,11 +10,20 @@ import javax.servlet.jsp.JspWriter;
 import framework.HibernatePage;
 
 public class Grid extends BaseTag {
+	private String caption;
 	private String property;
 	private String keys;
 	private ArrayList cells = new ArrayList();
 	private ArrayList buttons = new ArrayList();
 	
+	public String getCaption() {
+		return caption;
+	}
+
+	public void setCaption(String caption) {
+		this.caption = caption;
+	}
+
 	public String getProperty() {
 		return property;
 	}
@@ -48,46 +57,46 @@ public class Grid extends BaseTag {
 	}
 
 /*
-		<table id="result_table" class="result_table">
-			<button type="button" name="delete" onclick="deleteCheck()" class="page_function_button">删除</button>
-			<button type="button" name="update" onclick="updateRecord()" class="page_function_button">修改</button>
-			<button type="button" name="insert" onclick="insertRecord()" class="page_function_button">增加</button>
-			<caption class="ui-widget-header">短信记录列表</caption>
-			<tr><th data-resizable-column-id="checkbox"></th><th data-resizable-column-id="Id">Id</th><th data-resizable-column-id="Sender">Sender</th><th data-resizable-column-id="Receiver">Receiver</th><th data-resizable-column-id="Content">Content</th><th data-resizable-column-id="Msg_time">Msg_time</th></tr>
-			<c:forEach var="message" items="${page.records}">
-				<tr>
-					<td><input type="checkbox" name="checkbox" value=${message.id}></td>
-					<td>${message.id}</td>
-					<td>${message.sender}</td>
-					<td>${message.receiver}</td>
-					<td>${message.content}</td>
-					<td>${message.msg_time}</td>
+			<table class="grid_table">
+				<button type="button" name="delete" onclick="deleteCheck()" class="grid_button">删除</button>
+				<button type="button" name="update" onclick="updateRecord()" class="grid_button">修改</button>
+				<button type="button" name="insert" onclick="insertRecord()" class="grid_button">增加</button>
+				<caption class="ui-widget-header">短信记录列表</caption>
+				<tr><th data-resizable-column-id="checkbox"></th><th data-resizable-column-id="Id">Id</th><th data-resizable-column-id="Sender">Sender</th><th data-resizable-column-id="Receiver">Receiver</th><th data-resizable-column-id="Content">Content</th><th data-resizable-column-id="Msg_time">Msg_time</th></tr>
+				<c:forEach var="message" items="${page.records}">
+					<tr onclick="selectCheckbox(this)" onmouseover="mouseOverCheckbox(this)" onmouseout="mouseOutCheckbox(this)">
+						<td><input type="checkbox" name="grid_checkbox" value=${message.id}></td>
+						<td>${message.id}</td>
+						<td>${message.sender}</td>
+						<td>${message.receiver}</td>
+						<td>${message.content}</td>
+						<td>${message.msg_time}</td>
+					</tr>
+				</c:forEach>
+				<tr class="pager">
+					
+					<td colspan="7">
+						<div class="pager_navigator">
+							<button type="button" name="goToFirst" onclick="paging(this,'goToFirst')" style="width:25px;height:25px">首页</button>
+							<button type="button" name="back" onclick="paging(this,'back',${page.currentPageIndex})" style="width:25px;height:25px">上一页</button>
+							<button type="button" name="next" onclick="paging(this,'next',${page.currentPageIndex})" style="width:25px;height:25px">下一页</button>
+							<button type="button" name="goToLast" onclick="paging(this,'goToLast')" style="width:25px;height:25px">尾页</button>
+							转到第<input type="text" name="pageIndex" size="1" maxlength="3"/>页<button type="button" name="go" onclick="paging(this,'go')" style="height:30px;width:40px">go</button>
+						</div>
+						<div class="pager_display">每页显示${page.pageRecordNum}条&nbsp第${page.currentPageIndex}/${page.totalPage}页</div>
+						<input type="hidden" id="currentPageIndex" value="${page.currentPageIndex}">
+						<input type="hidden" id="lastPageIndex" value="${page.totalPage}">
+					</td>
 				</tr>
-			</c:forEach>
-			<tr class="pager">
-				
-				<td colspan="7">
-					<div class="pager_navigator">
-						<button type="button" name="goToFirst" onclick="paging(this,'goToFirst')" style="width:25px;height:25px">首页</button>
-						<button type="button" name="back" onclick="paging(this,'back',${page.currentPageIndex})" style="width:25px;height:25px">上一页</button>
-						<button type="button" name="next" onclick="paging(this,'next',${page.currentPageIndex})" style="width:25px;height:25px">下一页</button>
-						<button type="button" name="goToLast" onclick="paging(this,'goToLast')" style="width:25px;height:25px">尾页</button>
-						转到第<input type="text" name="pageIndex" size="1" maxlength="3"/>页<button type="button" name="go" onclick="paging(this,'go')" style="height:30px;width:40px">go</button>
-					</div>
-					<div class="pager_display">每页显示${page.pageRecordNum}条&nbsp第${page.currentPageIndex}/${page.totalPage}页</div>
-					<input type="hidden" id="currentPageIndex" value="${page.currentPageIndex}">
-					<input type="hidden" id="lastPageIndex" value="${page.totalPage}">
-				</td>
-			</tr>
-		</table>
+			</table>
 */
 	public void doTag() throws JspException, IOException {
 		getJspBody().invoke(null); 
 		JspWriter writer = getJspContext().getOut();
-		writer.println("<table id='result_table' class='result_table'" + this.createDynamicAttributes() +">");
+		writer.println("<table class='grid_table'" + this.createDynamicAttributes() +">");
 		//生成按钮
 		writer.println(createButtons());
-		writer.println("<caption class='ui-widget-header'>短信记录列表</caption>");
+		writer.println("<caption class='ui-widget-header'>"+caption+"</caption>");
 		//生成表头
 		writer.println(createTH());
 		//生成表格内容
@@ -108,8 +117,9 @@ public class Grid extends BaseTag {
 		String result="";
 		for(int i=0; i<buttons.size(); i++){
 			Button button = (Button)buttons.get(i);
-			result = result + "<button type='button' name='"+button.getName()+"' onclick="+button.getOnclick()+" class='page_function_button' "+button.createDynamicAttributes()+">"+button.getCaption()+"</button>";
+			result = result + "<button type='button' name='"+button.getName()+"' onclick="+button.getOnclick()+" class='grid_button' "+button.createDynamicAttributes()+">"+button.getCaption()+"</button>";
 		}
+		System.out.println("createButtons:"+result);
 		return result;
 	}
 	
@@ -121,6 +131,7 @@ public class Grid extends BaseTag {
 			result = result + "<th data-resizable-column-id='" + cell.getCaption() + "' " + cell.createDynamicAttributes()+">" + cell.getCaption() + "</th>";
 		}
 		result = result+"</tr>";
+		System.out.println("createTH:"+result);
 		return result;
 	}
 	
@@ -130,13 +141,13 @@ public class Grid extends BaseTag {
 		HibernatePage page = (HibernatePage) getJspContext().findAttribute(property);
 		ArrayList records = page.getRecords();
 		for(int i=0; i<records.size(); i++){
-			result = result + "<tr>";
+			result = result + "<tr onclick='selectCheckbox(this)' onmouseover='mouseOverCheckbox(this)' onmouseout='mouseOutCheckbox(this)'>";
 			String propertyValue = "";
 			//取id值生成checkbox
 			Field idField = records.get(i).getClass().getDeclaredField(keys);
 			idField.setAccessible(true);
 			String idValue = String.valueOf(idField.get(records.get(i)));
-			result = result + "<td><input type='checkbox' name='checkbox' value='"+idValue+"'></td>";
+			result = result + "<td><input type='checkbox' name='grid_checkbox' value='"+idValue+"'></td>";
 			for(int j=0; j<cells.size(); j++){
 				//生成cell域
 				Cell cell = (Cell)cells.get(j);
@@ -148,6 +159,7 @@ public class Grid extends BaseTag {
 			}
 			result = result+"</tr>";
 		}
+		System.out.println("createCell:"+result);
 		return result;
 	}
 	
@@ -169,6 +181,7 @@ public class Grid extends BaseTag {
 		result = result + "<input type='hidden' id='lastPageIndex' value="+page.getTotalPage()+">";
 		result = result + "</td>";
 		result = result + "</tr>";
+		System.out.println("createPager:"+result);
 		return result;
 	}
 	

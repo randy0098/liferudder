@@ -39,3 +39,43 @@ input[type="submit"],input[type="reset"]{
     position: relative;
 }
 
+table{
+	width:100%;
+	border:#a6c9e2 solid 1px;
+	border-collapse:collapse;/*表格的边框合并为一个单一的边框*/
+}
+
+table caption{
+	text-align:left;
+	padding-left:5px;
+}
+
+.grid_table th,.grid_table td{
+	border:#a6c9e2 solid 1px;
+}
+
+.grid_table th,.pager{
+	text-align:center;
+	background-color:#e3f1fc;
+	color:#217bc0;
+}
+
+.pager_navigator{
+	width:60%;
+	float:left;
+	text-align:right;
+}
+
+.pager_display{
+	width:40%;
+	float:right;
+	text-align:right;
+	margin-top:4px;/*垂直居中显示*/
+}
+
+.grid_button{
+	float:right;
+	height:36px;
+	width:46px;
+	margin-top:20px；
+}

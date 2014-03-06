@@ -104,6 +104,20 @@ $(function() {
 	$("button[name='insert']").button();
 	$("button[name='update']").button();
 	$("button[name='delete']").button();
+	
+	//grid中的checkbox上的事件
+	$("input[name='grid_checkbox']").click(
+		function(event){
+			var value = $(this).is(":checked");
+			if(value == true){
+				$(this).parents("tr").css("background", "#fbec87");
+			}else{
+				$(this).parents("tr").css("background", "");
+			}
+			//阻止后面selectCheckbox的调用导致checkbox值被还原了
+			event.stopPropagation(); 
+		}		
+	)
 })
 
 function alertMsg(message,modal) {
@@ -183,4 +197,33 @@ function newPage(pageURL,id,paras,modal,width,height) {
 
 function closePage(id){
 	parent.$("#"+id).dialog("destroy");
+}
+
+//点击一行时选中此行的checkbox
+function selectCheckbox(p){
+	var checkboxObj = $(p).find("input[name='grid_checkbox']");
+	var value = checkboxObj.is(":checked");
+	if(value == true){
+		checkboxObj.prop("checked",false);
+		$(p).css("background", "");
+	}else{
+		checkboxObj.prop("checked",true);
+		$(p).css("background", "#fbec87");
+	}
+}
+
+//鼠标移动当一行时高亮显示这行
+function mouseOverCheckbox(p){
+	$(p).css("background", "#fbec87");
+}
+
+//鼠标离开某行时，如果没有选中此行的checkbox就不高亮显示此行
+function mouseOutCheckbox(p){
+	var checkboxObj = $(p).find("input[name='grid_checkbox']");
+	var value = checkboxObj.is(":checked");
+	if(value == true){
+		$(p).css("background", "#fbec87");
+	}else{
+		$(p).css("background", "");
+	}
 }

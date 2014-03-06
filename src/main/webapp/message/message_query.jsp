@@ -13,48 +13,8 @@
 <style type="text/css">
 /*border:1px solid red;*/
 
-table{
-	width:100%;
-	border:#a6c9e2 solid 1px;
-	border-collapse:collapse;/*表格的边框合并为一个单一的边框*/
-}
-
-table caption{
-	text-align:left;
-	padding-left:5px;
-}
-
 .query_table {
 	height: 20%;
-}
-
-.result_table th,.result_table td{
-	border:#a6c9e2 solid 1px;
-}
-
-.result_table th,.pager{
-	text-align:center;
-	background-color:#e3f1fc;
-	color:#217bc0;
-}
-
-.pager_navigator{
-	width:60%;
-	float:left;
-	text-align:right;
-}
-
-.pager_display{
-	width:40%;
-	float:right;
-	text-align:right;
-	margin-top:4px;/*垂直居中显示*/
-}
-
-.page_function_button{
-	float:right;
-	height:36px;
-	width:46px;
 }
 
 </style>
@@ -102,7 +62,7 @@ function deleteRecord(){
 </head>
 <body>
 	<form action="message_query" name="f1" method="post">
-	<input type="hidden" id="initMethods" value="${initMethods}">
+		<input type="hidden" id="initMethods" value="${initMethods}">
 		<table class="query_table">
 			<tr>
 				<td>sender：</td>
@@ -132,17 +92,16 @@ function deleteRecord(){
 			</tr>
 		</table>
 		
-		<div style="margin-top:20px">
 		<!--
-			<table id="result_table" class="result_table">
-				<button type="button" name="delete" onclick="deleteCheck()" class="page_function_button">删除</button>
-				<button type="button" name="update" onclick="updateRecord()" class="page_function_button">修改</button>
-				<button type="button" name="insert" onclick="insertRecord()" class="page_function_button">增加</button>
+			<table class="grid_table">
+				<button type="button" name="delete" onclick="deleteCheck()" class="grid_button">删除</button>
+				<button type="button" name="update" onclick="updateRecord()" class="grid_button">修改</button>
+				<button type="button" name="insert" onclick="insertRecord()" class="grid_button">增加</button>
 				<caption class="ui-widget-header">短信记录列表</caption>
 				<tr><th data-resizable-column-id="checkbox"></th><th data-resizable-column-id="Id">Id</th><th data-resizable-column-id="Sender">Sender</th><th data-resizable-column-id="Receiver">Receiver</th><th data-resizable-column-id="Content">Content</th><th data-resizable-column-id="Msg_time">Msg_time</th></tr>
 				<c:forEach var="message" items="${page.records}">
-					<tr>
-						<td><input type="checkbox" name="checkbox" value=${message.id}></td>
+					<tr onclick="selectCheckbox(this)" onmouseover="mouseOverCheckbox(this)" onmouseout="mouseOutCheckbox(this)">
+						<td><input type="checkbox" name="grid_checkbox" value=${message.id}></td>
 						<td>${message.id}</td>
 						<td>${message.sender}</td>
 						<td>${message.receiver}</td>
@@ -166,8 +125,8 @@ function deleteRecord(){
 					</td>
 				</tr>
 			</table>
-			  -->
-			<t:grid property="page" keys="id" >
+		-->
+			<t:grid property="page" keys="id" caption="短信记录列表">
 				<t:button caption="删除" name="delete" onclick="deleteCheck()"/>
 				<t:button caption="修改" name="update" onclick="updateRecord()"/>
 				<t:button caption="增加" name="insert" onclick="insertRecord()"/>
@@ -176,8 +135,6 @@ function deleteRecord(){
 				<t:cell caption="Receiver" property="receiver"/>
 				<t:cell caption="Content" property="content"/>
 			</t:grid>
-
-		</div>
 	</form>
 </BODY>
 </body>

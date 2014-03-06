@@ -17,6 +17,10 @@
 		<!-- 定义标签体-->
 		<body-content>scriptless</body-content>
 		<attribute>
+			<name>caption</name>
+			<required>true</required>
+		</attribute>
+		<attribute>
 			<name>property</name>
 			<required>true</required>
 		</attribute>

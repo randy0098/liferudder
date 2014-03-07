@@ -110,7 +110,6 @@ function deleteRecord(){
 					</tr>
 				</c:forEach>
 				<tr class="pager">
-					
 					<td colspan="7">
 						<div class="pager_navigator">
 							<button type="button" name="goToFirst" onclick="paging(this,'goToFirst')" style="width:25px;height:25px">首页</button>
@@ -124,7 +123,7 @@ function deleteRecord(){
 						<input type="hidden" id="lastPageIndex" value="${page.totalPage}">
 					</td>
 				</tr>
-			</table>
+			
 		-->
 			<t:grid property="page" keys="id" caption="短信记录列表">
 				<t:button caption="删除" name="delete" onclick="deleteCheck()"/>

@@ -22,31 +22,30 @@
 	{
     	border: red;
 	}
+	
+	.myform {
+		width:800px;
+		margin:30px auto;
+		text-align:left;
+		border:#a6c9e2 solid 1px;
+	}
 */
 
-.myform {
-	width:800px;
-	margin:30px auto;
-	text-align:left;
-	border:#a6c9e2 solid 1px;
-}
-
 label {
-	width:120px;
+	width:100px;
 	float:left;
 	text-align:right;
 	font-weight:bold;
 	color:#217bc0;
 }
-	
+
 input {
-	margin-left: 80px;
-	width:400px;
+	margin-left:60px;width:200px;
 }	
 
 textarea {
-	margin-left: 80px;
-	width:400px;
+	margin-left:60px;
+	width:200px;
 }
 
 button {
@@ -101,26 +100,34 @@ button {
 	<form id="form1" action="message_insert" method="post" target="mainFrame">
 		<div class="myform">
 			<div class="ui-widget-header">新增短信信息</div>
-			<div class="myform_content">
-				<p>
-					<label for="sender">发送者：</label> 
-					<input type="text" id="sender" name="sender"> 
-				</p>
-				<p>
-					<label for="receiver">接收者：</label> 
-					<input type="text" id="receiver" name="receiver"> 
-				</p>
-				<p>
-					<label for="content">内容：</label>
+			<table border="1">
+			  <tr>
+			    <td>
+			    	<label for="sender">发送者：</label>
+					<input type="text" id="sender" name="sender" >
+			    </td>
+			    <td>
+			    	<label for="receiver">接收者：</label>
+					<input type="text" id="receiver" name="receiver">
+			    </td>
+			  </tr>
+			  <tr>
+			    <td colspan="2">
+			    	<label for="content">内容：</label>
 					<textarea rows="3" cols="30" id="content" name="content"></textarea>
-				</p>
-				<p class="center">
-					<button type="submit" id="save" onclick="saveAndClose()" style="width:110px">保存并关闭</button>
-					<button type="button" id="back" onclick="closePage('addPage')">返回</button>
-				<p>
-				<input type="hidden" name="id"> 
-				<input type="hidden" name="msg_time">
-			</div>
+			    </td>
+			  </tr>
+			  <tr>
+			    <td colspan="2">
+					<p class="center">
+						<button type="submit" id="save" onclick="saveAndClose()" style="width:110px">保存并关闭</button>
+						<button type="button" id="back" onclick="closePage('addPage')">返回</button>
+					<p>
+					<input type="hidden" name="id"> 
+					<input type="hidden" name="msg_time">			    
+				</td>
+			  </tr>
+			</table>
 		</div>
 		<input type="hidden" id="initMethods" name="initMethods">	
 	</form>
